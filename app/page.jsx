@@ -12,6 +12,7 @@ export const metadata = {
 
 export default async function HomePage() {
   const data = await getData()
+  console.log('data', data)
   if (!data) {
       return (
           'ass'

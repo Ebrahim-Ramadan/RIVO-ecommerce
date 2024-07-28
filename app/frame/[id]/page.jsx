@@ -1,4 +1,3 @@
-'use client';
 import { Carousel } from '@/components/carousel';
 import { ThreeItemGrid } from '@/components/grid/three-items';
 import Footer from '@/components/layout/footer';
@@ -6,16 +5,13 @@ import { Gallery } from '@/components/product/gallery';
 import { ProductDescription } from '@/components/product/product-description';
 import {  getProductDetails } from '@/lib/utils';
 
-import { usePathname } from 'next/navigation'
 import { Suspense } from 'react';
 
-export default async function HomePage() {
-  
-  const pathname = usePathname();
-  const productId = pathname.split('/frame/')[1];
+export default async function Page({params}) {
 
+  console.log('/id params', params.id)
 
-  const data = await getData(productId)
+  const data = await getData(params.id)
   console.log('Data:', data);
   if (!data) {
       return (
@@ -47,7 +43,6 @@ export default async function HomePage() {
         </div>
         {/* <RelatedProducts id={product.id} /> */}
       </div>
-      {/* <Footet /> */}
     </>
   );
 }
