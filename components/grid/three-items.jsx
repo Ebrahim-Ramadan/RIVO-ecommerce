@@ -12,7 +12,7 @@ function ThreeItemGridItem({
     >
       <a
         className="relative block aspect-square h-full w-full"
-        href={`/frame/${item['id']}`}
+        href={`/frame/${item?.id}`}
         prefetch='true'
       >
         <GridTileImage
@@ -42,7 +42,7 @@ export  function ThreeItemGrid({data}) {
   < div className="py-4 flex flex-row justify-center w-full  text-center" >
       <div className="bg-gradient-to-r from-transparent via-white/40 to-transparent w-full  h-[2px] opacity-80"></div>
     </div >
-   <p className='font-bold text-lg md:text-3xl px-8 '>Featuring</p>
+   <p className='font-bold text-xl md:text-3xl px-4 md:px-8 '>Featuring</p>
 
 <section className=" grid gap-4  pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]">
   <ThreeItemGridItem size="full" item={data[0]} priority={true} />

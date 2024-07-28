@@ -75,16 +75,16 @@ export const Slider = () => {
           >
             <Image
               alt="slide"
-              width={1024}
-              height={1024}
+              width={500}
+              height={500}
               className="rounded-lg inset-0 h-full w-full object-cover"
               src={slide.bg}
             />
             <div className="absolute inset-0 flex flex-col h-full justify-between py-2 items-center">
-              <div className="text-white text-base md:text-xl font-medium bg-black/10 backdrop-blur-3xl bg-opacity-50 p-2 md:p-4 rounded-full">
+              <div className="text-white text-base backdrop-blur-3xl bg-white/10 md:text-3xl font-bold mt-2  p-2 md:p-4 rounded-full">
                 {slide.text}
               </div>
-              <button className="bg-black text-white text-base md:text-xl font-bold rounded-full p-2 md:p-4  md:text-base">
+              <button className="bg-black/80 backdrop-blur-3xl text-white text-sm md:text-xl font-bold rounded-full p-2 md:p-4  ">
                 Shop Now
               </button>
             </div>
@@ -92,13 +92,13 @@ export const Slider = () => {
         ))}
       </div>
       <button
-        className="absolute top-1/2 transform -translate-y-1/2 left-4 backdrop-blur-3xl bg-black/50 text-white p-2 rounded-full transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white"
+        className="absolute top-1/2 transform -translate-y-1/2 left-4 backdrop-blur-3xl bg-black/60 text-white p-2 rounded-full transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white"
         onClick={goToPrevious}
       >
         <ArrowLeft/>
       </button>
       <button
-        className="absolute top-1/2 transform -translate-y-1/2 right-4 backdrop-blur-3xl bg-black/50 text-white p-2 rounded-full transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white"
+        className="absolute top-1/2 transform -translate-y-1/2 right-4 backdrop-blur-3xl bg-black/60 text-white p-2 rounded-full transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white"
         onClick={goToNext}
       >
               <ArrowRight/>
