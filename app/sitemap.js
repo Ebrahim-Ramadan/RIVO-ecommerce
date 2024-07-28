@@ -2,10 +2,7 @@ import { getCollections, getPages, getProducts } from 'lib/shopify';
 import { validateEnvironmentVariables } from 'lib/utils';
 import { MetadataRoute } from 'next';
 
-type Route = {
-  url: string;
-  lastModified: string;
-};
+
 
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
@@ -13,7 +10,7 @@ const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
 
 export const dynamic = 'force-dynamic';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default async function sitemap() {
   validateEnvironmentVariables();
 
   const routesMap = [''].map((route) => ({
@@ -42,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
-  let fetchedRoutes: Route[] = [];
+  let fetchedRoutes = [];
 
   try {
     fetchedRoutes = (await Promise.all([collectionsPromise, productsPromise, pagesPromise])).flat();
