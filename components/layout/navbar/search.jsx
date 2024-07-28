@@ -9,18 +9,19 @@ export default function Search() {
 
   function onSubmit(e) {
     e.preventDefault();
-
-    const val = e.target ;
-    const search = val.search ;
+  
+    const val = e.target;
+    const search = val.search;
     const newParams = new URLSearchParams(searchParams.toString());
-
+  
     if (search.value) {
       newParams.set('q', search.value);
     } else {
       newParams.delete('q');
     }
-
-
+  
+    // Add this line to redirect
+    router.push(`/search?${newParams.toString()}`);
   }
 
   return (

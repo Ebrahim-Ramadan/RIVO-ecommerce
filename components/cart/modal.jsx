@@ -1,12 +1,12 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
-import { ShoppingCartIcon } from '@heroicons/react/24/outline';
-import LoadingDots from 'components/loading-dots';
-import Price from 'components/price';
-import { DEFAULT_OPTION } from 'lib/constants';
+import { ShoppingBag } from 'lucide-react';
+import LoadingDots from '@/components/loading-dots';
+import Price from '@/components/price';
+import { DEFAULT_OPTION } from '@/lib/constants';
 
-import { createUrl } from 'lib/utils';
+import { createUrl } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment, useEffect, useOptimistic, useRef, useState } from 'react';
@@ -144,7 +144,7 @@ export default function CartModal({ cart: initialCart  }) {
 
               {!cart || cart.lines.length === 0 ? (
                 <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
-                  <ShoppingCartIcon className="h-16" />
+                  <ShoppingBag className="h-16" />
                   <p className="mt-6 text-center text-2xl font-bold">Your cart is empty.</p>
                 </div>
               ) : (

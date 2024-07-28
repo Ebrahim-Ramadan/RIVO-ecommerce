@@ -1,8 +1,8 @@
 'use client';
 
-import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { Minus, Plus } from 'lucide-react';
 import clsx from 'clsx';
-import { updateItemQuantity } from 'components/cart/actions';
+import { updateItemQuantity } from '@/components/cart/actions';
 
 import { useFormState } from 'react-dom';
 
@@ -19,9 +19,9 @@ function SubmitButton({ type }) {
       )}
     >
       {type === 'plus' ? (
-        <PlusIcon className="h-4 w-4 dark:text-neutral-500" />
+        <Plus className="h-4 w-4 dark:text-neutral-500" />
       ) : (
-        <MinusIcon className="h-4 w-4 dark:text-neutral-500" />
+        <Minus className="h-4 w-4 dark:text-neutral-500" />
       )}
     </button>
   );

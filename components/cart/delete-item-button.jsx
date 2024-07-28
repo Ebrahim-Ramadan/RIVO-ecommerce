@@ -1,7 +1,8 @@
 'use client';
 
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import { removeItem } from 'components/cart/actions';
+import { X } from 'lucide-react';
+
+import { removeItem } from '@/components/cart/actions';
 
 import { useFormState } from 'react-dom';
 
@@ -25,7 +26,7 @@ export function DeleteItemButton({
         aria-label="Remove cart item"
         className="ease flex h-[17px] w-[17px] items-center justify-center rounded-full bg-neutral-500 transition-all duration-200"
       >
-        <XMarkIcon className="hover:text-accent-3 mx-[1px] h-4 w-4 text-white dark:text-black" />
+        <X className="hover:text-accent-3 mx-[1px] h-4 w-4 text-white dark:text-black" />
       </button>
       <p aria-live="polite" className="sr-only" role="status">
         {message}

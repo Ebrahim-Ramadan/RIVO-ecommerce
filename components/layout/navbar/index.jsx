@@ -1,17 +1,21 @@
+import Cart from '@/components/cart';
+import OpenCart from '@/components/cart/open-cart';
 import LogoSquare from '@/components/logo-square';
 
 import Link from 'next/link';
 import { Suspense } from 'react';
+import MobileMenu from './mobile-menu';
 import Search, { SearchSkeleton } from './search';
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
 
-
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6">
       <div className="block flex-none md:hidden">
-      
+        <Suspense fallback={null}>
+          <MobileMenu />
+        </Suspense>
       </div>
       <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">
@@ -25,7 +29,7 @@ export default async function Navbar() {
               {SITE_NAME}
             </div>
           </Link>
-          
+         
         </div>
         <div className="hidden justify-center md:flex md:w-1/3">
           <Suspense fallback={<SearchSkeleton />}>
@@ -33,7 +37,9 @@ export default async function Navbar() {
           </Suspense>
         </div>
         <div className="flex justify-end md:w-1/3">
-         
+          <Suspense fallback={<OpenCart />}>
+            <Cart />
+          </Suspense>
         </div>
       </div>
     </nav>

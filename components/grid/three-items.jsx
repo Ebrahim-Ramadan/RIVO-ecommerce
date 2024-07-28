@@ -13,7 +13,7 @@ function ThreeItemGridItem({
       <a
         className="relative block aspect-square h-full w-full"
         href={`/frame/${item['id']}`}
-        prefetch={true}
+        prefetch='true'
       >
         <GridTileImage
           src={item['images'][0]}
@@ -26,7 +26,7 @@ function ThreeItemGridItem({
           label={{
             position: size === 'full' ? 'center' : 'bottom',
             title: item['name'] ,
-            amount: '54',
+            amount: item.price,
             currencyCode: 'EGP'
           }}
         />

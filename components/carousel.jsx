@@ -17,7 +17,7 @@ export  function Carousel({data}) {
                 label={{
                   title: frame['name'],
                   amount: '46',
-                  currencyCode: 'EGP'
+                  currencyCode: frame.price
                 }}
                 src={frame['images'][0]}
                 fill

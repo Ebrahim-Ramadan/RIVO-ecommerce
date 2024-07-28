@@ -4,7 +4,7 @@ import Footer from '@/components/layout/footer';
 import { getAllFrames } from '@/lib/utils';
 
 export const metadata = {
-  description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
+  description: 'RIVO e-commerce website ',
   openGraph: {
     type: 'website'
   }
