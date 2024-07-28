@@ -16,7 +16,7 @@ export  function Carousel({data}) {
                 alt={frame['name']}
                 label={{
                   title: frame['name'],
-                  amount: '46',
+                  amount: 'EGP',
                   currencyCode: frame.price
                 }}
                 src={frame['images'][0]}
