@@ -1,6 +1,7 @@
 import Cart from '@/components/cart';
 import OpenCart from '@/components/cart/open-cart';
-import LogoSquare from '@/components/logo-square';
+import logo from '@/public/logo.png';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { DMBanner } from './DMBanner';
@@ -30,10 +31,15 @@ export default  function Navbar() {
             prefetch={true}
             className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
           >
-            <LogoSquare />
-            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
-              {SITE_NAME}
-            </div>
+            {/* <LogoSquare /> */}
+            <Image
+            className='w-20'
+            src={logo}
+            alt="logo"
+            width={500}
+            height={500}
+            />
+           
           </Link>
          
         </div>

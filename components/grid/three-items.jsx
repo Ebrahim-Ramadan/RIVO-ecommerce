@@ -16,7 +16,7 @@ function ThreeItemGridItem({
         prefetch='true'
       >
         <GridTileImage
-          src={item['images'][0]}
+          src={item && item['images'][0]}
           fill
           sizes={
             size === 'full' ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 100vw'
