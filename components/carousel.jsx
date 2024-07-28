@@ -1,13 +1,23 @@
-import { get3Frames } from "@/lib/utils";
+'use client';
+import { getAllFrames } from "@/lib/utils";
+import { useEffect, useState } from "react";
 import { GridTileImage } from "./grid/tile";
 
-export async function Carousel() {
-  const data = await get3Frames()
+export  function Carousel() {
+  const [ThreeFrames, setThreeFrames] = useState([])
+  useEffect(() => {
+   const fectchdata  = async () => {
+    const AllFrames = await getAllFrames()
+    console.log('AllFrames', AllFrames, 'a')
+    setThreeFrames(AllFrames)
+  }
+  fectchdata()
+  }, [])
 
   return (
     <div className=" w-full overflow-x-auto pb-6 pt-1">
-      <ul className="flex animate-carousel gap-4">
-        {data?.map((frame) => (
+      {/* <ul className="flex animate-carousel gap-4">
+        {ThreeFrames?.map((frame) => (
           <li
             key={`${frame['id']}`}
             className="relative aspect-square h-[30vh] max-h-[275px] w-2/3 max-w-[475px] flex-none md:w-1/3"
@@ -27,7 +37,7 @@ export async function Carousel() {
             </a>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

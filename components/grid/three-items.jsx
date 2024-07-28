@@ -1,13 +1,14 @@
+'use client';
 import { GridTileImage } from '@/components/grid/tile';
 
-import { get3Frames } from '@/lib/utils';
+import {  getAllFrames } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 
 function ThreeItemGridItem({
   item,
   size,
   priority
 }) {
-  console.log('item', item);
   return (
     <div
       className={size === 'full' ? 'md:col-span-4 md:row-span-2' : 'md:col-span-2 md:row-span-1'}
@@ -37,14 +38,24 @@ function ThreeItemGridItem({
   );
 }
 
-export  async function ThreeItemGrid() {
-  const data = await get3Frames()
+export  function ThreeItemGrid() {
+  const [ThreeFrames, setThreeFrames] = useState([])
+  useEffect(() => {
+   const fectchdata  = async () => {
+    const AllFrames = await getAllFrames()
+    console.log('AllFrames', AllFrames, 'a')
+    setThreeFrames(AllFrames)
+  }
+  fectchdata()
+  }, [])
+  
+  
   return (
     <section className="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]">
       
-      <ThreeItemGridItem size="full" item={data[0]} priority={true} />
-      <ThreeItemGridItem size="half" item={data[1]} priority={true} />
-      <ThreeItemGridItem size="half" item={data[2]} />
+      {/* <ThreeItemGridItem size="full" item={ThreeFrames[0]} priority={true} />
+      <ThreeItemGridItem size="half" item={ThreeFrames[1]} priority={true} />
+      <ThreeItemGridItem size="half" item={ThreeFrames[2]} /> */}
     </section>
   );
 }
