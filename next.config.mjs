@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
           {
             protocol: 'https',
-            hostname: 'via.placeholder.com',
+            hostname: 'st2.depositphotos.com',
           },
         ],
       },
