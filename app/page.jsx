@@ -1,6 +1,7 @@
 import { Carousel } from '@/components/carousel';
 import { ThreeItemGrid } from '@/components/grid/three-items';
 import Footer from '@/components/layout/footer';
+import { Slider } from '@/components/layout/Slider';
 import { getAllFrames } from '@/lib/utils';
 
 export const metadata = {
@@ -19,11 +20,12 @@ export default async function HomePage() {
       );
   }
   return (
-    <>
+    <div className='px-2 md:px-8'>
+    <Slider/>
       <ThreeItemGrid data={data}/>
       <Carousel data={data}/>
       <Footer />
-    </>
+    </div>
   );
 }
 
@@ -33,4 +35,4 @@ async function getData() {
   return response
 }
 
-export const revalidate = 900 // revalidate at most every hour
+export const revalidate = 9000 // revalidate at most every hour

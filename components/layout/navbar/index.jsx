@@ -1,16 +1,22 @@
 import Cart from '@/components/cart';
 import OpenCart from '@/components/cart/open-cart';
 import LogoSquare from '@/components/logo-square';
-
 import Link from 'next/link';
 import { Suspense } from 'react';
+import { DMBanner } from './DMBanner';
 import MobileMenu from './mobile-menu';
 import Search, { SearchSkeleton } from './search';
 const { SITE_NAME } = process.env;
 
-export default async function Navbar() {
+export default  function Navbar() {
 
   return (
+    
+
+<div className='flex flex-col'>
+
+<DMBanner/>
+
     <nav className="relative flex items-center justify-between p-4 lg:px-6">
       <div className="block flex-none md:hidden">
         <Suspense fallback={null}>
@@ -43,5 +49,6 @@ export default async function Navbar() {
         </div>
       </div>
     </nav>
+</div>
   );
 }

@@ -38,11 +38,17 @@ function ThreeItemGridItem({
 export  function ThreeItemGrid({data}) {
   
   return (
-    <section className="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]">
-      
-      <ThreeItemGridItem size="full" item={data[0]} priority={true} />
-      <ThreeItemGridItem size="half" item={data[1]} priority={true} />
-      <ThreeItemGridItem size="half" item={data[2]} />
-    </section>
+ <div className='w-full gap-4 flex flex-col mt-2'>
+  < div className="py-4 flex flex-row justify-center w-full  text-center" >
+      <div className="bg-gradient-to-r from-transparent via-white/40 to-transparent w-full  h-[2px] opacity-80"></div>
+    </div >
+   <p className='font-bold text-lg md:text-3xl px-8 '>Featuring</p>
+
+<section className=" grid gap-4   px-4 pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]">
+  <ThreeItemGridItem size="full" item={data[0]} priority={true} />
+  <ThreeItemGridItem size="half" item={data[1]} priority={true} />
+  <ThreeItemGridItem size="half" item={data[2]} />
+</section>
+ </div>
   );
 }

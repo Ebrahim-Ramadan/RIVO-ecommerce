@@ -1,3 +1,4 @@
+
 import { GridTileImage } from "./grid/tile";
 
 
@@ -16,8 +17,8 @@ export  function Carousel({data}) {
                 alt={frame['name']}
                 label={{
                   title: frame['name'],
-                  amount: 'EGP',
-                  currencyCode: frame.price
+                  amount: frame.price,
+                  currencyCode: 'EGP',
                 }}
                 src={frame['images'][0]}
                 fill
