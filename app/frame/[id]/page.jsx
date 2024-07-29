@@ -3,6 +3,7 @@ import { Carousel } from '@/components/carousel';
 import { ThreeItemGrid } from '@/components/grid/three-items';
 import { GridTileImage } from '@/components/grid/tile';
 import Footer from '@/components/layout/footer';
+import { NoResults } from '@/components/layout/navbar/NoResults';
 import { Gallery } from '@/components/product/gallery';
 import { ProductDescription } from '@/components/product/product-description';
 import {  getProductDetails, searchFrames } from '@/lib/utils';
@@ -18,7 +19,7 @@ export default async function Page({params}) {
   console.log('Data:', data);
   if (!data) {
       return (
-          <Error/>
+          <NoResults/>
       );
   }
   return (
