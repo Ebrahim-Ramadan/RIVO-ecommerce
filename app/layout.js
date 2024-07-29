@@ -11,11 +11,11 @@ const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   export const metadata = {
     metadataBase: new URL('https://localhost:3000'),
     title: "RIVO",
-    description: "tell us how swiftie you are",
+    description: "RIVO e-commerce for your favorite posters and frames",
     openGraph: {
        images: ['https://lastfm.freetls.fastly.net/i/u/770x0/279c8c2263d174a662c6c29b89e93573.jpg#279c8c2263d174a662c6c29b89e93573'],
       title: 'RIVO',
-      description: 'tell us how swiftie you are',
+      description: 'RIVO e-commerce for your favorite posters and frames',
     },
     title: {
       default: 'RIVO',
