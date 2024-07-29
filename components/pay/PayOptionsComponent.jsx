@@ -5,15 +5,16 @@ import PaymentButton from './PaymentButton';
 
 const paymentOptions = [
   {
-    logo: '/assets/mobile.svg',
-    id: 4619234,
-    name: 'Mobile Wallet',
-  },
-  {
     logo: '/assets/visa.svg',
     id: 4619069,
     name: 'Credit Card',
   },
+  {
+    logo: '/assets/mobile.svg',
+    id: 4619234,
+    name: 'Mobile Wallet',
+  },
+  
 ];
 
 export const PayOptionsComponent = ({amount}) => {
