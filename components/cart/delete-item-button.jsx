@@ -1,35 +1,23 @@
-'use client';
 
 import { X } from 'lucide-react';
-
-import { removeItem } from '@/components/cart/actions';
-
-import { useFormState } from 'react-dom';
-
-export function DeleteItemButton({
-  item,
-  optimisticUpdate
-}) {
-  const [message, formAction] = useFormState(removeItem, null);
-  const itemId = item.id;
-  const actionWithVariant = formAction.bind(null, itemId);
-
+import {removeFromCart} from './actions';
+export function DeleteItemButton({ item}) {
   return (
     <form
-      action={async () => {
-        optimisticUpdate({ itemId, newQuantity: 0, type: 'minus' });
-        await actionWithVariant();
+      onSubmit={(e) => {
+        e.preventDefault();
+        removeFromCart(item.id, item.size, item.color);
       }}
     >
       <button
         type="submit"
         aria-label="Remove cart item"
-        className="ease flex h-[17px] w-[17px] items-center justify-center rounded-full bg-neutral-500 transition-all duration-200"
+        className="ease flex h-6 w-6 items-center justify-center rounded-full bg-neutral-500 transition-all duration-200"
       >
-        <X className="hover:text-accent-3 mx-[1px] h-4 w-4 text-white dark:text-black" />
+        <X color="white" size="16" />
       </button>
       <p aria-live="polite" className="sr-only" role="status">
-        {message}
+        Removing item...
       </p>
     </form>
   );

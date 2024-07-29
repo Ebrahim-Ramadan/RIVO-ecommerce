@@ -35,4 +35,4 @@ async function getData() {
   return response
 }
 
-export const revalidate = 9000 // revalidate at most every hour
+export const revalidate = 900 // revalidate at most every hour

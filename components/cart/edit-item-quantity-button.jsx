@@ -2,14 +2,12 @@
 
 import { Minus, Plus } from 'lucide-react';
 import clsx from 'clsx';
-import { updateItemQuantity } from '@/components/cart/actions';
 
-import { useFormState } from 'react-dom';
-
-function SubmitButton({ type }) {
+function SubmitButton({ type, onClick }) {
   return (
     <button
-      type="submit"
+      type="button"
+      onClick={onClick}
       aria-label={type === 'plus' ? 'Increase item quantity' : 'Reduce item quantity'}
       className={clsx(
         'ease flex h-full min-w-[36px] max-w-[36px] flex-none items-center justify-center rounded-full px-2 transition-all duration-200 hover:border-neutral-800 hover:opacity-80',
@@ -30,27 +28,14 @@ function SubmitButton({ type }) {
 export function EditItemQuantityButton({
   item,
   type,
-  optimisticUpdate
+  updateQuantity
 }) {
-  const [message, formAction] = useFormState(updateItemQuantity, null);
-  const payload = {
-    lineId: item.id,
-    variantId: item.merchandise.id,
-    quantity: type === 'plus' ? item.quantity + 1 : item.quantity - 1
+  const handleClick = () => {
+    const newQuantity = type === 'plus' ? item.quantity + 1 : item.quantity - 1;
+    updateQuantity(newQuantity);
   };
-  const actionWithVariant = formAction.bind(null, payload);
 
   return (
-    <form
-      action={async () => {
-        optimisticUpdate({ itemId: payload.lineId, newQuantity: payload.quantity, type });
-        await actionWithVariant();
-      }}
-    >
-      <SubmitButton type={type} />
-      <p aria-live="polite" className="sr-only" role="status">
-        {message}
-      </p>
-    </form>
+    <SubmitButton type={type} onClick={handleClick} />
   );
 }

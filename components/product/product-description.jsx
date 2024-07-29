@@ -9,7 +9,7 @@ export function ProductDescription({ product }) {
   console.log('product', product);
   return (
     <>
-      <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
+      <div className="mb-6 flex flex-col border-b pb-2 md:pb-6 dark:border-neutral-700">
         <h1 className="mb-2 text-2xl md:text-5xl font-medium">{product['name']}</h1>
         <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
           <Price
@@ -18,9 +18,11 @@ export function ProductDescription({ product }) {
           />
         </div>
       </div>
-      <Suspense fallback={null}>
-        <VariantSelector sizes={product['sizes']} colors={product['colors']} />
-      </Suspense>
+      {product['sizes'] && product['colors'] &&
+        <Suspense fallback={null}>
+          <VariantSelector sizes={product['sizes']} colors={product['colors']} />
+        </Suspense>
+      }
 
       {product.desc ? (
         <Prose
@@ -30,7 +32,7 @@ export function ProductDescription({ product }) {
       ) : null}
 
       <Suspense fallback={null}>
-        {/* <AddToCart variants={product.variants} availableForSale={product.availableForSale} /> */}
+        <AddToCart product={product} availableForSale={true} />
       </Suspense>
     </>
   );

@@ -4,116 +4,82 @@ import { Dialog, Transition } from '@headlessui/react';
 import { ShoppingBag } from 'lucide-react';
 import LoadingDots from '@/components/loading-dots';
 import Price from '@/components/price';
-import { DEFAULT_OPTION } from '@/lib/constants';
-
-import { createUrl } from '@/lib/utils';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Fragment, useEffect, useOptimistic, useRef, useState } from 'react';
-import { useFormStatus } from 'react-dom';
-import { redirectToCheckout } from './actions';
+import { Fragment, useState, useEffect } from 'react';
 import CloseCart from './close-cart';
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
 import OpenCart from './open-cart';
+import { getCart, removeFromCart, setCookie, updateCart } from './actions'; // Assuming you have these functions
+import { getProductDetails } from '@/lib/utils';
+import Image from 'next/image';
 
-
-
-function reducer(state, newState) {
-  if (!state) {
-    return state;
-  }
-
-  let updatedLines = state.lines
-    .map((item) => {
-      if (item.id === newState.itemId) {
-        if (newState.type === 'minus' && newState.newQuantity === 0) {
-          // Remove the item if quantity becomes 0
-          return null;
-        }
-
-        const singleItemAmount = Number(item.cost.totalAmount.amount) / item.quantity;
-        const newTotalAmount = singleItemAmount * newState.newQuantity;
-
-        return {
-          ...item,
-          quantity: newState.newQuantity,
-          cost: {
-            ...item.cost,
-            totalAmount: {
-              ...item.cost.totalAmount,
-              amount: newTotalAmount.toString()
-            }
-          }
-        };
-      }
-      return item;
-    })
-    .filter(Boolean);
-
-  const newTotalQuantity = updatedLines.reduce((sum, item) => sum + item.quantity, 0);
-  const newTotalAmount = updatedLines.reduce(
-    (sum, item) => sum + Number(item.cost.totalAmount.amount),
-    0
-  );
-
-  // If there are no items left, return an empty cart
-  if (updatedLines.length === 0) {
-    return {
-      ...state,
-      lines: [],
-      totalQuantity: 0,
-      cost: {
-        ...state.cost,
-        totalAmount: {
-          ...state.cost.totalAmount,
-          amount: '0'
-        }
-      }
-    };
-  }
-
-  return {
-    ...state,
-    lines: updatedLines,
-    totalQuantity: newTotalQuantity,
-    cost: {
-      ...state.cost,
-      totalAmount: {
-        ...state.cost.totalAmount,
-        amount: newTotalAmount.toString()
-      }
-    }
-  };
-}
-
-export default function CartModal({ cart: initialCart  }) {
+export default function CartModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [cart, updateCartItem] = useOptimistic(initialCart, reducer);
-  const quantityRef = useRef(cart?.totalQuantity);
+  const [cart, setCart] = useState([]);
+
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
-
+  const [productDetails, setProductDetails] = useState({});
   useEffect(() => {
-    // Open cart modal when quantity changes.
-    if (cart?.totalQuantity !== quantityRef.current) {
-      // But only if it's not already open (quantity also changes when editing items in cart).
-      if (!isOpen) {
-        setIsOpen(true);
-      }
-
-      // Always update the quantity reference
-      quantityRef.current = cart?.totalQuantity;
+    if (isOpen) {
+      setCart(getCart());
     }
-  }, [isOpen, cart?.totalQuantity, quantityRef]);
+  }, [isOpen]); // Refresh cart when modal opens
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      // Create an array of promises
+      const promises = cart.map(item => getProductDetails(item.id));
+
+      try {
+        // Resolve all promises concurrently
+        const results = await Promise.all(promises);
+        
+        // Map results to the corresponding product IDs
+        const details = results.reduce((acc, productDetail, index) => {
+          acc[cart[index].id] = productDetail;
+          return acc;
+        }, {});
+
+        setProductDetails(details);
+      } catch (error) {
+        console.error('Error fetching product details:', error);
+        // Handle error accordingly
+      }
+    };
+
+    if (cart.length > 0) {
+      fetchProductDetails();
+    }
+  }, [cart]);
+
+  const updateCartItem = (itemId, size, color, newQuantity) => {
+    const updatedCart = cart.map(item => 
+      item.id === itemId && item.size === size && item.color === color
+        ? { ...item, quantity: newQuantity }
+        : item
+    ).filter(item => item.quantity > 0);
+
+    setCart(updatedCart);
+    updateCart(itemId, size, color, newQuantity);
+  };
+
+  const removeItem = (itemId, size, color) => {
+    const updatedCart = cart.filter(item => !(item.id === itemId && item.size === size && item.color === color));
+    setCart(updatedCart);
+    removeFromCart(itemId);
+  };
+
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
     <>
       <button aria-label="Open cart" onClick={openCart}>
-        <OpenCart quantity={cart?.totalQuantity} />
+        <OpenCart quantity={totalQuantity} />
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeCart} className="relative z-50">
+          {/* Backdrop */}
           <Transition.Child
             as={Fragment}
             enter="transition-all ease-in-out duration-300"
@@ -125,6 +91,8 @@ export default function CartModal({ cart: initialCart  }) {
           >
             <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
           </Transition.Child>
+
+          {/* Cart panel */}
           <Transition.Child
             as={Fragment}
             enter="transition-all ease-in-out duration-300"
@@ -134,7 +102,7 @@ export default function CartModal({ cart: initialCart  }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <Dialog.Panel className="fixed bottom-0 right-0 top-0 flex h-full w-full flex-col border-l border-neutral-200 bg-white/80 p-6 text-black backdrop-blur-xl md:w-[390px] dark:border-neutral-700 dark:bg-black/80 dark:text-white">
+            <Dialog.Panel className="fixed bottom-0 right-0 top-0 text-white flex h-full w-full flex-col  bg-black/80 p-6 text-black backdrop-blur-xl md:w-[390px]">
               <div className="flex items-center justify-between">
                 <p className="text-lg font-semibold">My Cart</p>
                 <button aria-label="Close cart" onClick={closeCart}>
@@ -142,141 +110,88 @@ export default function CartModal({ cart: initialCart  }) {
                 </button>
               </div>
 
-              {!cart || cart.lines.length === 0 ? (
+              {cart.length === 0 ? (
                 <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
                   <ShoppingBag className="h-16" />
                   <p className="mt-6 text-center text-2xl font-bold">Your cart is empty.</p>
                 </div>
               ) : (
-                <div className="flex h-full flex-col justify-between overflow-hidden p-1">
-                  <ul className="flex-grow overflow-auto py-4">
-                    {cart.lines.map((item, i) => {
-                      const merchandiseSearchParams = {};
-
-                      item.merchandise.selectedOptions.forEach(({ name, value }) => {
-                        if (value !== DEFAULT_OPTION) {
-                          merchandiseSearchParams[name.toLowerCase()] = value;
-                        }
-                      });
-
-                      const merchandiseUrl = createUrl(
-                        `/product/${item.merchandise.product.handle}`,
-                        new URLSearchParams(merchandiseSearchParams)
-                      );
-
-                      return (
-                        <li
-                          key={i}
-                          className="flex w-full flex-col border-b border-neutral-300 dark:border-neutral-700"
-                        >
-                          <div className="relative flex w-full flex-row justify-between px-1 py-4">
-                            <div className="absolute z-40 -mt-2 ml-[55px]">
-                              <DeleteItemButton item={item} optimisticUpdate={updateCartItem} />
-                            </div>
-                            <Link
-                              href={merchandiseUrl}
-                              onClick={closeCart}
-                              className="z-30 flex flex-row space-x-4"
-                            >
-                              <div className="relative h-16 w-16 cursor-pointer overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
-                                <Image
-                                  className="h-full w-full object-cover"
-                                  width={64}
-                                  height={64}
-                                  alt={
-                                    item.merchandise.product.featuredImage.altText ||
-                                    item.merchandise.product.title
-                                  }
-                                  src={item.merchandise.product.featuredImage.url}
-                                />
-                              </div>
-
-                              <div className="flex flex-1 flex-col text-base">
-                                <span className="leading-tight">
-                                  {item.merchandise.product.title}
-                                </span>
-                                {item.merchandise.title !== DEFAULT_OPTION ? (
-                                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                                    {item.merchandise.title}
-                                  </p>
-                                ) : null}
-                              </div>
-                            </Link>
-                            <div className="flex h-16 flex-col justify-between">
-                              <Price
-                                className="flex justify-end space-y-2 text-right text-sm"
-                                amount={item.cost.totalAmount.amount}
-                                currencyCode={item.cost.totalAmount.currencyCode}
+                <div className="flex h-full flex-col justify-between overflow-hidden px-2">
+                  <ul className="flex-grow  py-4">
+                    {cart.map((item, i) => (
+                      <li key={i} className="flex w-full flex-col border-b border-neutral-300">
+                        <div className="relative flex w-full flex-row justify-between px-1 py-4">
+                          <button className="absolute z-40 -mt-2 -ml-2" onClick={closeCart}>
+                            <DeleteItemButton  item={item} />
+                          </button>
+                          <div className="flex flex-1 flex-col gap-2">
+                            <span className="leading-tight">{productDetails[item.id]?.images[0] ?
+                            <Image
+                            className='rounded-lg h-24 bg-neutral-400'
+                            src={productDetails[item.id].images[0]}
+                            alt={productDetails[item.id].id}
+                            width={100}
+                            height={150}
+                            />
+                            : <LoadingDots/>}</span>
+                            <a href={`/frame/${item.id}`} className=" font-bold text-neutral-200">
+                             {productDetails[item.id]?.name}
+                            </a>
+                            <p className="text-xs font-medium text-neutral-300">
+                              Size: {item.size || 'normal'}, Color: {item.color || 'normal'}
+                            </p>
+                          </div>
+                          <div className="flex h-16 flex-col justify-between">
+                            <Price
+                              className="flex justify-end space-y-2 text-right text-sm"
+                              amount={item.price * item.quantity}
+                              currencyCode="EGP"
+                            />
+                            <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200">
+                              <EditItemQuantityButton
+                                item={item}
+                                type="minus"
+                                updateQuantity={(newQuantity) => updateCartItem(item.id, item.size, item.color, newQuantity)}
                               />
-                              <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
-                                <EditItemQuantityButton
-                                  item={item}
-                                  type="minus"
-                                  optimisticUpdate={updateCartItem}
-                                />
-                                <p className="w-6 text-center">
-                                  <span className="w-full text-sm">{item.quantity}</span>
-                                </p>
-                                <EditItemQuantityButton
-                                  item={item}
-                                  type="plus"
-                                  optimisticUpdate={updateCartItem}
-                                />
-                              </div>
+                              <p className="w-6 text-center">
+                                <span className="w-full text-sm">{item.quantity}</span>
+                              </p>
+                              <EditItemQuantityButton
+                                item={item}
+                                type="plus"
+                                updateQuantity={(newQuantity) => updateCartItem(item.id, item.size, item.color, newQuantity)}
+                              />
                             </div>
                           </div>
-                        </li>
-                      );
-                    })}
+                        </div>
+                      </li>
+                    ))}
                   </ul>
-                  <div className="py-4 text-sm text-neutral-500 dark:text-neutral-400">
-                    <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 dark:border-neutral-700">
-                      <p>Taxes</p>
-                      <Price
-                        className="text-right text-base text-black dark:text-white"
-                        amount={cart.cost.totalTaxAmount.amount}
-                        currencyCode={cart.cost.totalTaxAmount.currencyCode}
-                      />
-                    </div>
-                    <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
-                      <p>Shipping</p>
-                      <p className="text-right">Calculated at checkout</p>
-                    </div>
-                    <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
+                  <div className="py-4 text-sm text-neutral-500">
+                    <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1">
                       <p>Total</p>
                       <Price
-                        className="text-right text-base text-black dark:text-white"
-                        amount={cart.cost.totalAmount.amount}
-                        currencyCode={cart.cost.totalAmount.currencyCode}
+                        className="text-right text-base"
+                        amount={totalAmount}
+                        currencyCode="EGP"
                       />
                     </div>
                   </div>
-                  <form action={redirectToCheckout}>
-                    <CheckoutButton cart={cart} />
-                  </form>
+                  <button
+                    className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+                    onClick={() => {
+                      // Implement checkout logic here
+                      alert('Checkout');
+                    }}
+                  >
+                    Checkout
+                  </button>
                 </div>
               )}
             </Dialog.Panel>
           </Transition.Child>
         </Dialog>
       </Transition>
-    </>
-  );
-}
-
-function CheckoutButton({ cart }) {
-  const { pending } = useFormStatus();
-
-  return (
-    <>
-      <input type="hidden" name="url" value={cart.checkoutUrl} />
-      <button
-        className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
-        type="submit"
-        disabled={pending}
-      >
-        {pending ? <LoadingDots className="bg-white" /> : 'Proceed to Checkout'}
-      </button>
     </>
   );
 }
