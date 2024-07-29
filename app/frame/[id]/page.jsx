@@ -44,7 +44,7 @@ export default async function Page({params}) {
             <ProductDescription product={data} />
           </div>
         </div>
-        <RelatedProducts keyword={data.keywords[0]} />
+        <RelatedProducts keyword={data.keywords[0]} relatedID={data.id} />
       </div>
       <Footer/>
     </>
@@ -58,8 +58,8 @@ async function getData(productId) {
 }
 
 
-async function RelatedProducts({ keyword }) {
-  const relatedProducts = await searchFrames(keyword);
+async function RelatedProducts({ keyword , relatedID}) {
+  const relatedProducts = await searchFrames(keyword, true, relatedID);
 
   if (!relatedProducts.length) return null;
 
