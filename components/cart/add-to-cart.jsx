@@ -74,7 +74,7 @@ export function AddToCart({product, availableForSale} ) {
 
   const handleAddToCart = () => {
     return new Promise((resolve) => {
-      addToCart(product.id, selectedSize && selectedSize, selectedColor && selectedColor, product.price);
+      addToCart(product.id, selectedSize && selectedSize, selectedColor && selectedColor, product.price); 
       setTimeout(resolve, 1000); // Simulate a delay
     });
   };

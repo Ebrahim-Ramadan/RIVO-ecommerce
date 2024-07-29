@@ -20,7 +20,7 @@ export default async function HomePage() {
       );
   }
   return (
-    <div className='px-2 md:px-8'>
+    <div className='px-2 md:px-16'>
     <Slider/>
       <ThreeItemGrid data={data}/>
       <Carousel data={data}/>

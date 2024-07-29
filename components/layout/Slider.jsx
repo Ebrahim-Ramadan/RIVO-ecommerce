@@ -56,7 +56,7 @@ export const Slider = () => {
   };
 
   return (
-   <div className="mb-4 w-full md:px-40 ">
+   <div className="mb-4 w-full ">
      <div
       className="relative md:h-[40rem] w-full overflow-hidden"
       onTouchStart={handleTouchStart}
@@ -75,8 +75,8 @@ export const Slider = () => {
           >
             <Image
               alt="slide"
-              width={500}
-              height={500}
+              width={1000}
+              height={1000}
               className="rounded-lg inset-0 h-full w-full object-cover"
               src={slide.bg}
             />

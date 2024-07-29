@@ -117,9 +117,9 @@ export default function CartModal() {
                 </div>
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden px-2">
-                  <ul className="flex-grow  py-4">
+                  <ul className="flex-grow overflow-y-auto p-2">
                     {cart.map((item, i) => (
-                      <li key={i} className="flex w-full flex-col border-b border-neutral-300">
+                      <li key={i} className="flex w-full flex-col border-b border-neutral-400">
                         <div className="relative flex w-full flex-row justify-between px-1 py-4">
                           <button className="absolute z-40 -mt-2 -ml-2" onClick={closeCart}>
                             <DeleteItemButton  item={item} />
@@ -137,7 +137,7 @@ export default function CartModal() {
                             <a href={`/frame/${item.id}`} className=" font-bold text-neutral-200">
                              {productDetails[item.id]?.name}
                             </a>
-                            <p className="text-xs font-medium text-neutral-300">
+                            <p className="text-xs font-medium text-neutral-400">
                               Size: {item.size || 'normal'}, Color: {item.color || 'normal'}
                             </p>
                           </div>
@@ -147,7 +147,7 @@ export default function CartModal() {
                               amount={item.price * item.quantity}
                               currencyCode="EGP"
                             />
-                            <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200">
+                            <div className="ml-auto flex h-9 flex-row items-center rounded-full hover:border-neutral-300 border border-neutral-400">
                               <EditItemQuantityButton
                                 item={item}
                                 type="minus"
@@ -167,8 +167,8 @@ export default function CartModal() {
                       </li>
                     ))}
                   </ul>
-                  <div className="py-4 text-sm text-neutral-500">
-                    <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1">
+                  <div className="py-4 text-sm text-neutral-200">
+                    <div className="mb-3 flex items-center justify-between border-b border-neutral-400 pb-1 pt-1">
                       <p>Total</p>
                       <Price
                         className="text-right text-base"
