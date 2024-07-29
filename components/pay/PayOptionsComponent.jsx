@@ -22,7 +22,6 @@ export const PayOptionsComponent = ({amount}) => {
 
   const handleCheckboxChange = (option) => {
     setSelectedOption(option);
-    console.log(`${option} is selected`);
   };
 
   return (

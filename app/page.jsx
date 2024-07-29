@@ -1,9 +1,5 @@
-import { Carousel } from '@/components/carousel';
-import { ThreeItemGrid } from '@/components/grid/three-items';
 import Footer from '@/components/layout/footer';
 import { HomeContent } from '@/components/layout/HomeContent';
-import { Slider } from '@/components/layout/Slider';
-import { useFrames } from '@/components/layout/useFrames';
 
 export const metadata = {
   description: 'RIVO e-commerce website ',
