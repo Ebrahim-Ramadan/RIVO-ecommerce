@@ -1,4 +1,5 @@
 import Grid from "@/components/grid";
+import { NoResults } from "@/components/layout/navbar/NoResults";
 import ProductGridItems from "@/components/layout/product-grid-items";
 import { searchFrames } from "@/lib/utils";
 
@@ -12,7 +13,7 @@ const resultsText = frames.length > 1 ? 'results' : 'result';
       {query ? (
         <p className="mb-4">
           {frames.length === 0
-            ? 'There are no frames that match '
+            ? 'No frames matching '
             : `Showing ${frames.length} ${resultsText} for `}
           <span className="font-bold">&quot;{query}&quot;</span>
         </p>
@@ -21,7 +22,8 @@ const resultsText = frames.length > 1 ? 'results' : 'result';
         <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <ProductGridItems frames={frames} />
         </Grid>
-      ) : null}
+      ) : 
+      <NoResults text='No Results' shopNow={true}/>}
     </div>
   );
 }

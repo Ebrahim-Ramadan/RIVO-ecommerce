@@ -5,6 +5,7 @@ import logo from '@/public/logo.png';
 import { Suspense } from 'react';
 import FooterMenu from './footer-menu';
 import Image from 'next/image';
+import LoadingDots from '../loading-dots';
 
 const { COMPANY_NAME, SITE_NAME } = process.env;
 
@@ -50,14 +51,7 @@ export default function Footer() {
         </div>
         <Suspense
           fallback={
-            <div className="flex h-[188px] w-[200px] flex-col gap-2">
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-              <div className={skeleton} />
-            </div>
+            <LoadingDots/>
           }
         >
           <FooterMenu menu={menu} />

@@ -6,7 +6,7 @@ import { addToCart } from '@/components/cart/actions';
 import LoadingDots from '@/components/loading-dots';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-
+import { toast } from 'react-hot-toast';
 
 function SubmitButton({
   availableForSale,
@@ -75,9 +75,13 @@ export function AddToCart({product, availableForSale} ) {
   const handleAddToCart = () => {
     return new Promise((resolve) => {
       addToCart(product.id, selectedSize && selectedSize, selectedColor && selectedColor, product.price); 
-      setTimeout(resolve, 1000); // Simulate a delay
+      setTimeout(() => {
+        toast.success("Product Added to Your Cart");
+        resolve();
+      }, 1000); // Simulate a delay
     });
   };
+  
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>

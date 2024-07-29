@@ -111,9 +111,10 @@ export default function CartModal() {
               </div>
 
               {cart.length === 0 ? (
-                <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
+                <div className="mt-20  gap-4 flex w-full flex-col items-center justify-center overflow-hidden">
                   <ShoppingBag className="h-16" />
-                  <p className="mt-6 text-center text-2xl font-bold">Your cart is empty.</p>
+                  <p className="mt-6 text-center text-xl font-medium">Your cart is empty.</p>
+                  <a href='/' className='text-center font-bold md:text-xl w-full px-4 py-2 bg-white/20 hover:bg-white/10 transition duration-200 backdrop-blur-[.5px] rounded-full '>Shop Now</a>
                 </div>
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden px-2">

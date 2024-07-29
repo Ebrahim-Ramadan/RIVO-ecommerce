@@ -3,12 +3,13 @@ import Price from '@/components/price';
 import Prose from '@/components/prose';
 
 import { Suspense } from 'react';
+import LoadingDots from '../loading-dots';
 import { VariantSelector } from './variant-selector';
 
 export function ProductDescription({ product }) {
   return (
     <>
-      <div className="mb-6 flex flex-col border-b pb-2 md:pb-6 dark:border-neutral-700">
+      <div className="mb-6 flex flex-col border-b gap-2 pb-2 md:pb-6 dark:border-neutral-700">
         <h1 className="mb-2 text-2xl md:text-5xl font-medium">{product['name']}</h1>
         <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
           <Price
@@ -18,7 +19,7 @@ export function ProductDescription({ product }) {
         </div>
       </div>
       {product['sizes'] && product['colors'] &&
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoadingDots/>}>
           <VariantSelector sizes={product['sizes']} colors={product['colors']} />
         </Suspense>
       }
@@ -30,7 +31,7 @@ export function ProductDescription({ product }) {
         />
       ) : null}
 
-      <Suspense fallback={null}>
+      <Suspense fallback={<LoadingDots/>}>
         <AddToCart product={product} availableForSale={true} />
       </Suspense>
     </>

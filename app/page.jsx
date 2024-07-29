@@ -23,6 +23,7 @@ export default async function HomePage() {
     <div className='px-2 md:px-16'>
     <Slider/>
       <ThreeItemGrid data={data}/>
+      
       <Carousel data={data}/>
       <Footer />
     </div>

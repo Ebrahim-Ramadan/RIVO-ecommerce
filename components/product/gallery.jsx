@@ -7,6 +7,8 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+import LoadingDots from '../loading-dots';
 
 export function Gallery({ images }) {
   const pathname = usePathname();
@@ -26,20 +28,30 @@ export function Gallery({ images }) {
 
   const buttonClassName =
     'h-full px-2 md:px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center';
-
+    const [loading, setLoading] = useState(true);
   return (
     <>
       <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
-        {images[imageIndex] && (
-          <Image
-            className="h-full w-full object-contain rounded-lg"
-            fill
-            sizes="(min-width: 1024px) 66vw, 100vw"
-            alt={images[imageIndex]?.altText}
-            src={images[imageIndex]?.src}
-            priority={true}
-          />
-        )}
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center  rounded-lg">
+          <LoadingDots/>
+        </div>
+      )}
+      {images[imageIndex] && (
+        <Image
+          className="h-full w-full object-contain rounded-lg"
+          fill
+          sizes="(min-width: 1024px) 66vw, 100vw"
+          alt={images[imageIndex]?.altText || 'Image'}
+          src={images[imageIndex]?.src || '/default-image.jpg'}
+          priority={true}
+          onLoadingComplete={() => setLoading(false)}
+          onError={() => {
+            setLoading(false);
+            console.log('Error loading image');
+          }}
+        />
+      )}
 
         {images.length > 1 ? (
           <div className="absolute bottom-2 md:bottom-[15%] flex w-full justify-center">

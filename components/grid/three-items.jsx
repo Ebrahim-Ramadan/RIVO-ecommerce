@@ -40,9 +40,9 @@ export  function ThreeItemGrid({data}) {
   return (
  <div className='w-full gap-4 flex flex-col mt-2'>
   < div className="py-4 flex flex-row justify-center w-full  text-center" >
-      <div className="bg-gradient-to-r from-transparent via-white/40 to-transparent w-full  h-[2px] opacity-80"></div>
+      <div className="bg-gradient-to-r from-transparent via-white/10 to-transparent w-full  h-[2px] opacity-80"></div>
     </div >
-   <p className='font-bold text-xl md:text-3xl px-4 md:px-8 '>Featuring</p>
+   <p className='font-bold text-xl md:text-3xl px-4 '>Featuring</p>
 
 <section className=" grid gap-4  pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]">
   <ThreeItemGridItem size="full" item={data[0]} priority={true} />

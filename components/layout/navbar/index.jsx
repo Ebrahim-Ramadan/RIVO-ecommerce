@@ -1,5 +1,6 @@
 import Cart from '@/components/cart';
 import OpenCart from '@/components/cart/open-cart';
+import LoadingDots from '@/components/loading-dots';
 import logo from '@/public/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ export default  function Navbar() {
 
     <nav className="relative flex items-center justify-between p-4 md:px-16">
       <div className="block flex-none md:hidden">
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoadingDots/>}>
           <MobileMenu />
         </Suspense>
       </div>

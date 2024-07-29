@@ -5,7 +5,12 @@ import { GridTileImage } from "./grid/tile";
 export  function Carousel({data}) {
   
   return (
-    <div className=" w-full overflow-x-auto pb-6 pt-1">
+  <div className="flex flex-col w-full gap-4">
+   < div className="py-4 flex flex-row justify-center w-full  text-center" >
+      <div className="bg-gradient-to-r from-transparent via-white/10 to-transparent w-full  h-[2px] opacity-80"></div>
+    </div >
+   <p className='font-bold text-xl md:text-3xl px-4 '>Best Sellers</p>
+      <div className=" w-full overflow-x-auto pb-6 pt-1">
       <ul className="flex animate-carousel gap-4">
         {data.slice(0, 10).map((frame) => (
           <li
@@ -29,5 +34,6 @@ export  function Carousel({data}) {
         ))}
       </ul>
     </div>
+  </div>
   );
 }

@@ -2,6 +2,7 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState, useRef } from 'react';
+import LoadingDots from '../loading-dots';
 
 const slides = [
   {
@@ -23,6 +24,12 @@ const slides = [
 
 export const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loadingStates, setLoadingStates] = useState(
+    slides.reduce((acc, slide) => {
+      acc[slide.id] = true;
+      return acc;
+    }, {})
+  );
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
@@ -55,56 +62,69 @@ export const Slider = () => {
     }
   };
 
-  return (
-   <div className="mb-4 w-full ">
-     <div
-      className="relative md:h-[40rem] w-full overflow-hidden"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      <div
-        className="flex transition-transform duration-500"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {slides.map((slide) => (
-          <div
-            key={slide.id}
-            className="min-w-full md:h-[40rem] h-full relative flex justify-center items-center bg-cover bg-center"
-            style={{ backgroundImage: `url(${slide.bg})` }}
-          >
-            <Image
-              alt="slide"
-              width={1000}
-              height={1000}
-              className="rounded-lg inset-0 h-full w-full object-cover"
-              src={slide.bg}
-            />
-            <div className="absolute inset-0 flex flex-col h-full justify-between py-2 items-center">
-              <div className="text-white text-base backdrop-blur-3xl bg-white/10 md:text-3xl font-bold mt-2  p-2 md:p-4 rounded-full">
-                {slide.text}
-              </div>
-              <button className="bg-black/80 backdrop-blur-3xl text-white text-sm md:text-xl font-bold rounded-full p-2 md:p-4  ">
-                Shop Now
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-      <button
-        className="absolute top-1/2 transform -translate-y-1/2 left-4 backdrop-blur-3xl bg-black/60 text-white p-2 rounded-full transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white"
-        onClick={goToPrevious}
-      >
-        <ArrowLeft/>
-      </button>
-      <button
-        className="absolute top-1/2 transform -translate-y-1/2 right-4 backdrop-blur-3xl bg-black/60 text-white p-2 rounded-full transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white"
-        onClick={goToNext}
-      >
-              <ArrowRight/>
+  const handleImageLoad = (id) => {
+    setLoadingStates((prevState) => ({
+      ...prevState,
+      [id]: false,
+    }));
+  };
 
-      </button>
+  return (
+    <div className="mb-4 w-full">
+      <div
+        className="relative md:h-[40rem] w-full overflow-hidden"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <div
+          className="flex transition-transform duration-500"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {slides.map((slide) => (
+            <div
+              key={slide.id}
+              className="min-w-full md:h-[40rem] h-full relative flex justify-center items-center bg-cover bg-center"
+              style={{ backgroundImage: `url(${slide.bg})` }}
+            >
+              {loadingStates[slide.id] && (
+                <div className="absolute inset-0 flex items-center justify-center rounded-lg">
+                  <LoadingDots/>
+                </div>
+              )}
+              <Image
+                alt="slide"
+                width={1000}
+                height={1000}
+                className="rounded-lg inset-0 h-full w-full object-cover"
+                src={slide.bg}
+                onLoadingComplete={() => handleImageLoad(slide.id)}
+                onError={() => handleImageLoad(slide.id)} // Optionally handle errors
+              />
+              <div className="absolute inset-0 flex flex-col h-full justify-between py-2 items-center">
+                <div className="font-bold text-xl md:text-2xl px-4 py-2 bg-black/40 transition duration-200 backdrop-blur-[8px] rounded-full">
+                  {slide.text}
+                </div>
+                <button className="font-bold text-xl px-4 py-2 bg-black/50 hover:bg-black/80 transition duration-200 backdrop-blur-[2px] rounded-full">
+                  Shop Now
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button
+          className="absolute top-1/2 transform -translate-y-1/2 left-4 backdrop-blur-3xl bg-black/60 text-white p-2 rounded-full transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white"
+          onClick={goToPrevious}
+        >
+          <ArrowLeft />
+        </button>
+        <button
+          className="absolute top-1/2 transform -translate-y-1/2 right-4 backdrop-blur-3xl bg-black/60 text-white p-2 rounded-full transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white"
+          onClick={goToNext}
+        >
+          <ArrowRight />
+        </button>
+      </div>
     </div>
-   </div>
   );
 };
