@@ -11,7 +11,9 @@ export function HomeContent() {
   const { frames, loading } = useFrames()
   
   if (loading) {
-    return <LoadingDots/>;
+    return <div className="min-h-screen w-full flex-col flex justify-center items-center">
+      <LoadingDots/>
+    </div>;
   }
 
   if (!frames) {
