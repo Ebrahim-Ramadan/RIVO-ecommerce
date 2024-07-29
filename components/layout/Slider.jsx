@@ -96,7 +96,7 @@ export const Slider = () => {
                 alt="slide"
                 width={1000}
                 height={1000}
-                className="rounded-lg inset-0 h-full w-full object-cover"
+                className="rounded-lg inset-0 h-full w-full object-cover bg-neutral-600"
                 src={slide.bg}
                 onLoadingComplete={() => handleImageLoad(slide.id)}
                 onError={() => handleImageLoad(slide.id)} // Optionally handle errors
