@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import LoadingDots from '../loading-dots';
 
 export default function PaymentButton({ selectedOption, amountInt }) {
@@ -12,7 +13,7 @@ export default function PaymentButton({ selectedOption, amountInt }) {
       if (!selectedOption) return; // Avoid making a request if no option is selected
       setLoading(true);
       try {
-        const response = await fetch('https://e-commerce-myass.vercel.app/api/getPaymentLink', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getPaymentLink`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -50,11 +51,14 @@ export default function PaymentButton({ selectedOption, amountInt }) {
         });
 
         const res = await response.json();
-        console.log('res', res);
-        const { client_secret } = res;
-        console.log('client_secret', client_secret);
-        setstrcutred_URL(`https://accept.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${client_secret}`)
-        
+        if (!res.error){
+          const { client_secret } = res;
+          setstrcutred_URL(`https://accept.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${client_secret}`)
+        }
+        else{
+          toast.error(res.error);
+        }
+       
       } catch (error) {
         console.error('Error creating payment link:', error);
       } finally {
