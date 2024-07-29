@@ -6,17 +6,17 @@ import PaymentButton from './PaymentButton';
 const paymentOptions = [
   {
     logo: '/assets/mobile.svg',
-    id: '4619234',
+    id: 4619234,
     name: 'Mobile Wallet',
   },
   {
     logo: '/assets/visa.svg',
-    id: '4619069',
+    id: 4619069,
     name: 'Credit Card',
   },
 ];
 
-export const PayOptionsComponent = () => {
+export const PayOptionsComponent = ({amount}) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleCheckboxChange = (option) => {
@@ -28,9 +28,9 @@ export const PayOptionsComponent = () => {
     <div
       className="w-full md:w-[400px] p-2 aspect-square rounded-lg shadow flex flex-col items-center justify-center gap-2"
     >
-      <p className="capitalize font-semibold self-start">Payment method</p>
-      <p className="text-[10px] self-start text-wrap text-gray-500 pb-1 capitalize">
-        Payment method is secure and safe
+      <p className="capitalize font-semibold self-start">Choose Payment method</p>
+      <p className="text-xs self-start text-wrap text-slate-400 pb-1 capitalize">
+      secured and provided by Paymob
       </p>
       {paymentOptions.map(({ id, logo, name }) => (
         <label
@@ -55,7 +55,7 @@ export const PayOptionsComponent = () => {
           />
         </label>
       ))}
-      <PaymentButton selectedOption={selectedOption}/>
+      <PaymentButton selectedOption={selectedOption} amountInt={amount}/>
     </div>
   );
 };

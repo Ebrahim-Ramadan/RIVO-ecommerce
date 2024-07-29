@@ -8,10 +8,12 @@ export const metadata = {
   }
 };
 
-export default async function HomePage() {
+export default async function HomePage({searchParams}) {
+  const amount = searchParams.amount?? '';
+console.log('amount', amount);
   return (
    <div className="h-full flex flex-col items-center justify-center w-full ">
-<PayOptionsComponent/>
+<PayOptionsComponent amount={amount}/>
    </div>
   );
 }

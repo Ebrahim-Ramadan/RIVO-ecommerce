@@ -3,11 +3,10 @@
 import { useState, useEffect } from 'react';
 import LoadingDots from '../loading-dots';
 
-export default function PaymentButton({ selectedOption }) {
-  console.log('selectedOption', selectedOption);
+export default function PaymentButton({ selectedOption, amountInt }) {
   const [loading, setLoading] = useState(false);
   const [strcutred_URL, setstrcutred_URL] = useState('');
-
+  const amount = parseInt(amountInt, 10);
   useEffect(() => {
     const handlePayment = async () => {
       if (!selectedOption) return; // Avoid making a request if no option is selected
@@ -19,13 +18,13 @@ export default function PaymentButton({ selectedOption }) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            amount: 10,
+            amount,
             currency: 'EGP',
             payment_methods: [selectedOption],
             items: [
               {
                 name: 'planName',
-                amount: 10,
+                amount,
                 quantity: 1,
               },
             ],
@@ -71,7 +70,11 @@ export default function PaymentButton({ selectedOption }) {
       {loading ? (
         <LoadingDots/>
       ) : (
-        <a target="_blank" href={strcutred_URL} rel="noopener noreferrer" className='rounded-full text-black py-1 font-bold text-center w-full bg-white'>Pay Now</a>
+        <a target="_blank" href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
+        <button className='w-full' disabled={selectedOption === null}>
+Pay Now
+        </button>
+        </a>
       )}
     </div>
   );
