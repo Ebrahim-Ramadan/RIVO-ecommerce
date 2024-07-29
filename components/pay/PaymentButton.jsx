@@ -12,7 +12,7 @@ export default function PaymentButton({ selectedOption, amountInt }) {
       if (!selectedOption) return; // Avoid making a request if no option is selected
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:3000/api/getPaymentLink', {
+        const response = await fetch('https://e-commerce-myass.vercel.app/api/getPaymentLink', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

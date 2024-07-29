@@ -11,13 +11,11 @@ export const useFrames = () => {
     const cachedFrames = localStorage.getItem('cachedFrames');
 
     if (cachedFrames) {
-      console.log('cached');
       setFrames(JSON.parse(cachedFrames));
     } else {
       setLoading(true);
       try {
         const fetchedFrames = await getAllFrames();
-        console.log('fetchedFrames', fetchedFrames);
         if (fetchedFrames) {
           setFrames(fetchedFrames);
           localStorage.setItem('cachedFrames', JSON.stringify(fetchedFrames));
