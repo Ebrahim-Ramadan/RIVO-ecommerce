@@ -1,8 +1,9 @@
 import { Carousel } from '@/components/carousel';
 import { ThreeItemGrid } from '@/components/grid/three-items';
 import Footer from '@/components/layout/footer';
+import { HomeContent } from '@/components/layout/HomeContent';
 import { Slider } from '@/components/layout/Slider';
-import { getAllFrames } from '@/lib/utils';
+import { useFrames } from '@/components/layout/useFrames';
 
 export const metadata = {
   description: 'RIVO e-commerce website ',
@@ -12,28 +13,11 @@ export const metadata = {
 };
 
 export default async function HomePage() {
-  const data = await getData()
-  console.log('data', data)
-  if (!data) {
-      return (
-          'ass'
-      );
-  }
+  
   return (
     <div className='px-2 md:px-16'>
-    <Slider/>
-      <ThreeItemGrid data={data}/>
-      
-      <Carousel data={data}/>
-      <Footer />
-    </div>
+    <HomeContent />
+    <Footer />
+  </div>
   );
 }
-
-
-async function getData() {
-  const response = await getAllFrames()
-  return response
-}
-
-export const revalidate = 900 // revalidate at most every hour
