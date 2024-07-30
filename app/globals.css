@@ -19,3 +19,38 @@ input,
 button {
   @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50 dark:focus-visible:ring-neutral-600 dark:focus-visible:ring-offset-neutral-900;
 }
+
+
+:root {
+  --timeScroll: 5s;
+}
+
+@keyframes marquee {
+  0% {
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+  }
+  100% {
+      transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.marquee-rtl {
+  animation: marquee var(--timeScroll) infinite linear;
+  animation-delay: 0.5s;
+}
+
+@keyframes marquee-ltr {
+  0% {
+      transform: translate3d(-100%, 0, 0);
+      visibility: visible;
+  }
+  100% {
+      transform: translate3d(0, 0, 0);
+  }
+}
+
+.marquee-ltr {
+  animation: marquee-ltr var(--timeScroll) infinite linear;
+  animation-delay: 2s;
+}

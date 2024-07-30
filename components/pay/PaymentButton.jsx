@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import LoadingDots from '../loading-dots';
-
+import { getCart } from '@/components/cart/actions';
 export default function PaymentButton({ selectedOption, amountInt }) {
   const [loading, setLoading] = useState(false);
   const [strcutred_URL, setstrcutred_URL] = useState('');
@@ -51,6 +51,7 @@ export default function PaymentButton({ selectedOption, amountInt }) {
         });
 
         const res = await response.json();
+        console.log('res', res);
         if (!res.error){
           const { client_secret } = res;
           setstrcutred_URL(`https://accept.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${client_secret}`)

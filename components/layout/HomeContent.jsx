@@ -6,6 +6,7 @@ import { ThreeItemGrid } from '@/components/grid/three-items';
 import { Slider } from '@/components/layout/Slider';
 import LoadingDots from '../loading-dots';
 import { NoResults } from './navbar/NoResults';
+import { MarqueeBanner } from './navbar/DMBanner';
 
 export function HomeContent() {
   const { frames, loading } = useFrames()
@@ -24,6 +25,7 @@ export function HomeContent() {
     <>
       <Slider/>
       <ThreeItemGrid data={frames}/>
+      <MarqueeBanner/>
       <Carousel data={frames}/>
     </>
   );

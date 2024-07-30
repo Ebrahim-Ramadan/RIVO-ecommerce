@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import logo from '@/public/logo.png';
-
+import footerPay from '@/public/assets/footer-payments.png';
 import { Suspense } from 'react';
 import FooterMenu from './footer-menu';
 import Image from 'next/image';
@@ -35,7 +35,20 @@ export default function Footer() {
   ];
   return (
     <footer className="text-sm text-neutral-500 dark:text-neutral-400">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm md:flex-row md:gap-12 md:px-4 min-[1320px]:px-0 dark:border-neutral-700">
+      
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-12 text-sm md:flex-row-reverse md:gap-12 md:px-4 min-[1320px]:px-0 dark:border-neutral-700">
+      
+      <div className="flex flex-col items-center justify-center">
+      <Image
+      className='w-full'
+      width={100}
+      height={100}
+      src={footerPay}
+      />
+      <p>
+        Gauranteed Safe & Secure Checkout
+      </p>
+      </div>
         <div>
           <Link className="flex items-center gap-2 text-black md:pt-1 dark:text-white" href="/">
             {/* <LogoSquare size="sm" />

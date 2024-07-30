@@ -15,6 +15,7 @@ const paymentOptions = [
     name: 'Mobile Wallet',
   },
   
+  
 ];
 
 export const PayOptionsComponent = ({amount}) => {

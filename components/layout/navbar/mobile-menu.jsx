@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, Suspense, useEffect, useState } from 'react';
 
-import { Ellipsis, X } from 'lucide-react';
+import { Ellipsis, SearchCheck, SearchIcon, X } from 'lucide-react';
 import Search, { SearchSkeleton } from './search';
 
 export default function MobileMenu() {
@@ -35,7 +35,8 @@ export default function MobileMenu() {
         aria-label="Open mobile menu"
         className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white"
       >
-        <Ellipsis className="h-4" />
+        {/* <Ellipsis className="h-4" /> */}
+        <SearchIcon/>
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeMobileMenu} className="relative z-50">
