@@ -36,6 +36,7 @@ export function addToCart(product, size, color, type, price) {
     cart[existingItemIndex].quantity += 1;
   } else {
     const { id } = product;
+    // price = Math.ceil(price)
     cart.push({ id, size, color, type, price, quantity: 1 });
   }
 

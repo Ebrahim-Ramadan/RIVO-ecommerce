@@ -77,7 +77,7 @@ export function AddToCart({ product, availableForSale }) {
   const calculatePrice = (sizes, types, selectedSize, selectedType) => {
     const basePrices = product.price; // Base prices array corresponding to sizes
     const sizeIndex = sizes.indexOf(selectedSize);
-    const ratios = [.761, 71, .826, .725, .671];
+    const ratios = [.761, .71, .826, .725, .671];
     let price = 0;
 
     if (sizeIndex !== -1) {
@@ -95,7 +95,7 @@ export function AddToCart({ product, availableForSale }) {
   const handleAddToCart = () => {
     return new Promise((resolve) => {
       const price = calculatePrice(product.sizes, product.types, selectedSize, selectedType);
-      addToCart(product, selectedSize, selectedColor, selectedType, price);
+      addToCart(product, selectedSize, selectedColor, selectedType, Math.ceil(price));
       setTimeout(() => {
         toast.success("Product Added to Your Cart");
         resolve();
