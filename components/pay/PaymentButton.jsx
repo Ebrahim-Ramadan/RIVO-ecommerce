@@ -13,7 +13,7 @@ export default function PaymentButton({ selectedOption, amountInt }) {
       if (!selectedOption) return; // Avoid making a request if no option is selected
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/getPaymentLink`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getPaymentLink`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

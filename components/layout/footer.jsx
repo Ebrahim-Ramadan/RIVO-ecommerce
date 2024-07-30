@@ -41,8 +41,8 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-center">
       <Image
       className='w-full'
-      width={100}
-      height={100}
+      width={300}
+      height={300}
       src={footerPay}
       />
       <p>

@@ -19,7 +19,7 @@ export  function Carousel({data}) {
     </div>
       <div className=" w-full overflow-x-auto pb-6 pt-1">
       <ul className="flex animate-carousel">
-        {data.slice(0, 10).map((frame) => (
+        {data.slice(3, 12).map((frame) => (
           <li
             key={`${frame['id']}`}
             className="relative aspect-square h-[38vh] max-h-[275px] w-3/4 max-w-[475px] flex-none md:w-1/3"

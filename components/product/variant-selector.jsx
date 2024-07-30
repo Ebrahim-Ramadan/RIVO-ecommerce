@@ -3,14 +3,15 @@
 import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { createUrl } from '@/lib/utils';
-export function VariantSelector({ sizes, colors }) {
+export function VariantSelector({ sizes, colors, types }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const options = [
     { id: 'size', name: 'Size', values: sizes },
-    { id: 'color', name: 'Color', values: colors }
+    { id: 'color', name: 'Color', values: colors },
+    // { id: 'type', name: 'Type', values: types }
   ];
 
   // Simplified logic for combinations
