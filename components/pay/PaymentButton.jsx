@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import LoadingDots from '../loading-dots';
-import { getCart } from '@/components/cart/actions';
-export default function PaymentButton({ selectedOption, amountInt }) {
+
+
+export default function PaymentButton({ formData,selectedOption, amountInt }) {
+console.log('PaymentButton formData', formData);
   const [loading, setLoading] = useState(false);
   const [strcutred_URL, setstrcutred_URL] = useState('');
   const amount = parseInt(amountInt, 10);
@@ -75,7 +77,7 @@ export default function PaymentButton({ selectedOption, amountInt }) {
       {loading ? (
         <LoadingDots/>
       ) : (
-        <a target="_blank" href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
+        <a  href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
         <button className='w-full' disabled={selectedOption === null}>
 Pay Now
         </button>

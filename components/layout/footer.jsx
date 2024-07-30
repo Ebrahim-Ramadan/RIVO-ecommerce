@@ -40,6 +40,7 @@ export default function Footer() {
       
       <div className="flex flex-col items-center justify-center">
       <Image
+      alt='footer-pay'
       className='w-full'
       width={300}
       height={300}
