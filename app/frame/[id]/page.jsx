@@ -13,6 +13,7 @@ import { Suspense } from 'react';
 export default async function Page({params}) {
 
   const data = await getData(params.id)
+  console.log('data', data);
   if (!data) {
       return (
           <NoResults/>
@@ -81,7 +82,7 @@ async function RelatedProducts({ keyword , relatedID}) {
                 alt={product.name}
                 label={{
                   title: product.name,
-                  amount: product.price,
+                  amount: product.price[0],
                   currencyCode: 'EGP'
                 }}
                 src={product.images[0]}

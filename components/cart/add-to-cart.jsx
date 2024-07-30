@@ -28,7 +28,7 @@ function SubmitButton({
     );
   }
 
-  if ((product.sizes && product.colors) &&(!selectedSize || !selectedColor)) {
+  if ((product.sizes && product.colors) && (!selectedSize || !selectedColor)) {
     return (
       <button
         aria-label="Please select size and color"
@@ -67,29 +67,50 @@ function SubmitButton({
   );
 }
 
-export function AddToCart({product, availableForSale} ) {
+export function AddToCart({ product, availableForSale }) {
   const searchParams = useSearchParams();
   const selectedSize = searchParams.get('size');
   const selectedColor = searchParams.get('color');
+  const selectedType = searchParams.get('type');
+
+  // Calculate price based on selected size and type
+  const calculatePrice = (sizes, types, selectedSize, selectedType) => {
+    const basePrices = product.price; // Base prices array corresponding to sizes
+    const sizeIndex = sizes.indexOf(selectedSize);
+    const ratios = [.761, 71, .826, .725, .671];
+    let price = 0;
+
+    if (sizeIndex !== -1) {
+      const basePrice = basePrices[sizeIndex];
+      if (selectedType === 'wood') {
+        price = basePrice / (ratios[sizeIndex] || 1);
+      } else {
+        price = basePrice;
+      }
+    }
+
+    return price;
+  };
 
   const handleAddToCart = () => {
     return new Promise((resolve) => {
-      addToCart(product.id, selectedSize && selectedSize, selectedColor && selectedColor, product.price); 
+      const price = calculatePrice(product.sizes, product.types, selectedSize, selectedType);
+      addToCart(product, selectedSize, selectedColor, selectedType, price);
       setTimeout(() => {
         toast.success("Product Added to Your Cart");
         resolve();
       }, 1000); // Simulate a delay
     });
   };
-  
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <SubmitButton 
-      product={product}
+        product={product}
         availableForSale={availableForSale} 
         selectedSize={selectedSize} 
         selectedColor={selectedColor} 
+        selectedType={selectedType} 
         onClick={handleAddToCart}
       />
     </form>

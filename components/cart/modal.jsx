@@ -116,8 +116,8 @@ export default function CartModal() {
                 <div className="flex h-full flex-col justify-between overflow-hidden px-2">
                   <ul className="flex-grow overflow-y-auto p-2">
                     {cart.map((item, i) => (
-                      <li key={i} className="flex w-full flex-col border-b border-neutral-400">
-                        <div className="relative flex w-full flex-row justify-between px-1 py-4">
+                      <li key={i} className="flex w-full flex-col border-b border-neutral-400 px-1 py-4">
+                        <div className="relative flex w-full flex-row justify-between ">
                           <button className="absolute z-40 -mt-2 -ml-2" onClick={closeCart}>
                             <DeleteItemButton  item={item} />
                           </button>
@@ -131,12 +131,8 @@ export default function CartModal() {
                             height={150}
                             />
                             : <div className='h-20'><LoadingDots /></div>}</span>
-                            <a href={`/frame/${item.id}`} className=" font-bold text-neutral-200">
-                             {productDetails[item.id]?.name}
-                            </a>
-                            <p className="text-xs font-medium text-neutral-400">
-                              Size: {item.size || 'normal'}, Color: {item.color || 'normal'}
-                            </p>
+                           
+                            
                           </div>
                           <div className="flex h-16 flex-col justify-between">
                             <Price
@@ -161,6 +157,12 @@ export default function CartModal() {
                             </div>
                           </div>
                         </div>
+                        <a href={`/frame/${item.id}`} className=" font-bold text-neutral-200 mt-4">
+                             {productDetails[item.id]?.name}
+                            </a>
+                        <p className="text-xs font-medium text-neutral-400">
+                              Size: {item.size || 'normal'}, Color: {item.color || 'normal'}, Type: {item.type || 'normal'}
+                            </p>
                       </li>
                     ))}
                   </ul>

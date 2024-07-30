@@ -1,70 +1,129 @@
 'use client';
+import Price from '@/components/price';
 
 import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { createUrl } from '@/lib/utils';
-export function VariantSelector({ sizes, colors, types }) {
+import { useState, useEffect, Suspense } from 'react';
+import LoadingDots from '../loading-dots';
+export function VariantSelector({ sizes, colors, types, prices }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [price, setPrice] = useState(0);
+
   const options = [
+    { id: 'type', name: 'Type', values: types },
     { id: 'size', name: 'Size', values: sizes },
     { id: 'color', name: 'Color', values: colors },
-    // { id: 'type', name: 'Type', values: types }
   ];
 
   // Simplified logic for combinations
-  const combinations = sizes.flatMap(size => 
-    colors.map(color => ({
-      id: `${size}-${color}`,
-      availableForSale: true, // You may want to adjust this based on your actual inventory
-      size,
-      color
-    }))
+  const combinations = sizes.flatMap((size, sizeIndex) =>
+    colors.flatMap(color =>
+      types.map(type => ({
+        id: `${size}-${color}-${type}`,
+        availableForSale: true, 
+        size,
+        color,
+        type,
+        price: calculatePrice(prices, sizeIndex, type) 
+      }))
+    )
   );
 
-  return options.map((option) => (
-    <dl className="mb-8" key={option.id}>
-      <dt className="mb-4 text-sm uppercase tracking-wide">{option.name}</dt>
-      <dd className="flex flex-wrap gap-3">
-        {option.values.map((value) => {
-          const optionNameLowerCase = option.name.toLowerCase();
-          const optionSearchParams = new URLSearchParams(searchParams.toString());
-          optionSearchParams.set(optionNameLowerCase, value);
-          const optionUrl = createUrl(pathname, optionSearchParams);
+  useEffect(() => {
+    const selectedSize = searchParams.get('size');
+    const selectedType = searchParams.get('type');
 
-          const isAvailableForSale = combinations.some(combination => 
-            combination[optionNameLowerCase] === value && combination.availableForSale
-          );
+    if (selectedSize && selectedType) {
+      const selectedCombination = combinations.find(
+        combination =>
+          combination.size === selectedSize &&
+          combination.type === selectedType
+      );
 
-          const isActive = searchParams.get(optionNameLowerCase) === value;
+      if (selectedCombination) {
+        setPrice(selectedCombination.price);
+      } else {
+        // If no specific combination is found, calculate the price directly
+        const sizeIndex = sizes.indexOf(selectedSize);
+        if (sizeIndex !== -1) {
+          setPrice(calculatePrice(prices, sizeIndex, selectedType));
+        }
+      }
+    }
+  }, [searchParams, combinations, sizes, prices]);
 
-          return (
-            <button
-              key={value}
-              aria-disabled={!isAvailableForSale}
-              disabled={!isAvailableForSale}
-              onClick={() => {
-                router.replace(optionUrl, { scroll: false });
-              }}
-              title={`${option.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
-              className={clsx(
-                'flex min-w-[48px] items-center justify-center rounded-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900',
-                {
-                  'cursor-default ring-2 ring-blue-600': isActive,
-                  'ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 ':
-                    !isActive && isAvailableForSale,
-                  'relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 ring-1 ring-neutral-300 before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-700 before:dark:bg-neutral-700':
-                    !isAvailableForSale
-                }
-              )}
-            >
-              {value}
-            </button>
-          );
-        })}
-      </dd>
-    </dl>
-  ));
+  return (
+    <div>
+      {options.map((option) => (
+        <dl className="mb-4" key={option.id}>
+          <dt className="mb-2 font-medium text-sm uppercase tracking-wide">{option.name}</dt>
+          <dd className="flex flex-wrap gap-3">
+            {option.values.map((value) => {
+              const optionNameLowerCase = option.name.toLowerCase();
+              const optionSearchParams = new URLSearchParams(searchParams.toString());
+              optionSearchParams.set(optionNameLowerCase, value);
+              const optionUrl = createUrl(pathname, optionSearchParams);
+
+              const isAvailableForSale = combinations.some(combination =>
+                combination[optionNameLowerCase] === value && combination.availableForSale
+              );
+
+              const isActive = searchParams.get(optionNameLowerCase) === value;
+
+              return (
+                <button
+                  key={value}
+                  aria-disabled={!isAvailableForSale}
+                  disabled={!isAvailableForSale}
+                  onClick={() => {
+                    router.replace(optionUrl, { scroll: false });
+                  }}
+                  title={`${option.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
+                  className={clsx(
+                    'flex min-w-[48px] items-center justify-center rounded-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900',
+                    {
+                      'cursor-default ring-2 ring-blue-600': isActive,
+                      'ring-1 ring-transparent transition duration-300 ease-in-out hover:scale-110 hover:ring-blue-600 ':
+                        !isActive && isAvailableForSale,
+                      'relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 ring-1 ring-neutral-300 before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-700 before:dark:bg-neutral-700':
+                        !isAvailableForSale
+                    }
+                  )}
+                >
+                  {value}
+                </button>
+              );
+            })}
+          </dd>
+        </dl>
+      ))}
+<div className="flex justify-end  font-medium text-sm text-white">
+  <Suspense fallback={<LoadingDots/>}>
+    
+          <Price
+            amount={Math.ceil(price)}
+            currencyCode='EGP'
+            className='bg-blue-600 rounded-full  p-2'
+          />
+</Suspense>
+
+        </div>
+    </div>
+  );
+}
+
+export function calculatePrice(prices, sizeIndex, type) {
+  const basePrice = prices[sizeIndex]; // baseprice
+  const ratios = [.761, .71, .826, .725, .671];
+  let typeMultiplier = 1;
+
+  if (type === 'wood') {
+    typeMultiplier = ratios[sizeIndex];
+    return basePrice / typeMultiplier;
+  }
+  return basePrice;
 }

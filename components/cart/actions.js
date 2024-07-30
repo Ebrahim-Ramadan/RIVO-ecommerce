@@ -25,19 +25,20 @@ export function getCart() {
 
  
 
+
 // Function to add an item to the cart
-export function addToCart(id, size='normal', color='normal', price) {
+export function addToCart(product, size, color, type, price) {
   let cart = getCookie('cart') || [];
-  
-  const existingItemIndex = cart.findIndex(item => item.id === id && item.size === size && item.color === color);
+
+  const existingItemIndex = cart.findIndex(item => item.id === product.id && item.size === size && item.color === color && item.type === type);
 
   if (existingItemIndex !== -1) {
     cart[existingItemIndex].quantity += 1;
   } else {
-    const item = { id, price, quantity: 1 };
-    cart.push({ id, size, color, price, quantity: 1 });
+    const { id } = product;
+    cart.push({ id, size, color, type, price, quantity: 1 });
   }
-  
+
   setCookie('cart', cart, 7); // Store for 7 days
 }
 

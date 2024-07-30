@@ -6,13 +6,14 @@ function ThreeItemGridItem({
   size,
   priority
 }) {
+  console.log('item', item);
   return (
     <div
       className={size === 'full' ? 'md:col-span-4 md:row-span-2' : 'md:col-span-2 md:row-span-1'}
     >
       <a
         className="relative block aspect-square h-full w-full"
-        href={`/frame/${item?.id}`}
+        href={`/frame/${item?.id}?type=${item?.types[0]}&size=${item?.sizes[0]}`}
         prefetch='true'
       >
         <GridTileImage
