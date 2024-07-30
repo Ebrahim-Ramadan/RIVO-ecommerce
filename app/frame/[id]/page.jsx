@@ -13,7 +13,6 @@ import { Suspense } from 'react';
 export default async function Page({params}) {
 
   const data = await getData(params.id)
-  console.log('data', data);
   if (!data) {
       return (
           <NoResults/>

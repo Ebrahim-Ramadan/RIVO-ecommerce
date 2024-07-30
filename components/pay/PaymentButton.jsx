@@ -49,6 +49,17 @@ console.log('PaymentButton formData', formData);
               phone_number: formData.phoneNumber,
               country: 'EG',
               email: formData.email,
+              street: formData.address,
+              city: formData.city,
+            },
+            shipping_data: {
+              first_name: formData.fullname,
+              last_name: formData.fullname,
+              phone_number: formData.phoneNumber,
+              country: 'EG',
+              email: formData.email,
+              street: formData.address,
+              city: formData.city,
             },
             // formData,
             customer: {
@@ -57,8 +68,10 @@ console.log('PaymentButton formData', formData);
               phone_number: formData.phoneNumber,
               country: 'EG',
               email: formData.email,
-              extras: {
-                re: formData.specialMessage,
+              street: formData.address,
+              city: formData.city,
+              extra: {
+                specialMessage: formData.specialMessage,
                 cart, cart
               },
             },
