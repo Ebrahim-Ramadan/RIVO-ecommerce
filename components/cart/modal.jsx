@@ -134,7 +134,7 @@ export default function CartModal() {
                             width={100}
                             height={150}
                             />
-                            : <div className='h-20'/>}</span>
+                            : <div className='h-20'><LoadingDots /></div>}</span>
                             <a href={`/frame/${item.id}`} className=" font-bold text-neutral-200">
                              {productDetails[item.id]?.name}
                             </a>
