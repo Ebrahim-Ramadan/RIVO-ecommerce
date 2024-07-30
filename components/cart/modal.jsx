@@ -63,11 +63,7 @@ export default function CartModal() {
     updateCart(itemId, size, color, newQuantity);
   };
 
-  const removeItem = (itemId, size, color) => {
-    const updatedCart = cart.filter(item => !(item.id === itemId && item.size === size && item.color === color));
-    setCart(updatedCart);
-    removeFromCart(itemId);
-  };
+  
 
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
   const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -128,7 +124,7 @@ export default function CartModal() {
                           <div className="flex flex-1 flex-col gap-2">
                             <span className="leading-tight">{productDetails[item.id]?.images[0] ?
                             <Image
-                            className='rounded-lg bg-neutral-400'
+                            className='rounded-lg'
                             src={productDetails[item.id]?.images[0]}
                             alt={productDetails[item.id]?.id}
                             width={100}
