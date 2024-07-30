@@ -51,6 +51,8 @@ console.log('PaymentButton formData', formData);
               email: formData.email,
               street: formData.address,
               city: formData.city,
+              extra_description: formData.specialMessage,
+
             },
             shipping_data: {
               first_name: formData.fullname,
@@ -60,6 +62,7 @@ console.log('PaymentButton formData', formData);
               email: formData.email,
               street: formData.address,
               city: formData.city,
+              extra_description: formData.specialMessage,
             },
             // formData,
             customer: {
@@ -70,7 +73,7 @@ console.log('PaymentButton formData', formData);
               email: formData.email,
               street: formData.address,
               city: formData.city,
-              extra: {
+              extras: {
                 specialMessage: formData.specialMessage,
                 cart, cart
               },
