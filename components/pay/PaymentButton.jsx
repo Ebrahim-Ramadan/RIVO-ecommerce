@@ -6,12 +6,12 @@ import { getCart } from '../cart/actions';
 import LoadingDots from '../loading-dots';
 
 
-export default function PaymentButton({ formData,selectedOption, amountInt }) {
+export default function PaymentButton({ formData,selectedOption }) {
 console.log('PaymentButton formData', formData);
   const [loading, setLoading] = useState(false);
   const [error, seterror] = useState(false);
   const [strcutred_URL, setstrcutred_URL] = useState('');
-  // const amount = parseInt(amountInt, 10);
+
   useEffect(() => {
     const handlePayment = async () => {
 

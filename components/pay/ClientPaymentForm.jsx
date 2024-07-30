@@ -3,9 +3,9 @@
 import { Select } from '@headlessui/react';
 import {  useState } from 'react';
 import PayOptionsComponent from './PayOptionsComponent';
-import SaveInfo from './SaveInfo';
 
-export const ClientPaymentForm = ({ amount }) => {
+
+export const ClientPaymentForm = () => {
 
   
   const [formData, setFormData] = useState({
@@ -163,7 +163,7 @@ export const ClientPaymentForm = ({ amount }) => {
   </button> */}
 </form>  
     {checkRequiredFields(formData)&&
-      <PayOptionsComponent amount={amount} formData={formData&&formData} />
+      <PayOptionsComponent  formData={formData&&formData} />
     }
       </>
   );

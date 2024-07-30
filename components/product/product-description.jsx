@@ -10,7 +10,7 @@ export function ProductDescription({ product }) {
   return (
     <>
       <div className="mb-2 flex flex-col border-b gap-2 pb-2 md:pb-6 dark:border-neutral-700">
-        <h1 className=" text-2xl md:text-5xl font-medium">{product['name']}</h1>
+        <h1 className=" text-2xl md:text-5xl font-bold">{product['name']}</h1>
       </div>
       {product['sizes'] && product['colors'] &&product['types'] &&  product['price'] &&
         <Suspense fallback={<LoadingDots/>}>
