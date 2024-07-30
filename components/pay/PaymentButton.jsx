@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
+import { getCart } from '../cart/actions';
 import LoadingDots from '../loading-dots';
 
 
@@ -10,9 +11,19 @@ console.log('PaymentButton formData', formData);
   const [loading, setLoading] = useState(false);
   const [error, seterror] = useState(false);
   const [strcutred_URL, setstrcutred_URL] = useState('');
-  const amount = parseInt(amountInt, 10);
+  // const amount = parseInt(amountInt, 10);
   useEffect(() => {
     const handlePayment = async () => {
+
+      const cart = getCart();
+      console.log('cart', cart);
+      const prices = cart.map(item => {
+        // Convert price from string to number and multiply by quantity
+        return Number(item.price) * item.quantity;
+      });
+      
+      // Calculate the final price by summing up all the item totals
+      const finalPrice = prices.reduce((total, itemPrice) => total + itemPrice, 0)*100;
       if (!selectedOption) return; // Avoid making a request if no option is selected
       setLoading(true);
       try {
@@ -22,13 +33,13 @@ console.log('PaymentButton formData', formData);
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            amount,
+            amount: parseInt(finalPrice, 10),
             currency: 'EGP',
             payment_methods: [selectedOption],
             items: [
               {
                 name: 'rivo purchase',
-                amount,
+                amount: parseInt(finalPrice, 10),
                 quantity: 1,
               },
             ],
@@ -47,7 +58,8 @@ console.log('PaymentButton formData', formData);
               country: 'EG',
               email: formData.email,
               extras: {
-                re: '22',
+                re: formData.specialMessage,
+                cart, cart
               },
             },
           }),

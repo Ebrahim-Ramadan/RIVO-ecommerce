@@ -16,7 +16,7 @@ const paymentOptions = [
   },
 ];
 
-export const PayOptionsComponent = ({ amount, formData }) => {
+export const PayOptionsComponent = ({  formData }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleCheckboxChange = (option) => {
@@ -54,7 +54,7 @@ export const PayOptionsComponent = ({ amount, formData }) => {
           </label>
         ))}
       </form>
-      <PaymentButton formData={formData} selectedOption={selectedOption} amountInt={amount} />
+      <PaymentButton formData={formData} selectedOption={selectedOption}  />
     </div>
   );
 };

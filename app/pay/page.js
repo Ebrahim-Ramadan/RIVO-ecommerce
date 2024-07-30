@@ -10,12 +10,17 @@ export const metadata = {
   }
 };
 
-export default async function HomePage({searchParams}) {
-  const amount = searchParams.amount?? '';
-console.log('amount', amount);
+export default async function HomePage() {
+
   return (
    <div className="h-full flex flex-col items-center justify-center w-full ">
-<ClientPaymentForm amount={amount}/>
+    <p className="text-start text-3xl font-bold">
+      Payment Page
+    </p>
+    <div class="py-4 flex flex-row justify-center w-full  text-center">
+      <div class="bg-gradient-to-r from-transparent via-white/40 to-transparent w-full  h-[2px] opacity-80"></div>
+    </div>
+<ClientPaymentForm />
 <Footer/>
    </div>
   );
