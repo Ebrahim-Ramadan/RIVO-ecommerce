@@ -47,8 +47,8 @@ export const ClientPaymentForm = ({ amount }) => {
     <label className='text-xl'>Fill In Your Details</label>
  </div>
   <div>
-    <label htmlFor="email" className="block text-sm font-medium">Email 
-    *
+    <label htmlFor="email" className="block text-sm font-medium styled-text">Email 
+    
     </label>
     <input
     placeholder='Enter your email'
@@ -63,7 +63,7 @@ export const ClientPaymentForm = ({ amount }) => {
   </div>
   
   <div>
-    <label htmlFor="fullname" className="block text-sm font-medium">Full Name *</label>
+    <label htmlFor="fullname" className="block text-sm font-medium styled-text">Full Name </label>
     <input
     placeholder='Enter your full name'
       type="text"
@@ -77,7 +77,7 @@ export const ClientPaymentForm = ({ amount }) => {
   </div>
 
   <div>
-    <label htmlFor="phoneNumber" className="block text-sm font-medium">Phone Number *</label>
+    <label htmlFor="phoneNumber" className="block text-sm font-medium styled-text">Phone Number </label>
     <input
     placeholder='Enter your phone number'
       type="number"
@@ -91,9 +91,9 @@ export const ClientPaymentForm = ({ amount }) => {
   </div>
 
   <div>
-    <label htmlFor="governorate" className="block text-sm font-medium">Governorate *</label>
+    <label htmlFor="governorate" className="block text-sm font-medium styled-text">Governorate </label>
     <Select
-      className='mt-2 w-full rounded-lg border px-4 py-2 text-sm'
+      className='mt-2 w-full rounded-lg border border-neutral-600 px-4 py-2 text-sm'
       id="governorate"
       name="governorate"
       value={formData.governorate}
@@ -111,7 +111,7 @@ export const ClientPaymentForm = ({ amount }) => {
   </div>
 
   <div>
-    <label htmlFor="city" className="block text-sm font-medium">City *</label>
+    <label htmlFor="city" className="block text-sm font-medium styled-text">City </label>
     <input
     placeholder='Enter your city'
       type="text"
@@ -125,7 +125,7 @@ export const ClientPaymentForm = ({ amount }) => {
   </div>
 
   <div>
-    <label htmlFor="address" className="block text-sm font-medium">Address *</label>
+    <label htmlFor="address" className="block text-sm font-medium styled-text">Address </label>
     <input
     placeholder='Write Your Address In Details'
       type="text"

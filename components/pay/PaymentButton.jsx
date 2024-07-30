@@ -8,6 +8,7 @@ import LoadingDots from '../loading-dots';
 export default function PaymentButton({ formData,selectedOption, amountInt }) {
 console.log('PaymentButton formData', formData);
   const [loading, setLoading] = useState(false);
+  const [error, seterror] = useState(false);
   const [strcutred_URL, setstrcutred_URL] = useState('');
   const amount = parseInt(amountInt, 10);
   useEffect(() => {
@@ -26,24 +27,25 @@ console.log('PaymentButton formData', formData);
             payment_methods: [selectedOption],
             items: [
               {
-                name: 'planName',
+                name: 'rivo purchase',
                 amount,
                 quantity: 1,
               },
             ],
             billing_data: {
-              first_name: 'Jhon',
-              last_name: 'Jhon',
-              phone_number: '2000000000000',
+              first_name: formData.fullname,
+              last_name: formData.fullname,
+              phone_number: formData.phoneNumber,
               country: 'EG',
-              email: 'jhon@doe.com',
+              email: formData.email,
             },
+            // formData,
             customer: {
-              fulllname: 'Jhon',
-              last_name: 'Jhon',
-              phone_number: '2000000000000',
+              fulllname: formData.fullname,
+              last_name: formData.fullname,
+              phone_number: formData.phoneNumber,
               country: 'EG',
-              email: 'jhon@doe.com',
+              email: formData.email,
               extras: {
                 re: '22',
               },
@@ -60,6 +62,7 @@ console.log('PaymentButton formData', formData);
         }
         else{
           toast.error(res.error);
+          seterror(true);
         }
        
       } catch (error) {
@@ -83,6 +86,7 @@ Pay Now
         </button>
         </a>
       )}
+      {error&&<p className='text-center text-red-500 text-sm'>Payment Failed, try again later</p>}
     </div>
   );
 }

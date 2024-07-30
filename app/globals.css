@@ -54,3 +54,17 @@ button {
   animation: marquee-ltr var(--timeScroll) infinite linear;
   animation-delay: 2s;
 }
+
+.styled-text {
+  position: relative;
+  display: inline-block;
+  padding-right: 1ch; /* Ensures space for the pseudo-element */
+}
+
+.styled-text::after {
+  content: '*'; /* Insert the character */
+  position: absolute;
+  right: 0;
+  color: red; /* Style the last character */
+  font-weight: bold; /* Example styling */
+}
