@@ -128,13 +128,13 @@ export default function CartModal() {
                           <div className="flex flex-1 flex-col gap-2">
                             <span className="leading-tight">{productDetails[item.id]?.images[0] ?
                             <Image
-                            className='rounded-lg h-24 bg-neutral-400'
-                            src={productDetails[item.id].images[0]}
-                            alt={productDetails[item.id].id}
+                            className='rounded-lg bg-neutral-400'
+                            src={productDetails[item.id]?.images[0]}
+                            alt={productDetails[item.id]?.id}
                             width={100}
                             height={150}
                             />
-                            : <LoadingDots/>}</span>
+                            : <div className='h-20'/>}</span>
                             <a href={`/frame/${item.id}`} className=" font-bold text-neutral-200">
                              {productDetails[item.id]?.name}
                             </a>

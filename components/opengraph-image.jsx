@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import { ImageResponse } from 'next/og';
-import logo from '@/public/logo.png';
 
 
 

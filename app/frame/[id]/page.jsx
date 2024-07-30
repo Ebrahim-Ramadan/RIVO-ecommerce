@@ -5,6 +5,7 @@ import { NoResults } from '@/components/layout/navbar/NoResults';
 import { Gallery } from '@/components/product/gallery';
 import { ProductDescription } from '@/components/product/product-description';
 import { ProductNav } from '@/components/product/ProductNav';
+import LazyLoad from '@/lib/LazyLoad';
 import {   getProductDetails, searchFrames } from '@/lib/utils';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -41,7 +42,9 @@ export default async function Page({params}) {
             <ProductDescription product={data} />
           </div>
         </div>
+        <LazyLoad>
         <RelatedProducts keyword={data.keywords[0]} relatedID={data.id} />
+        </LazyLoad>
       </div>
       <Footer/>
     </>
