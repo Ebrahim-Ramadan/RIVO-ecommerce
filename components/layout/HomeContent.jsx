@@ -7,6 +7,8 @@ import { Slider } from '@/components/layout/Slider';
 import LoadingDots from '../loading-dots';
 import { NoResults } from './navbar/NoResults';
 import { MarqueeBanner } from './navbar/DMBanner';
+import LazyLoad from '@/lib/LazyLoad';
+import { Suspense } from 'react';
 
 export function HomeContent() {
   const { frames, loading } = useFrames()
@@ -26,7 +28,15 @@ export function HomeContent() {
       <Slider/>
       <ThreeItemGrid data={frames}/>
       <MarqueeBanner/>
-      <Carousel data={frames}/>
+      <LazyLoad>
+        <Suspense fallback={
+            <LoadingDots/>
+          }>
+        <Carousel data={frames}/>
+
+        </Suspense>
+
+      </LazyLoad>
     </>
   );
 }
