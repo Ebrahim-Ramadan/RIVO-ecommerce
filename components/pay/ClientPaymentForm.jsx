@@ -33,6 +33,9 @@ export const ClientPaymentForm = () => {
       if (key !== 'specialMessage' && !data[key].trim()) {
         return false;
       }
+      if (key === 'phoneNumber' && data[key].length !=11) {
+        return false;
+      }
     }
     return true;
   };
@@ -86,6 +89,7 @@ export const ClientPaymentForm = () => {
       value={formData.phoneNumber}
       onChange={handleChange}
       required
+      minLength="11"
       className="mt-2 w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-600 dark:bg-transparent dark:text-white dark:placeholder:text-neutral-400"
     />
   </div>
