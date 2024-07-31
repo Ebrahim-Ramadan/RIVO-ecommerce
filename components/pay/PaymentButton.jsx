@@ -52,6 +52,10 @@ console.log('PaymentButton formData', formData);
               street: formData.address,
               city: formData.city,
               extra_description: formData.specialMessage,
+              extras: {
+                specialMessage: formData.specialMessage,
+                cart, cart
+              },
 
             },
             shipping_data: {
@@ -63,6 +67,10 @@ console.log('PaymentButton formData', formData);
               street: formData.address,
               city: formData.city,
               extra_description: formData.specialMessage,
+              extras: {
+                specialMessage: formData.specialMessage,
+                cart, cart
+              },
             },
             // formData,
             customer: {
@@ -77,6 +85,10 @@ console.log('PaymentButton formData', formData);
                 specialMessage: formData.specialMessage,
                 cart, cart
               },
+            },
+            extra: {
+              specialMessage: formData.specialMessage,
+              cart, cart
             },
           }),
           cache: 'no-store',

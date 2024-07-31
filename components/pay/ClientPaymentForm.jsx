@@ -92,6 +92,7 @@ export const ClientPaymentForm = () => {
       minLength="11"
       className="mt-2 w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-600 dark:bg-transparent dark:text-white dark:placeholder:text-neutral-400"
     />
+    <p className='text-xs text-end px-2 py-1 text-neutral-400'>Must be 11 digits (Ex: 01102191344)</p> 
   </div>
 
   <div>

@@ -6,12 +6,12 @@ import PaymentButton from './PaymentButton';
 const paymentOptions = [
   {
     logo: '/assets/visa.svg',
-    id: 4619069,
+    id: process.env.NEXT_PUBLIC_VISA_INTEGRATION_ID,
     name: 'Credit Card',
   },
   {
     logo: '/assets/mobile.svg',
-    id: 4619234,
+    id: process.env.NEXT_PUBLIC_MOBILE_WALLET_INTEGRATION_ID,
     name: 'Mobile Wallet',
   },
 ];
@@ -39,7 +39,7 @@ export const PayOptionsComponent = ({  formData }) => {
             key={id}
             className="inline-flex justify-between w-full items-center rounded-lg p-2 border border-transparent hover:bg-white/10 transition-all cursor-pointer relative"
           >
-            <div className="inline-flex items-center justify-center gap-2 relative z-10">
+            <div className="inline-flex items-center justify-center gap-4 relative z-10">
               <img src={logo} alt={name} className="w-8 h-8" width={32} height={32} />
               <p className="font-medium text-sm">{name}</p>
             </div>
