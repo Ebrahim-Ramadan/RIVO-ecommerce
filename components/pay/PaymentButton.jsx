@@ -52,10 +52,11 @@ seterror(false);
               street: formData.address,
               city: formData.city,
               extra_description: formData.specialMessage,
-              extras: {
+              extra: {
                 specialMessage: formData.specialMessage,
                 cart, cart
               },
+              custom_array:cart
 
             },
             shipping_data: {
@@ -67,7 +68,7 @@ seterror(false);
               street: formData.address,
               city: formData.city,
               extra_description: formData.specialMessage,
-              extras: {
+              extra: {
                 specialMessage: formData.specialMessage,
                 cart, cart
               },
@@ -81,7 +82,7 @@ seterror(false);
               email: formData.email,
               street: formData.address,
               city: formData.city,
-              extras: {
+              extra: {
                 specialMessage: formData.specialMessage,
                 cart, cart
               },
