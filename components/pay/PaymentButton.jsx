@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { getCart } from '../cart/actions';
 import LoadingDots from '../loading-dots';
-
+import { addOrder } from '@/lib/orders';
 
 export default function PaymentButton({ formData,selectedOption }) {
 console.log('PaymentButton formData', formData);
@@ -14,11 +14,13 @@ console.log('PaymentButton formData', formData);
 
   useEffect(() => {
     const handlePayment = async () => {
-seterror(false);
+      seterror(false);
       const cart = getCart();
+
       console.log('cart', cart);
+      
+
       const prices = cart.map(item => {
-        // Convert price from string to number and multiply by quantity
         return Number(item.price) * item.quantity;
       });
       
@@ -27,6 +29,14 @@ seterror(false);
       if (!selectedOption) return; // Avoid making a request if no option is selected
       setLoading(true);
       try {
+        const orderID = await addOrder(cart);
+      console.log('order', orderID);
+
+      if(!orderID) {
+        toast.error('Error adding order, referesh');
+        seterror(true);
+        return
+      }
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getPaymentLink`, {
           method: 'POST',
           headers: {
@@ -52,11 +62,7 @@ seterror(false);
               street: formData.address,
               city: formData.city,
               extra_description: formData.specialMessage,
-              extra: {
-                specialMessage: formData.specialMessage,
-                cart, cart
-              },
-              custom_array:cart
+              building:orderID,
 
             },
             shipping_data: {
@@ -68,10 +74,8 @@ seterror(false);
               street: formData.address,
               city: formData.city,
               extra_description: formData.specialMessage,
-              extra: {
-                specialMessage: formData.specialMessage,
-                cart, cart
-              },
+              building:orderID,
+              
             },
             // formData,
             customer: {
@@ -82,15 +86,10 @@ seterror(false);
               email: formData.email,
               street: formData.address,
               city: formData.city,
-              extra: {
-                specialMessage: formData.specialMessage,
-                cart, cart
-              },
+              building:orderID,
+              
             },
-            extra: {
-              specialMessage: formData.specialMessage,
-              cart, cart
-            },
+           
           }),
           cache: 'no-store',
         });
@@ -98,6 +97,7 @@ seterror(false);
         const res = await response.json();
         console.log('res', res);
         if (!res.error){
+          
           const { client_secret } = res;
           setstrcutred_URL(`https://accept.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${client_secret}`)
         }
