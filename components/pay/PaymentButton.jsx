@@ -14,7 +14,7 @@ console.log('PaymentButton formData', formData);
 
   useEffect(() => {
     const handlePayment = async () => {
-
+seterror(false);
       const cart = getCart();
       console.log('cart', cart);
       const prices = cart.map(item => {
@@ -117,16 +117,21 @@ console.log('PaymentButton formData', formData);
 
   return (
     <div className='py-2 flex flex-col w-full items-center justify-center'>
-      {loading ? (
-        <LoadingDots/>
-      ) : (
-        <a  href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
-        <button className='w-full' disabled={selectedOption === null}>
+      
+      {error?  
+      <p className='text-center text-red-500 text-sm'>Payment Failed, referesh and try again</p>
+    :
+(
+  loading ? (
+    <LoadingDots/>
+  ) : (
+    <a  href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
+    <button className='w-full' disabled={selectedOption === null}>
 Pay Now
-        </button>
-        </a>
-      )}
-      {error&&<p className='text-center text-red-500 text-sm'>Payment Failed, try again later</p>}
-    </div>
+    </button>
+    </a>
+  )
+)}
+      </div>
   );
 }

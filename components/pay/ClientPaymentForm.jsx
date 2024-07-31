@@ -167,9 +167,9 @@ export const ClientPaymentForm = () => {
     Submit
   </button> */}
 </form>  
-    {checkRequiredFields(formData)&&
+    {/* {checkRequiredFields(formData)&& */}
       <PayOptionsComponent  formData={formData&&formData} />
-    }
+    {/* } */}
       </>
   );
 };

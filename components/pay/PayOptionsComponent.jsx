@@ -6,12 +6,12 @@ import PaymentButton from './PaymentButton';
 const paymentOptions = [
   {
     logo: '/assets/visa.svg',
-    id: process.env.NEXT_PUBLIC_VISA_INTEGRATION_ID,
+    id: parseInt(process.env.NEXT_PUBLIC_VISA_INTEGRATION_ID, 10),
     name: 'Credit Card',
   },
   {
     logo: '/assets/mobile.svg',
-    id: process.env.NEXT_PUBLIC_MOBILE_WALLET_INTEGRATION_ID,
+    id: parseInt(process.env.NEXT_PUBLIC_MOBILE_WALLET_INTEGRATION_ID, 10),
     name: 'Mobile Wallet',
   },
 ];
