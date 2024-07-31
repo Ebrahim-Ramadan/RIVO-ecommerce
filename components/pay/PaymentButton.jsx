@@ -26,7 +26,12 @@ console.log('PaymentButton formData', formData);
       
       // Calculate the final price by summing up all the item totals
       const finalPrice = prices.reduce((total, itemPrice) => total + itemPrice, 0)*100;
-      if (!selectedOption) return; // Avoid making a request if no option is selected
+      if (!selectedOption || cart.length===0) {
+        seterror(true);
+        return
+      }; // Avoid making a request if no option is selected pr empty cart
+     
+      
       setLoading(true);
       try {
         const orderID = await addOrder(cart);
@@ -120,7 +125,7 @@ console.log('PaymentButton formData', formData);
     <div className='py-2 flex flex-col w-full items-center justify-center'>
       
       {error?  
-      <p className='text-center text-red-500 text-sm'>Payment Failed, referesh and try again</p>
+      <p className='text-center text-red-500 text-sm'>Empty Cart or Payment Failed, referesh and try again</p>
     :
 (
   loading ? (
