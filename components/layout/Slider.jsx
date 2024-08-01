@@ -1,7 +1,7 @@
 'use client';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useDeferredValue } from 'react';
 import LoadingDots from '../loading-dots';
 
 const slides = [
@@ -32,6 +32,9 @@ export const Slider = () => {
   );
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+
+  // Use useDeferredValue for currentIndex
+  const deferredIndex = useDeferredValue(currentIndex);
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -70,7 +73,7 @@ export const Slider = () => {
   };
 
   return (
-    <div className="mb-4 w-full">
+     <div className="mb-4 w-full">
       <div
         className="relative md:h-[40rem] w-full overflow-hidden"
         onTouchStart={handleTouchStart}
@@ -79,7 +82,7 @@ export const Slider = () => {
       >
         <div
           className="flex transition-transform duration-500"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          style={{ transform: `translateX(-${deferredIndex * 100}%)` }}
         >
           {slides.map((slide) => (
             <div
@@ -96,10 +99,10 @@ export const Slider = () => {
                 alt="slide"
                 width={1000}
                 height={1000}
-                className="rounded-lg inset-0 h-full w-full object-cover bg-neutral-600"
+                className="rounded-lg inset-0 h-full w-full object-cover"
                 src={slide.bg}
                 onLoadingComplete={() => handleImageLoad(slide.id)}
-                onError={() => handleImageLoad(slide.id)} // Optionally handle errors
+                onError={() => handleImageLoad(slide.id)}
               />
               <div className="absolute inset-0 flex flex-col h-full justify-between py-2 items-center">
                 <div className="font-bold text-xl md:text-2xl px-4 py-2 bg-black/40 transition duration-200 backdrop-blur-[8px] rounded-full">

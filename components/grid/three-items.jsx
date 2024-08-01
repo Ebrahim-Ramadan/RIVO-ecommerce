@@ -40,9 +40,9 @@ export  function ThreeItemGrid({data}) {
   
   return (
  <div className='w-full gap-2 flex flex-col mt-2'>
-  < div className="py-4 flex flex-row justify-center w-full  text-center" >
+  {/* < div className="py-4 flex flex-row justify-center w-full  text-center" >
       <div className="bg-gradient-to-r from-transparent via-white/40 to-transparent w-full  h-[2px] opacity-80"></div>
-    </div >
+    </div > */}
     <div class="flex items-center justify-between">
   <div class="h-0.5 bg-blue-400 w-1/5"></div>
   <h2 class="mx-2 text-xl font-bold">FEATURING</h2>
