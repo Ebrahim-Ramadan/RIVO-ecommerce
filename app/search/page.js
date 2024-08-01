@@ -9,7 +9,7 @@ export default async function Home({ searchParams }) {
 console.log(`frames for ${query}`, frames, frames.length);
 const resultsText = frames.length > 1 ? 'results' : 'result';
   return (
-    <div className="mx-auto max-w-7xl px-2 md:px-4">
+    <div className="mx-auto max-w-7xl md:px-4">
       {query ? (
         <p className="mb-4">
           {frames.length === 0

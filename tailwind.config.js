@@ -16,7 +16,8 @@ module.exports = {
     animation: {
       fadeIn: 'fadeIn .3s ease-in-out',
         carousel: 'marquee 15s linear infinite',
-        blink: 'blink 1.4s both infinite'
+        blink: 'blink 1.4s both infinite',
+        spin: 'spin 1s linear infinite', // Custom spin animation
     },
     keyframes: {
       fadeIn: {
@@ -31,7 +32,11 @@ module.exports = {
         '0%': { opacity: 0.2 },
         '20%': { opacity: 1 },
         '100% ': { opacity: 0.2 }
-      }
+      },
+      spin: {
+        '0%': { transform: 'rotate(0deg)' },
+        '100%': { transform: 'rotate(360deg)' },
+      },
   },
   plugins: [],
 }}

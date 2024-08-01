@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useDeferredValue, useState } from 'react';
 import PaymentButton from './PaymentButton';
 
 const paymentOptions = [
@@ -18,13 +18,13 @@ const paymentOptions = [
 
 export const PayOptionsComponent = ({  formData }) => {
   const [selectedOption, setSelectedOption] = useState(null);
-
+const deferredOption = useDeferredValue(selectedOption)
   const handleCheckboxChange = (option) => {
     setSelectedOption(option);
   };
 
   return (
-    <div className="w-full md:w-[400px] p-2  rounded-lg shadow flex flex-col items-center justify-center gap-2">
+    <div className="w-full md:w-[400px] p-4  rounded-lg shadow flex flex-col items-center justify-center gap-2">
    <div className='flex font-bold items-center self-start gap-2 flex-row'>
      <p className='w-6 h-6 p-2 flex flex-row items-center justify-center rounded-full bg-blue-600 px-2 py-1 text-white text-xs md:text-sm'>
         2
@@ -32,12 +32,12 @@ export const PayOptionsComponent = ({  formData }) => {
         <label className='text-xl  '>Choose Payment method</label>
      </div>
 
-      <p className="text-xs self-start text-wrap text-slate-400 pb-1 capitalize">secured and provided by Paymob</p>
+      <p className="text-xs self-start text-wrap text-slate-400 pb-1 capitalize px-8">secured and provided by <a target='_blank' className='text-blue-500' href='https://paymob.com/'>Paymob</a> </p>
       <form className="space-y-4 px-2 rounded-lg shadow-md w-full md:w-[400px]">
         {paymentOptions.map(({ id, logo, name }) => (
           <label
             key={id}
-            className="inline-flex justify-between w-full items-center rounded-lg p-2 border border-transparent hover:bg-white/10 transition-all cursor-pointer relative"
+            className={`inline-flex justify-between w-full items-center rounded-lg p-2 border border-transparent transition-all cursor-pointer relative ${selectedOption === id ? 'bg-blue-600 bg-opacity-50' : 'hover:bg-white/10'}`}
           >
             <div className="inline-flex items-center justify-center gap-4 relative z-10">
               <img src={logo} alt={name} className="w-8 h-8" width={32} height={32} />
@@ -54,7 +54,11 @@ export const PayOptionsComponent = ({  formData }) => {
           </label>
         ))}
       </form>
-      <PaymentButton formData={formData} selectedOption={selectedOption}  />
+      <PaymentButton formData={formData} selectedOption={deferredOption}  />
+      <div className=" text-slate-400 py-4 text-center leading-tight w-full">
+      <p >For any issues, please contact </p>
+      <a href="https://mail.google.com/mail/u/0/?fs=1&to=rivo-support@gmail.com&tf=cm" className="text-blue-500" >rivo-support@gmail.com</a>
+      </div>
     </div>
   );
 };

@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { toast } from 'react-hot-toast';
 import { getCart } from '../cart/actions';
 import LoadingDots from '../loading-dots';
 import { addOrder } from '@/lib/orders';
 
-export default function PaymentButton({ formData,selectedOption }) {
+export  function PaymentButton({ formData,selectedOption }) {
 console.log('PaymentButton formData', formData);
   const [loading, setLoading] = useState(false);
   const [error, seterror] = useState(false);
@@ -123,21 +123,25 @@ console.log('PaymentButton formData', formData);
 
   return (
     <div className='py-2 flex flex-col w-full items-center justify-center'>
-      
-      {error?  
-      <p className='text-center text-red-500 text-sm'>Empty Cart or Payment Failed, referesh and try again</p>
-    :
-(
-  loading ? (
-    <LoadingDots/>
-  ) : (
-    <a  href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
-    <button className='w-full' disabled={selectedOption === null}>
-Pay Now
-    </button>
-    </a>
-  )
-)}
+      {selectedOption&&
+      (error?  
+        <p className='text-center text-red-500 text-sm'>Empty Cart or Payment Failed, referesh and try again</p>
+      :
+  (
+    loading ? (
+      <LoadingDots/>
+    ) : (
+      <a  href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
+      <button className='w-full' disabled={selectedOption === null}>
+  Pay Now
+      </button>
+      </a>
+    )
+  ))
+      }
+     
       </div>
   );
 }
+
+export default memo(PaymentButton);
