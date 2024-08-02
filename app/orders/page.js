@@ -1,16 +1,22 @@
+import { OrderHighLevel } from "@/components/orders/OrderHighLevel";
+import OrdersLayout from "@/components/orders/OrdersLayout";
+
 export const metadata = {
-  title:"My ORders",
-  description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
+  title: "My Orders",
+  description: "High-performance ecommerce store built with Next.js, Vercel, and Shopify.",
   openGraph: {
-    type: 'website'
-  }
+    type: "website",
+  },
 };
 
-export default async function HomePage() {
+export default function HomePage({ searchParams }) {
+  const orderId = searchParams?.id?.trim();
+
+  console.log("id", orderId);
 
   return (
-   <div className="h-full flex flex-col items-center justify-center w-full ">
-   ass
-   </div>
+    <div className="h-full flex flex-col items-center justify-center w-full">
+      <OrdersLayout newOrderID={orderId&&orderId}/>
+    </div>
   );
 }

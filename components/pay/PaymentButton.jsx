@@ -121,6 +121,8 @@ console.log('PaymentButton formData', formData);
     handlePayment();
   }, [selectedOption]); // Dependency array with selectedOption
 
+  // const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
   return (
     <div className='py-2 flex flex-col w-full items-center justify-center'>
       {selectedOption&&
