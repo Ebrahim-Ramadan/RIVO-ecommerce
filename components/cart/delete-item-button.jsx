@@ -12,7 +12,7 @@ export function DeleteItemButton({ item}) {
       <button
         type="submit"
         aria-label="Remove cart item"
-        className="ease flex h-6 w-6 items-center justify-center rounded-full bg-neutral-500 transition-all duration-200"
+        className="ease flex h-6 w-6 items-center justify-center rounded-full bg-black border border-white/20 transition-all duration-200"
       >
         <X color="white" size="16" />
       </button>

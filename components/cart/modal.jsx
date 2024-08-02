@@ -130,7 +130,7 @@ export default function CartModal() {
                             width={100}
                             height={150}
                             />
-                            : <div className='h-20'><LoadingDots /></div>}</span>
+                            : <div className='h-20 flex flex-col items-center justify-center'><LoadingDots /></div>}</span>
                            
                             
                           </div>
@@ -167,13 +167,18 @@ export default function CartModal() {
                     ))}
                   </ul>
                   <div className="py-4 text-sm text-neutral-200">
-                    <div className="mb-3 flex items-center justify-between border-b border-neutral-400 pb-1 pt-1">
+                    
+                   
+                    <div className="mb-3 flex font-bold items-center justify-between border-b border-neutral-400 pb-1 pt-1">
                       <p>Total</p>
                       <Price
                         className="text-right text-base"
                         amount={totalAmount}
                         currencyCode="EGP"
                       />
+                    </div>
+                    <div className="text-xs flex items-center justify-end ">
+                      <p>Shipping Fees Are Calculated at Checkout</p>
                     </div>
                   </div>
                   <a
