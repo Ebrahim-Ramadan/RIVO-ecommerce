@@ -3,9 +3,10 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, Suspense, useEffect, useState } from 'react';
-
-import { Ellipsis, SearchCheck, SearchIcon, X } from 'lucide-react';
+import alreadyInCart from '@/public/assets/already-in-cart.svg';
+import {  SearchIcon, X } from 'lucide-react';
 import Search, { SearchSkeleton } from './search';
+import Image from 'next/image';
 
 export default function MobileMenu() {
   const pathname = usePathname();
@@ -61,7 +62,8 @@ export default function MobileMenu() {
             leaveTo="translate-x-[-100%]"
           >
             <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-black">
-              <div className="p-4">
+              <div className="w-full flex flex-col items-center justify-between h-full">
+              <div className="p-4 w-full">
                 <button
                   className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
                   onClick={closeMobileMenu}
@@ -75,7 +77,20 @@ export default function MobileMenu() {
                     <Search />
                   </Suspense>
                 </div>
+                
                
+              </div>
+              <div className="flex items-center justify-center w-full flex-row">
+                <a href='/orders' preload='true' className="flex items-center justify-center flex-row gap-2 text-sm font-meidum bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
+                 <Image
+                 src={alreadyInCart}
+                 width={18}
+                 height={18}
+                 alt="location"
+                 />
+                  Orders
+                </a>
+              </div>
               </div>
             </Dialog.Panel>
           </Transition.Child>

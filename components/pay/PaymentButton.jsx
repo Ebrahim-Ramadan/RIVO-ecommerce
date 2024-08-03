@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { getCart } from '../cart/actions';
 import LoadingDots from '../loading-dots';
 import { addOrder } from '@/lib/orders';
+import { ShippingCost } from './ShippingCost';
 
 export  function PaymentButton({ formData,selectedOption }) {
 console.log('PaymentButton formData', formData);
@@ -127,7 +128,8 @@ console.log('PaymentButton formData', formData);
 
 
   return (
-    <div className='py-2 flex flex-col w-full items-center justify-center'>
+    <div className=' flex flex-col w-full items-center justify-center'>
+
       {selectedOption&&
       (error?  
         <p className='text-center text-red-500 text-sm'>Empty Cart or Payment Failed, referesh and try again</p>
@@ -144,7 +146,24 @@ console.log('PaymentButton formData', formData);
     )
   ))
       }
-     
+     <div class="bg-gray-900 text-gray-300 py-8 p-4 rounded-lg max-w-md">
+  <p class="text-sm mb-4">
+    By placing your order, you agree to RIVO&apos;
+    <a href="/privacyandpolicy" class="text-blue-500 hover:underline"> privacy note</a> and 
+    <a href="/privacyandpolicy" class="text-blue-500 hover:underline"> terms of use</a>.
+  </p>
+  
+  <h2 class="text-white text-lg font-semibold mb-2">Your benefits:</h2>
+  
+  <ul class="list-disc list-inside mb-4 space-y-1">
+    <li>Pre-order guarantee</li>
+    <li>Fast shipping</li>
+    <li>Best price</li>
+  </ul>
+  
+  <ShippingCost trigger='How are Shipping Costs Calculated?' className='text-sm  '/>
+  
+</div>
       </div>
   );
 }

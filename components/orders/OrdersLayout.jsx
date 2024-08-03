@@ -18,6 +18,8 @@ export default function OrdersLayout({ newOrderID }) {
 
       if (!ordersIDs) {
         setOrdersExist(false);
+      setloading(false);
+
         return;
       }
 
@@ -111,9 +113,9 @@ export default function OrdersLayout({ newOrderID }) {
                   {orderWrapper.items.map((item, index) => (
                     <a key={index} className="text-xs flex justify-between w-full bg-white/10 hover:bg-white/20 py-2 rounded-full px-2 md:px-4" href={`/frame/${item.id}?type=${item.type}&size=${item.size}&color=${item.color}`}>
                       <div className="flex items-center justify-between w-full">
-                      <div className="bg-blue-500 rounded-full flex justify-center w-4 h-4 mx-2  font-medium ">{item.quantity}</div>
+                      <div className="bg-blue-500 rounded-full flex justify-center w-4 h-4 mx-2  font-medium ">x{item.quantity}</div>
 
-                      <div className="font-medium underline">{item.size} {item.color} {item.type} for {item.price}</div>
+                      <div className="font-medium underline">{item.size} {item.color} {item.type} for EGP {item.price} each</div>
 <LucideExternalLink size='16'/>
                       </div>
                     </a>

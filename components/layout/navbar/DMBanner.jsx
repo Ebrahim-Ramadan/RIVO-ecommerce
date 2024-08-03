@@ -23,7 +23,7 @@ export const DMBanner = () => {
         </p>
     </div>
     <div className="flex items-center">
-    <a className='hidden md:block bg-white/10 p-2 rounded-full hover:underline' target="_blank" href='https://www.instagram.com/rivoo_gallery?igsh=MThjOXNrY2pnemx3bw=='>
+    <a className='hidden md:block bg-white/20 px-4 py-2 rounded-full hover:underline' target="_blank" href='https://www.instagram.com/rivoo_gallery?igsh=MThjOXNrY2pnemx3bw=='>
       contact us
     </a>
         <button onClick={handleDismiss} data-dismiss-target="#sticky-banner" type="button" className="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 rounded-lg text-sm p-1.5 dark:hover:bg-white/20">
