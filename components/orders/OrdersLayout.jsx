@@ -8,6 +8,7 @@ import mobile from '@/public/assets/mobile.svg';
 import visa from '@/public/assets/visa.svg';
 import Image from "next/image";
 import { copyToClipboard, getProductDetails } from "@/lib/utils";
+import { CancelOrder } from "./CancelOrder";
 export default function OrdersLayout({ newOrderID }) {
   const [ordersExist, setOrdersExist] = useState(false);
   const [loading, setloading] = useState(false);
@@ -96,7 +97,9 @@ export default function OrdersLayout({ newOrderID }) {
     
     <h1 className="text-3xl font-bold  mb-2">Orders summary</h1>
     <p className=" mb-6">Find order invoice, payment and shipping details here</p>
-    
+    <div className="flex justify-end items-center ">
+    <CancelOrder trigger={'Cancel Order'} />
+    </div>
     {loading && <LoadingDots />}
     
     {validOrderData.map((orderWrapper) => {
