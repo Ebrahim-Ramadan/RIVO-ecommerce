@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, Suspense, useEffect, useState } from 'react';
 import alreadyInCart from '@/public/assets/already-in-cart.svg';
-import {  SearchIcon, X } from 'lucide-react';
+import {  DollarSign, SearchIcon, X,  } from 'lucide-react';
 import Search, { SearchSkeleton } from './search';
 import Image from 'next/image';
 
@@ -80,16 +80,24 @@ export default function MobileMenu() {
                 
                
               </div>
-              <div className="flex items-center justify-center w-full flex-row">
+              <div className="flex items-center justify-center w-full flex-row gap-2">
+              <div className="flex flex-row">
                 <a href='/orders' preload='true' className="flex items-center justify-center flex-row gap-2 text-sm font-meidum bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
                  <Image
                  src={alreadyInCart}
-                 width={18}
-                 height={18}
+                 width={16}
+                 height={16}
                  alt="location"
                  />
                   Orders
                 </a>
+              </div>
+              <div className="flex flex-row">
+                <a href='/pay' preload='true' className="flex items-center justify-center flex-row gap-2 text-sm font-meidum bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
+                 <DollarSign size='16'/>
+                  Checkout
+                </a>
+              </div>
               </div>
               </div>
             </Dialog.Panel>

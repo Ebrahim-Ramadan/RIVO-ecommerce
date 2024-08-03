@@ -131,20 +131,22 @@ console.log('PaymentButton formData', formData);
     <div className=' flex flex-col w-full items-center justify-center'>
 
       {selectedOption&&
-      (error?  
-        <p className='text-center text-red-500 text-sm'>Empty Cart or Payment Failed, referesh and try again</p>
+      (!error?  
+        (
+          loading ? (
+            <LoadingDots/>
+          ) : (
+            <a  href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
+            <button className='w-full' disabled={selectedOption === null}>
+        Pay Now EGP {finalPriceState.toFixed(2)}
+            </button>
+            </a>
+          )
+        )
+        
       :
-  (
-    loading ? (
-      <LoadingDots/>
-    ) : (
-      <a  href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
-      <button className='w-full' disabled={selectedOption === null}>
-  Pay Now EGP {finalPriceState.toFixed(2)}
-      </button>
-      </a>
-    )
-  ))
+      <p className='text-center text-red-500 text-sm'>Empty Cart or Payment Failed, referesh and try again</p>
+  )
       }
      <div class="bg-gray-900 text-gray-300 py-8 p-4 rounded-lg max-w-md">
   <p class="text-sm mb-4">
@@ -161,7 +163,7 @@ console.log('PaymentButton formData', formData);
     <li>Best price</li>
   </ul>
   
-  <ShippingCost trigger='How are Shipping Costs Calculated?' className='text-sm  '/>
+  <ShippingCost trigger='How are Shipping Costs Calculated?' className='text-sm  self-center'/>
   
 </div>
       </div>

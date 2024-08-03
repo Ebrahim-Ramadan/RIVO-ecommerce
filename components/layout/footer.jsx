@@ -53,7 +53,7 @@ export default function Footer() {
       <p>
         Gauranteed Safe & Secure Checkout
       </p>
-    <ShippingCost trigger='How are shipping costs calculated?' className='text-xs py-2'/>
+    <ShippingCost trigger='How are shipping costs calculated?' className='self-center text-xs py-2'/>
 
       </div>
       

@@ -16,16 +16,16 @@ export function ShippingCost({trigger, className}) {
     <>
       <button 
         onClick={() => setIsOpen(true)}
-        className={`text-blue-400  w-full self-center ${className}`}
+        className={`text-blue-500  w-full  ${className}`}
       >
         {trigger}
       </button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
         <div className="fixed inset-0 bg-black/50" aria-hidden="true" />
         <div className="fixed inset-0 flex w-screen items-center justify-center p-2">
-          <DialogPanel className="max-w-lg space-y-4 border border-white/20 rounded-lg bg-gray-900 p-4 text-white">
-            <DialogTitle className="text-xl font-bold">Shipping Costs</DialogTitle>
-            <Description className="text-gray-300">Shipping costs for different governorates</Description>
+          <DialogPanel className="max-w-lg space-y-4 border border-white/20 rounded-lg bg-black p-2 text-white">
+            <DialogTitle className="text-xl font-bold">Shipping Fees</DialogTitle>
+            <Description className="text-white/70 text-sm">Shipping costs vary for different governorates</Description>
             <div className="max-h-60 overflow-y-auto pr-2">
                 
               {ShippingDetails.map((detail, index) => (

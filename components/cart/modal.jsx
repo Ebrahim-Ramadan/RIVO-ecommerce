@@ -12,6 +12,7 @@ import OpenCart from './open-cart';
 import { getCart, removeFromCart, setCookie, updateCart } from './actions'; // Assuming you have these functions
 import { getProductDetails } from '@/lib/utils';
 import Image from 'next/image';
+import { ShippingCost } from '../pay/ShippingCost';
 
 export default function CartModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -176,9 +177,8 @@ export default function CartModal() {
                         currencyCode="EGP"
                       />
                     </div>
-                    <div className="text-xs flex items-center justify-end ">
-                      <p>Shipping Fees Are Calculated at Checkout</p>
-                    </div>
+                    <ShippingCost trigger='Shipping Fees Are Calculated at Checkout' className='text-xs flex items-center justify-end py-2'/>
+
                   </div>
                   <a
                     className="cursor-pointer text-center block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"

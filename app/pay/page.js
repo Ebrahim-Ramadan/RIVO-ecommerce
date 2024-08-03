@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/footer";
 import { ClientPaymentForm } from "@/components/pay/ClientPaymentForm";
+import { ArrowLeft } from "lucide-react";
 
 
 export const metadata = {
@@ -20,6 +21,7 @@ export default async function HomePage() {
     <div className="py-4 flex flex-row justify-center w-full  text-center">
       <div className="bg-gradient-to-r from-transparent via-white/40 to-transparent w-full  h-[2px] opacity-80"></div>
     </div>
+
 <ClientPaymentForm />
 <Footer/>
    </div>
