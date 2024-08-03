@@ -1,5 +1,6 @@
-import { OrderHighLevel } from "@/components/orders/OrderHighLevel";
+import LoadingDots from "@/components/loading-dots";
 import OrdersLayout from "@/components/orders/OrdersLayout";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "My Orders",
@@ -16,7 +17,9 @@ export default function HomePage({ searchParams }) {
 
   return (
     <div className="h-full flex flex-col items-center justify-center w-full">
+      <Suspense fallback={<LoadingDots/>}>
       <OrdersLayout newOrderID={orderId&&orderId}/>
+      </Suspense>
     </div>
   );
 }

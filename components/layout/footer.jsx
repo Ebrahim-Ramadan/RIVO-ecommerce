@@ -50,6 +50,10 @@ export default function Footer() {
         Gauranteed Safe & Secure Checkout
       </p>
       </div>
+      <div className=" text-slate-400 py-4 text-center leading-tight w-full">
+      <p >For any issues, please contact </p>
+      <a href="https://mail.google.com/mail/u/0/?fs=1&to=rivo-support@gmail.com&tf=cm" className="text-blue-500" >rivo-support@gmail.com</a>
+      </div>
         <div>
           <Link className="flex items-center gap-2 text-black md:pt-1 dark:text-white" href="/">
             {/* <LogoSquare size="sm" />

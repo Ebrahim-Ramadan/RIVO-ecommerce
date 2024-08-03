@@ -17,8 +17,8 @@ export default async function HomePage() {
     <p className="text-start text-3xl font-bold">
       Payment Page
     </p>
-    <div class="py-4 flex flex-row justify-center w-full  text-center">
-      <div class="bg-gradient-to-r from-transparent via-white/40 to-transparent w-full  h-[2px] opacity-80"></div>
+    <div className="py-4 flex flex-row justify-center w-full  text-center">
+      <div className="bg-gradient-to-r from-transparent via-white/40 to-transparent w-full  h-[2px] opacity-80"></div>
     </div>
 <ClientPaymentForm />
 <Footer/>

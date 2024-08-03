@@ -11,6 +11,7 @@ console.log('PaymentButton formData', formData);
   const [loading, setLoading] = useState(false);
   const [error, seterror] = useState(false);
   const [strcutred_URL, setstrcutred_URL] = useState('');
+  const [finalPriceState, setfinalPriceState] = useState(0);
 
   useEffect(() => {
     const handlePayment = async () => {
@@ -26,6 +27,7 @@ console.log('PaymentButton formData', formData);
       
       // Calculate the final price by summing up all the item totals
       const finalPrice = prices.reduce((total, itemPrice) => total + itemPrice, 0)*100;
+      setfinalPriceState(parseInt(prices.reduce((total, itemPrice) => total + itemPrice, 0), 10))
       if (!selectedOption || cart.length===0) {
         seterror(true);
         return
@@ -121,7 +123,8 @@ console.log('PaymentButton formData', formData);
     handlePayment();
   }, [selectedOption]); // Dependency array with selectedOption
 
-  // const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  
+
 
   return (
     <div className='py-2 flex flex-col w-full items-center justify-center'>
@@ -135,7 +138,7 @@ console.log('PaymentButton formData', formData);
     ) : (
       <a  href={strcutred_URL} rel="noopener noreferrer" className='text-center rounded-full text-black py-1 font-bold w-full bg-white'>
       <button className='w-full' disabled={selectedOption === null}>
-  Pay Now
+  Pay Now EGP {finalPriceState.toFixed(2)}
       </button>
       </a>
     )

@@ -1,15 +1,18 @@
 'use client';
-import { addId, checkIfOrderExists, getDecryptedIds } from "@/lib/orders";
+import { addId, checkIfOrderExists, deleteId, getDecryptedIds } from "@/lib/orders";
 import { ExternalLink, ExternalLinkIcon, LucideExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
+import LoadingDots from "../loading-dots";
 import { NoOrders } from "./NoOrders";
 
 export default function OrdersLayout({ newOrderID }) {
   const [ordersExist, setOrdersExist] = useState(false);
+  const [loading, setloading] = useState(false);
   const [validOrderData, setValidOrderData] = useState([]);
 
   useEffect(() => {
     async function fetchOrders() {
+      setloading(true);
       const ordersIDs = getDecryptedIds();
       console.log('getDecryptedIds', ordersIDs);
 
@@ -22,6 +25,9 @@ export default function OrdersLayout({ newOrderID }) {
       for (const orderId of ordersIDs) {
         const ordersData = await checkIfOrderExists(orderId);
         console.log('ordersData', ordersData);
+        if (!ordersData){
+          deleteId(orderId);
+        }
         if (ordersData) {
           orders.push(ordersData);
         }
@@ -33,6 +39,7 @@ export default function OrdersLayout({ newOrderID }) {
       } else {
         setOrdersExist(false);
       }
+      setloading(false);
       console.log('orders', orders);
     }
 
@@ -45,7 +52,7 @@ export default function OrdersLayout({ newOrderID }) {
     }
   }, [newOrderID]);
 
-  if (!ordersExist) {
+  if (!loading && !ordersExist) {
     return <NoOrders />;
   }
 
@@ -59,6 +66,7 @@ export default function OrdersLayout({ newOrderID }) {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6">Your Orders</h1>
+      {loading&&<LoadingDots/>}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {validOrderData.map((orderWrapper) => {
          
@@ -67,7 +75,7 @@ export default function OrdersLayout({ newOrderID }) {
 
      
           return(
-            <div key={orderId} className="border px-6 py-4 border-white/10 shadow-md rounded-xl overflow-hidden">
+            <div key={orderId} className="border px-4 py-4 border-white/10 shadow-md rounded-xl overflow-hidden">
             <div className="bg-muted ">
               <div className="flex items-center justify-between items-center">
               <div className="text-2xl font-medium ">Info</div>
@@ -101,11 +109,11 @@ export default function OrdersLayout({ newOrderID }) {
                 <div className="text-lg font-medium ">Items</div>
                 <ul className="space-y-2">
                   {orderWrapper.items.map((item, index) => (
-                    <a key={index} className="flex justify-between w-full" href={`/frame/${item.id}`}>
+                    <a key={index} className="text-xs flex justify-between w-full bg-white/10 hover:bg-white/20 py-2 rounded-full px-2 md:px-4" href={`/frame/${item.id}?type=${item.type}&size=${item.size}&color=${item.color}`}>
                       <div className="flex items-center justify-between w-full">
-                      <div className="bg-blue-500 rounded-full flex justify-center w-4 h-4 mx-4 text-xs font-medium ">{item.quantity}</div>
+                      <div className="bg-blue-500 rounded-full flex justify-center w-4 h-4 mx-2  font-medium ">{item.quantity}</div>
 
-                      <div className="font-medium">EGP {item.price.toFixed(2)}</div>
+                      <div className="font-medium underline">{item.size} {item.color} {item.type} for {item.price}</div>
 <LucideExternalLink size='16'/>
                       </div>
                     </a>

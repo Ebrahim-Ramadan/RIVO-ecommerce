@@ -1,4 +1,4 @@
-import { appendOrderDataToFirestore } from '@/lib/orders';
+import { appendOrderDataToFirestore } from '@/lib/appendDataToOrder';
 import { createHmac } from 'crypto';
 import { writeFile } from 'fs';
 
@@ -78,6 +78,7 @@ export async function POST(req) {
     const extractedData = extractTransactionInfo(data);
     console.log('extractedData', extractedData);
     const dataAppended = await appendOrderDataToFirestore(extractedData.shipping_data.building, extractedData);
+    console.log('dataAppended', dataAppended);
     if(dataAppended){
       return NextResponse.json({ message: 'HMAC validation succeeded, order details appended to firestore', data }, { status: 200 });
     }

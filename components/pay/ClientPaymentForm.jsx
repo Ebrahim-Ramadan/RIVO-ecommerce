@@ -1,6 +1,8 @@
 'use client';
 
 import { Select } from '@headlessui/react';
+import location from '@/public/assets/location.svg';
+import Image from 'next/image';
 import {  useState } from 'react';
 import PayOptionsComponent from './PayOptionsComponent';
 
@@ -94,9 +96,20 @@ export const ClientPaymentForm = () => {
     />
     <p className='text-xs text-end px-2 py-1 text-neutral-400'>Must be 11 digits (Ex: 01102191344)</p> 
   </div>
-
+  
   <div>
-    <label htmlFor="governorate" className="block text-sm font-medium styled-text">Governorate </label>
+   <div className='w-full flex flex-row items-center justify-between'>
+   <label htmlFor="governorate" className="block text-sm font-medium styled-text">Governorate </label>
+    <div className='text-xs flex text-white/40 font-medium items-center gap-1 flex-row justify-end'>
+<Image
+src={location}
+width={24}
+height={24}
+alt="location"
+/>
+Egypt
+</div>
+   </div>
     <Select
       className='mt-2 w-full rounded-lg border border-neutral-600 px-4 py-2 text-sm'
       id="governorate"
