@@ -25,10 +25,10 @@ export function CancelOrder({trigger, className}) {
             <div className="max-h-60 overflow-y-auto pr-2">
                 
               call us on <span onClick={() =>{
-                 copyToClipboard('+20 212 345 6789')
+                 copyToClipboard('+20 112 487 9048')
                  toast.success('Copied to clipboard')
               }} className="cursor-pointer text-blue-600 hover:underline px-2"
-              >+20 212 345 6789</span> to cancel your order with the  order ID (given in the call), you can find each here in this page.
+              >+20 112 487 9048</span> to cancel your order with the  order ID (given in the call), you can find each here in this page.
             </div>
             thank you for using our service.
             <div className="flex justify-end pt-4">

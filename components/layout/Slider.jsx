@@ -104,7 +104,7 @@ export const Slider = () => {
                 onLoadingComplete={() => handleImageLoad(slide.id)}
                 onError={() => handleImageLoad(slide.id)}
               />
-              <div className="absolute inset-0 flex flex-col h-full justify-between py-2 items-center">
+              <div className="absolute text-white inset-0 flex flex-col h-full justify-between py-2 items-center">
                 <div className="font-bold text-xl md:text-2xl px-4 py-2 bg-black/40 transition duration-200 backdrop-blur-[8px] rounded-full">
                   {slide.text}
                 </div>
