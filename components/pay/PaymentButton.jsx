@@ -150,7 +150,7 @@ console.log('PaymentButton formData', formData);
       }
      <div class="bg-gray-900 text-gray-300 py-8 p-4 rounded-lg max-w-md">
   <p class="text-sm mb-4">
-    By placing your order, you agree to RIVO&apos;
+    By placing your order, you agree to RIVO&apos;s
     <a href="/privacyandpolicy" class="text-blue-500 hover:underline"> privacy note</a> and 
     <a href="/privacyandpolicy" class="text-blue-500 hover:underline"> terms of use</a>.
   </p>

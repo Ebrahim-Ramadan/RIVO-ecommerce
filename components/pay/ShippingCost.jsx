@@ -2,7 +2,7 @@
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 
-const ShippingDetails = [
+export const ShippingDetails = [
     {'goverment':'Aswan', 'cost':0.5},
     {'goverment':'Cairo', 'cost':0.5},
     {'goverment':'Alexandria', 'cost':0.5},
