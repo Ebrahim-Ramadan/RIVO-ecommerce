@@ -1,13 +1,13 @@
 'use client';
 import { addId, checkIfOrderExists, deleteId, getDecryptedIds } from "@/lib/orders";
-import { ExternalLink, ExternalLinkIcon, LucideExternalLink } from "lucide-react";
+import { Copy, ExternalLink, ExternalLinkIcon, LucideExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 import LoadingDots from "../loading-dots";
 import { NoOrders } from "./NoOrders";
 import mobile from '@/public/assets/mobile.svg';
 import visa from '@/public/assets/visa.svg';
 import Image from "next/image";
-import { getProductDetails } from "@/lib/utils";
+import { copyToClipboard, getProductDetails } from "@/lib/utils";
 export default function OrdersLayout({ newOrderID }) {
   const [ordersExist, setOrdersExist] = useState(false);
   const [loading, setloading] = useState(false);
@@ -38,6 +38,9 @@ export default function OrdersLayout({ newOrderID }) {
     };
     async function fetchOrders() {
       setloading(true);
+      if (newOrderID && newOrderID.trim() !== '') {
+        addId(newOrderID);
+      }
       const ordersIDs = getDecryptedIds();
       console.log('getDecryptedIds', ordersIDs);
 
@@ -76,12 +79,6 @@ export default function OrdersLayout({ newOrderID }) {
     fetchOrders();
   }, []);
 
-  useEffect(() => {
-    if (newOrderID && newOrderID.trim() !== '') {
-      addId(newOrderID);
-    }
-  }, [newOrderID]);
-
   if (!loading && !ordersExist) {
     return <NoOrders />;
   }
@@ -107,9 +104,14 @@ export default function OrdersLayout({ newOrderID }) {
       const order = orderWrapper[orderId];
       
       return (
-        <div key={orderId} className={`flex flex-col md:flex-row gap-6 border border-white/10 p-4 rounded-lg ${newOrderID === orderId ? 'border-green-600' : ''}`}>
+        <div key={orderId} className={`flex flex-col md:flex-row gap-6 border  p-4 rounded-lg ${newOrderID == orderId ? 'border-green-600' : 'border-white/10'}`}>
           <div className=" rounded-lg shadow-md flex-grow">
-            <h2 className="text-xl font-semibold  mb-1">Order ID {orderId}</h2>
+            <h2 className="text-lg flex flex-row items-center gap-2  font-semibold  mb-1">Successful Order ID 
+            <span onClick={() => copyToClipboard(orderId)} className="cursor-pointer text-blue-600 hover:underline px-2">
+            {orderId} 
+            </span>
+            <Copy size='16'/>
+            </h2>
             <p className=" mb-6">Placed on {formatCreatedAt(orderWrapper.createdAt)}</p>
             
             <h3 className="text-lg font-semibold  mb-2">Delivery Details</h3>
@@ -186,7 +188,7 @@ export default function OrdersLayout({ newOrderID }) {
             </div>
             
             <h3 className="text-lg font-semibold  mb-2">Delivery address (Home)</h3>
-            <p className="mb-1">{order.shipping_data?.first_name} {order.shipping_data?.last_name}</p>
+            <p className="mb-1">{order.shipping_data?.first_name} {order.shipping_data?.email}</p>
             <p className="mb-1">{order.shipping_data?.street}, {order.shipping_data?.city}, {order.shipping_data?.country}</p>
             <p className="flex items-center">
               {order.shipping_data?.phone_number}

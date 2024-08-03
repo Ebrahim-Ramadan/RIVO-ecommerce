@@ -4,10 +4,6 @@ const nextConfig = {
         remotePatterns: [
           {
             protocol: 'https',
-            hostname: 'st2.depositphotos.com',
-          },
-          {
-            protocol: 'https',
             hostname: 'i.postimg.cc',
           },
         ],
