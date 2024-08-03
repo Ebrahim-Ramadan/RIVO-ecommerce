@@ -109,14 +109,10 @@ export default function OrdersLayout({ newOrderID }) {
       return (
         <div key={orderId} className={`flex flex-col md:flex-row gap-6 border  p-4 rounded-lg ${newOrderID == orderId ? 'border-green-600' : 'border-white/10'}`}>
           <div className=" rounded-lg shadow-md flex-grow">
-            <h2 className="text-lg flex flex-row items-center gap-2  font-semibold  mb-1">Successful Order ID 
-            <span onClick={() => copyToClipboard(orderId)} className="cursor-pointer text-blue-600 hover:underline px-2">
-            {orderId} 
-            </span>
-            <Copy size='16'/>
-            </h2>
+            <p className="text-green-500 flex flex-row items-center gap-2  font-semibold  mb-1">Successful Order ID 
+            <span >{orderId} </span>
+            </p>
             <p className=" mb-6">Placed on {formatCreatedAt(orderWrapper.createdAt)}</p>
-            
             <h3 className="text-lg font-semibold  mb-2">Delivery Details</h3>
             {/* <p className="font-medium mb-1">Delivery by Add delivery date logic</p> */}
             <p className="text-green-600 mb-4">{orderWrapper.status} · Confirmed</p>
