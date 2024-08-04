@@ -33,7 +33,7 @@ const deferredOption = useDeferredValue(selectedOption)
      </div>
 
       <p className="text-xs self-start text-wrap text-slate-400 pb-1 capitalize px-8">secured and provided by <a target='_blank' className='text-blue-500' href='https://paymob.com/'>Paymob</a> </p>
-      <form className="space-y-4 px-2 rounded-lg shadow-md w-full md:w-[400px]">
+      <form className="space-y-4 rounded-lg shadow-md w-full md:w-[400px]">
         {paymentOptions.map(({ id, logo, name }) => (
           <label
             key={id}

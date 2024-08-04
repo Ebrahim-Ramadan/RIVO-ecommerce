@@ -111,7 +111,7 @@ Egypt
 </div>
    </div>
     <Select
-      className='mt-2 w-full rounded-lg border border-neutral-600 px-4 py-2 text-sm'
+      className='mt-2 w-full rounded-lg border border-neutral-600 px-4 py-2 text-sm bg-black'
       id="governorate"
       name="governorate"
       value={formData.governorate}
