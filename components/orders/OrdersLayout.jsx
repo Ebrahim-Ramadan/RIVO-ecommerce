@@ -185,7 +185,7 @@ export default function OrdersLayout({ newOrderID }) {
              : 
              <Image src={visa} alt="card logo" className="w-6 h-6" width={40} height={40} />
              }
-               <span>Ending in {order.source_data?.phone_number?.slice(-4)}</span>
+               <span>Ending in {order.source_data?.pan?.slice(-4)}</span>
              </div>
               }
              

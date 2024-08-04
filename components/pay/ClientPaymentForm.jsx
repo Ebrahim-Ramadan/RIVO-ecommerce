@@ -6,6 +6,7 @@ import Image from 'next/image';
 import {  useState } from 'react';
 import PayOptionsComponent from './PayOptionsComponent';
 import { Shipping_costs } from '@/lib/orders';
+import { ShippingCost } from './ShippingCost';
 
 
 export const ClientPaymentForm = () => {
@@ -100,7 +101,16 @@ export const ClientPaymentForm = () => {
   
   <div>
    <div className='w-full flex flex-row items-center justify-between'>
-   <label htmlFor="governorate" className="block text-sm font-medium styled-text">Governorate </label>
+<div className='flex flex-row items-center gap-2'>
+<label htmlFor="governorate" className="block text-sm font-medium styled-text ">Governorate 
+
+   
+</label>
+<div className='h-6 w-6 flex items-center justify-center rounded-full bg-blue-600 px-2 py-1 text-white text-xs md:text-sm'>
+<ShippingCost trigger='?' className='self-center text-white  py-2'/>
+
+</div>
+</div>
     <div className='text-xs flex text-white/40 font-medium items-center gap-1 flex-row justify-end'>
 <Image
 src={location}
