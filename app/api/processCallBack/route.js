@@ -35,14 +35,14 @@ export async function POST(req) {
 
   const url = new URL(req.url);
   const hmacReceived = url.searchParams.get('hmac');
-  console.log('hmacReceived', hmacReceived);
   if (!hmacReceived) {
     return NextResponse.json({ error: 'HMAC not provided' }, { status: 400 });
   }
 
   const data = await req.json();
 
- 
+ console.log('data', data);
+
   // Function to safely get nested properties
   const getNestedProperty = (obj, path) => {
     return path.split('.').reduce((acc, part) => acc && acc[part], obj);
@@ -65,19 +65,17 @@ export async function POST(req) {
     })
     .join('');
 
-  console.log('concatenatedString', concatenatedString);
 
   const hmac = createHmac('sha512', SECRET_KEY)
     .update(concatenatedString)
     .digest('hex');
 
-  console.log('hmac calculated', hmac);
 
   if (hmac === hmacReceived) {
     console.log('HMACs match');
     const extractedData = extractTransactionInfo(data);
     console.log('extractedData', extractedData);
-    const dataAppended = await appendOrderDataToFirestore(extractedData.shipping_data.building, extractedData);
+    const dataAppended = await appendOrderDataToFirestore(extractedData.docID, extractedData);
     console.log('dataAppended', dataAppended);
     if(dataAppended){
       return NextResponse.json({ message: 'HMAC validation succeeded, order details appended to firestore', data }, { status: 200 });
@@ -90,21 +88,10 @@ export async function POST(req) {
 
 function extractTransactionInfo(data) {
   const { obj } = data;
-  
-  // Extract shipping data
-  const validShippingFields = [
-    'first_name', 'last_name', 'street', 'building', 'city', 
-    'country', 'email', 'phone_number', 'extra_description'
-  ];
-  
-  const shippingData = Object.fromEntries(
-    Object.entries(obj.order.shipping_data)
-      .filter(([key]) => validShippingFields.includes(key))
-  );
-
+  console.log('obj', obj);
   return {
-    shipping_data: shippingData,
-    obj_id: obj.id,
+    docID:obj.order.shipping_data.building,
+    order_id: obj.id,
     source_data: obj.source_data
   };
 }

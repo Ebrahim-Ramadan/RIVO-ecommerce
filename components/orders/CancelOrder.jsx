@@ -22,12 +22,12 @@ export function CancelOrder({trigger, className}) {
           <DialogPanel className="max-w-lg space-y-4 border border-white/20 rounded-lg bg-black p-4 text-white">
             <DialogTitle className="text-xl font-bold">Cancel Order</DialogTitle>
             <Description className="text-white/70 text-sm">Our Strategy to Cancel Orders</Description>
-            <div className="max-h-60 overflow-y-auto pr-2">
+            <div className="max-h-60 overflow-y-auto font-medium pr-2">
                 
               call us on <span onClick={() =>{
                  copyToClipboard('+20 112 487 9048')
                  toast.success('Copied to clipboard')
-              }} className="cursor-pointer text-blue-600 hover:underline px-2"
+              }} className="cursor-pointer text-blue-500 hover:underline px-2"
               >+20 112 487 9048</span> to cancel your order with the  order ID (given in the call), you can find each here in this page.
             </div>
             thank you for using our service.

@@ -1,6 +1,6 @@
 'use client';
 import { addId, checkIfOrderExists, deleteId, getDecryptedIds } from "@/lib/orders";
-import { Copy, ExternalLink, ExternalLinkIcon, LucideExternalLink } from "lucide-react";
+import { Copy, ExternalLink, ExternalLinkIcon, LucideExternalLink, PhoneIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import LoadingDots from "../loading-dots";
 import { NoOrders } from "./NoOrders";
@@ -100,19 +100,21 @@ export default function OrdersLayout({ newOrderID }) {
     <div className="flex justify-end items-center ">
     <CancelOrder trigger={'Cancel Order'} />
     </div>
-    {loading && <LoadingDots />}
+    {loading && <div className="fixed inset-0 flex items-center justify-center w-full h-full bg-black/50">
+          <LoadingDots />
+        </div>}
     
     {validOrderData.map((orderWrapper) => {
       const orderId = Object.keys(orderWrapper)[0];
       const order = orderWrapper[orderId];
-      
+      console.log('order', order);
       return (
-        <div key={orderId} className={`flex flex-col md:flex-row gap-6 border  p-4 rounded-lg ${newOrderID == orderId ? 'border-green-600' : 'border-white/10'}`}>
+        <div key={orderId} className={`flex flex-col md:flex-row gap-6 border border-2 p-4 my-4 rounded-xl ${newOrderID == orderId  || newOrderID == orderWrapper.id ? 'border-green-600' : 'border-white/10'}`}>
           <div className=" rounded-lg  flex-grow">
-            <p className="text-green-500 flex flex-row items-center gap-2  font-semibold  mb-1">Successful Order ID 
-            <span >{orderId} </span>
+            <p className="text-green-500 flex flex-col items-center   font-semibold  mb-1">Successful Order ID 
+            <span >{orderWrapper.id} </span>
             </p>
-            <p className=" mb-6">Placed on {formatCreatedAt(orderWrapper.createdAt)}</p>
+            <p className="text-end mb-6">Placed on {formatCreatedAt(orderWrapper.createdAt)}</p>
             <h3 className="text-lg font-semibold  mb-2">Delivery Details</h3>
             {/* <p className="font-medium mb-1">Delivery by Add delivery date logic</p> */}
             <p className="text-green-600 mb-4">{orderWrapper.status} · Confirmed</p>
@@ -176,22 +178,26 @@ export default function OrdersLayout({ newOrderID }) {
             </div>
             
             <div className="flex justify-end items-center mb-4">
-              <div className="flex items-center gap-2">
-                {order.source_data?.type == 'wallet' ? 
-              <Image src={mobile} alt="card logo" className="w-6 h-6" width={40} height={40} />
-              : 
-              <Image src={visa} alt="card logo" className="w-6 h-6" width={40} height={40} />
+              {orderWrapper.shipping_data?.building == 'pay-on-delivery'?"-paying on delivery-":
+               <div className="flex items-center gap-2">
+               {order.source_data?.type == 'wallet' ? 
+             <Image src={mobile} alt="card logo" className="w-6 h-6" width={40} height={40} />
+             : 
+             <Image src={visa} alt="card logo" className="w-6 h-6" width={40} height={40} />
+             }
+               <span>Ending in {order.source_data?.phone_number?.slice(-4)}</span>
+             </div>
               }
-                <span>Ending in {order.source_data?.phone_number?.slice(-4)}</span>
-              </div>
+             
             </div>
             
-            <h3 className="text-lg font-semibold  mb-2">Delivery address (Home)</h3>
-            <p className="mb-1">{order.shipping_data?.first_name} {order.shipping_data?.email}</p>
-            <p className="mb-1">{order.shipping_data?.street}, {order.shipping_data?.city}, {order.shipping_data?.country}</p>
-            <p className="flex items-center">
-              {order.shipping_data?.phone_number}
-              <span className="ml-2 text-green-600 text-sm">Verified</span>
+            <h3 className="text-xl font-semibold  mb-2">Delivery address (Home)</h3>
+            <p className="mb-1 text-lg">{orderWrapper.shipping_data?.first_name} {orderWrapper.shipping_data?.email}</p>
+            <p className="mb-1">{orderWrapper.shipping_data?.street}, {orderWrapper.shipping_data?.city}, {orderWrapper.shipping_data?.last_name}, {orderWrapper.shipping_data?.country}</p>
+            <p className="flex items-center gap-2">
+             <PhoneIcon size='16'/>
+             {orderWrapper.shipping_data?.phone_number}
+
             </p>
           </div>
         </div>

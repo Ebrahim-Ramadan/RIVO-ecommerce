@@ -4,16 +4,28 @@ import { useState, useEffect, memo } from 'react';
 import { toast } from 'react-hot-toast';
 import { getCart } from '../cart/actions';
 import LoadingDots from '../loading-dots';
-import { addOrder } from '@/lib/orders';
+import { addOrder, Shipping_costs } from '@/lib/orders';
 import { ShippingCost } from './ShippingCost';
+import { useRouter } from 'next/navigation';
 
 export function PaymentButton({ formData, selectedOption }) {
+  const router = useRouter();
   console.log('PaymentButton formData', formData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [structuredURL, setStructuredURL] = useState('');
   const [finalPriceState, setFinalPriceState] = useState(0);
 
+  const shippingCostObj = Shipping_costs.find(cost => Object.keys(cost)[0].toLowerCase() === formData.governorate.toLowerCase());
+  let shippingCost = 0;
+  if (shippingCostObj) {
+    shippingCost = parseInt(Object.values(shippingCostObj)[0], 10);
+  } else {
+    console.warn(`Shipping cost not found for governorate: ${formData.governorate}`);
+  }
+
+  // Add shipping cost to final price
+  const totalPrice = finalPriceState + shippingCost;
   useEffect(() => {
     const calculateFinalPrice = () => {
       const cart = getCart();
@@ -38,75 +50,95 @@ export function PaymentButton({ formData, selectedOption }) {
 
     setLoading(true);
     try {
-      const orderID = await addOrder(cart);
+     
+      const shippingInfo = {
+        first_name: formData.fullname,
+        last_name: formData.governorate,
+        phone_number: formData.phoneNumber,
+        country: 'EG',
+        email: formData.email,
+        street: formData.address,
+        city: formData.city,
+        extra_description: formData.specialMessage,
+        building: selectedOption == 'pay-on-delivery' ? 'pay-on-delivery' : 'online-paid',
+      };
+  
+      const orderID = await addOrder(cart, shippingInfo);
       console.log('order', orderID);
-
+  
       if (!orderID) {
         toast.error('Error adding order, refresh');
         setError(true);
         return;
       }
-
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getPaymentLink`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: finalPriceState * 100,
-          currency: 'EGP',
-          payment_methods: [selectedOption],
-          items: [
-            {
-              name: 'rivo purchase',
-              amount: finalPriceState * 100,
-              quantity: 1,
+      console.log('selectedOption', selectedOption);
+      if (selectedOption === 'pay-on-delivery') {
+        // Handle pay on delivery
+        toast.success('Order placed successfully. You will pay on delivery.');
+        router.push(`/orders?id=${orderID}`);
+      }
+      else{
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/getPaymentLink`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            amount: totalPrice * 100,
+            currency: 'EGP',
+            payment_methods: [selectedOption],
+            items: [
+              {
+                name: 'rivo purchase',
+                amount: totalPrice * 100,
+                quantity: 1,
+              },
+            ],
+            billing_data: {
+              first_name: formData.fullname,
+              last_name: formData.fullname,
+              phone_number: formData.phoneNumber,
+              country: 'EG',
+              email: formData.email,
+              street: formData.address,
+              city: formData.city,
+              extra_description: formData.specialMessage,
+              building: orderID,
             },
-          ],
-          billing_data: {
-            first_name: formData.fullname,
-            last_name: formData.fullname,
-            phone_number: formData.phoneNumber,
-            country: 'EG',
-            email: formData.email,
-            street: formData.address,
-            city: formData.city,
-            extra_description: formData.specialMessage,
-            building: orderID,
-          },
-          shipping_data: {
-            first_name: formData.fullname,
-            last_name: formData.fullname,
-            phone_number: formData.phoneNumber,
-            country: 'EG',
-            email: formData.email,
-            street: formData.address,
-            city: formData.city,
-            extra_description: formData.specialMessage,
-            building: orderID,
-          },
-          customer: {
-            fulllname: formData.fullname,
-            last_name: formData.fullname,
-            phone_number: formData.phoneNumber,
-            country: 'EG',
-            email: formData.email,
-            street: formData.address,
-            city: formData.city,
-            building: orderID,
-          },
-        }),
-        cache: 'no-store',
-      });
-
-      const res = await response.json();
-      console.log('res', res);
-      if (!res.error) {
-        const { client_secret } = res;
-        setStructuredURL(`https://accept.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${client_secret}`);
-      } else {
-        toast.error(res.error);
-        setError(true);
+            shipping_data: {
+              first_name: formData.fullname,
+              last_name: formData.fullname,
+              phone_number: formData.phoneNumber,
+              country: 'EG',
+              email: formData.email,
+              street: formData.address,
+              city: formData.city,
+              extra_description: formData.specialMessage,
+              building: orderID,
+            },
+            customer: {
+              fulllname: formData.fullname,
+              last_name: formData.fullname,
+              phone_number: formData.phoneNumber,
+              country: 'EG',
+              email: formData.email,
+              street: formData.address,
+              city: formData.city,
+              building: orderID,
+            },
+          }),
+          cache: 'no-store',
+        });
+  
+        const res = await response.json();
+        console.log('res', res);
+        if (!res.error) {
+          const { client_secret } = res;
+          setStructuredURL(`https://accept.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${client_secret}`);
+        } else {
+          toast.error(res.error);
+          setError(true);
+        }
       }
     } catch (error) {
       console.error('Error creating payment link:', error);
@@ -135,7 +167,7 @@ export function PaymentButton({ formData, selectedOption }) {
                 className='my-2 text-center rounded-full text-black py-1 font-bold w-full bg-white'
                 disabled={selectedOption === null}
               >
-                Pay Now EGP {finalPriceState.toFixed(2)}
+                Place Order EGP {totalPrice}
               </button>
             )
           )

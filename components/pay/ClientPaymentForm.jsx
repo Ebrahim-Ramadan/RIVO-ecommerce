@@ -5,6 +5,7 @@ import location from '@/public/assets/location.svg';
 import Image from 'next/image';
 import {  useState } from 'react';
 import PayOptionsComponent from './PayOptionsComponent';
+import { Shipping_costs } from '@/lib/orders';
 
 
 export const ClientPaymentForm = () => {
@@ -118,13 +119,15 @@ Egypt
       onChange={handleChange}
       required
     >
-      <option value="">Select Governorate</option>
-      <option value="Ghrbiya">Ghrbiya</option>
-      <option value="Alexandria">Alexandria</option>
-      <option value="Cairo">Cairo</option>
-      <option value="Giza">Giza</option>
-      <option value="Sharqia">Sharqia</option>
-      <option value="Aswan">Aswan</option>
+     <option value="">Select Governorate</option>
+            {Shipping_costs.map((costObj, index) => {
+              const governorate = Object.keys(costObj)[0];
+              return (
+                <option key={index} value={governorate}>
+                  {governorate}
+                </option>
+              );
+            })}
     </Select>
   </div>
 
