@@ -7,6 +7,7 @@ import LoadingDots from '@/components/loading-dots';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import eventEmitter from '@/lib/eventEmitter';
 
 function SubmitButton({
   availableForSale,
@@ -98,6 +99,7 @@ export function AddToCart({ product, availableForSale }) {
       addToCart(product, selectedSize, selectedColor, selectedType, Math.ceil(price));
       setTimeout(() => {
         toast.success("Product Added to Your Cart");
+        eventEmitter.emit('openCart'); // Emit event to open cart
         resolve();
       }, 1000); // Simulate a delay
     });

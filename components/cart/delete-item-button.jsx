@@ -1,12 +1,12 @@
 
 import { X } from 'lucide-react';
 import {removeFromCart} from './actions';
-export function DeleteItemButton({ item}) {
+export function DeleteItemButton({ item, setCart }) {
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        removeFromCart(item.id, item.size, item.color);
+        removeFromCart(item.id, item.size, item.color, setCart );
       }}
     >
       <button

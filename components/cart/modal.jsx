@@ -13,6 +13,7 @@ import { getCart, removeFromCart, setCookie, updateCart } from './actions'; // A
 import { getProductDetails } from '@/lib/utils';
 import Image from 'next/image';
 import { ShippingCost } from '../pay/ShippingCost';
+import eventEmitter from '@/lib/eventEmitter';
 
 export default function CartModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,11 +21,17 @@ export default function CartModal() {
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+  useEffect(() => {
+    eventEmitter.on('openCart', openCart);
+
+    return () => {
+      eventEmitter.off('openCart', openCart);
+    };
+  }, []);
+
   const [productDetails, setProductDetails] = useState({});
   useEffect(() => {
-    if (isOpen) {
-      setCart(getCart());
-    }
+    setCart(getCart());
   }, [isOpen]); // Refresh cart when modal opens
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -53,15 +60,15 @@ export default function CartModal() {
     }
   }, [cart]);
 
-  const updateCartItem = (itemId, size, color, newQuantity) => {
+  const updateCartItem = (itemId, size, color,type, newQuantity) => {
     const updatedCart = cart.map(item => 
-      item.id === itemId && item.size === size && item.color === color
+      item.id === itemId && item.size === size && item.color === color&& item.type === type
         ? { ...item, quantity: newQuantity }
         : item
     ).filter(item => item.quantity > 0);
 
     setCart(updatedCart);
-    updateCart(itemId, size, color, newQuantity);
+    updateCart(itemId, size, color,type, newQuantity);
   };
 
   
@@ -119,8 +126,8 @@ export default function CartModal() {
                     {cart.map((item, i) => (
                       <li key={i} className="flex w-full flex-col border-b border-neutral-400 px-1 py-4">
                         <div className="relative flex w-full flex-row justify-between ">
-                          <button className="absolute z-40 -mt-2 -ml-2" onClick={closeCart}>
-                            <DeleteItemButton  item={item} />
+                          <button className="absolute z-40 -mt-2 -ml-2">
+                            <DeleteItemButton  item={item} setCart={setCart}/>
                           </button>
                           <div className="flex flex-1 flex-col gap-2">
                             <span className="leading-tight">{productDetails[item.id]?.images[0] ?
@@ -144,7 +151,7 @@ export default function CartModal() {
                               <EditItemQuantityButton
                                 item={item}
                                 type="minus"
-                                updateQuantity={(newQuantity) => updateCartItem(item.id, item.size, item.color, newQuantity)}
+                                updateQuantity={(newQuantity) => updateCartItem(item.id, item.size, item.color,item.type, newQuantity)}
                               />
                               <p className="w-6 text-center">
                                 <span className="w-full text-sm">{item.quantity}</span>
@@ -152,12 +159,12 @@ export default function CartModal() {
                               <EditItemQuantityButton
                                 item={item}
                                 type="plus"
-                                updateQuantity={(newQuantity) => updateCartItem(item.id, item.size, item.color, newQuantity)}
+                                updateQuantity={(newQuantity) => updateCartItem(item.id, item.size, item.color,item.type, newQuantity)}
                               />
                             </div>
                           </div>
                         </div>
-                        <a href={`/frame/${item.id}`} className=" font-bold text-neutral-200 mt-4">
+                        <a href={`/frame/${item.id}?type=${item.type}&size=${item.size}&color=${item.color}`} className=" font-bold text-neutral-200 mt-4">
                              {productDetails[item.id]?.name}
                             </a>
                         <p className="text-xs font-medium text-neutral-400">

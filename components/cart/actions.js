@@ -44,19 +44,21 @@ export function addToCart(product, size, color, type, price) {
 }
 
 // Function to remove an item from the cart
-export function removeFromCart(id, size, color) {
+export function removeFromCart(id, size, color, setCart) {
   let cart = getCookie('cart') || [];
   cart = cart.filter(item => !(item.id === id && item.size === size && item.color === color));
   setCookie('cart', cart, 7); // Update the cookie with the new cart
+  setCart(cart); // Update the state
 }
 
 // Function to update an item quantity in the cart
-export function updateCart(id, size, color, newQuantity) {
+export function updateCart(id, size, color, type, newQuantity) {
   let cart = getCookie('cart') || [];
   cart = cart.map(item => 
-    item.id === id && item.size === size && item.color === color
+    item.id === id && item.size === size && item.color === color && item.type === type
       ? { ...item, quantity: newQuantity }
       : item
   ).filter(item => item.quantity > 0);
   setCookie('cart', cart, 7); // Update the cookie with the new cart
+
 }
