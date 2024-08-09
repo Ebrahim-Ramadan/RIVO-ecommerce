@@ -22,7 +22,7 @@ export  function Carousel({data}) {
         {data.slice(0, 7).map((frame) => (
           <li
             key={`${frame['id']}`}
-            className="relative aspect-square h-[38vh] max-h-[275px] w-3/4 max-w-[475px] flex-none md:w-1/3"
+            className="relative aspect-square h-[38vh] max-h-[275px] w-3/4 max-w-[475px] flex-none md:w-1/3 "
           >
             <a href={`/frame/${frame['id']}?type=${frame.types[0]}&size=${frame.sizes[0]}`} className="relative h-full w-full">
               <GridTileImage

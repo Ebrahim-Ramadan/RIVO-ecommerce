@@ -1,12 +1,14 @@
 
 import { X } from 'lucide-react';
+import { toast } from 'react-hot-toast';
 import {removeFromCart} from './actions';
 export function DeleteItemButton({ item, setCart }) {
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        removeFromCart(item.id, item.size, item.color, setCart );
+        removeFromCart(item.id, item.size, item.color, item.type, setCart );
+        toast.success('Item removed from cart');
       }}
     >
       <button

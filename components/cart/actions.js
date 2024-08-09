@@ -44,9 +44,9 @@ export function addToCart(product, size, color, type, price) {
 }
 
 // Function to remove an item from the cart
-export function removeFromCart(id, size, color, setCart) {
+export function removeFromCart(id, size, color,type, setCart) {
   let cart = getCookie('cart') || [];
-  cart = cart.filter(item => !(item.id === id && item.size === size && item.color === color));
+  cart = cart.filter(item => !(item.id === id && item.size === size && item.color === color&& item.type === type));
   setCookie('cart', cart, 7); // Update the cookie with the new cart
   setCart(cart); // Update the state
 }

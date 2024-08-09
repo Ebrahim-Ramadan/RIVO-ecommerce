@@ -15,7 +15,7 @@ export default async function Page({params}) {
   const data = await getData(params.id)
   if (!data) {
       return (
-          <NoResults/>
+          <NoResults shopNow={true}/>
       );
   }
   return (

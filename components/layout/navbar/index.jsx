@@ -8,7 +8,6 @@ import { Suspense } from 'react';
 import { DMBanner } from './DMBanner';
 import MobileMenu from './mobile-menu';
 import Search, { SearchSkeleton } from './search';
-const { SITE_NAME } = process.env;
 
 export default  function Navbar() {
 
