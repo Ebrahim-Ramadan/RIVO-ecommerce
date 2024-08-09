@@ -161,7 +161,6 @@ console.log('response', response);
         console.log('res', res);
         if (!res.error) {
           const { client_secret } = res;
-          setStructuredURL(`https://accept.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${client_secret}`);
                   
           // Prepare the payload
         const emailPayload = {
@@ -171,24 +170,17 @@ console.log('response', response);
           secret_token: process.env.NEXT_PUBLIC_SECRET_TOKEN
         };
 
-        // Call the API endpoint
-        try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/send-email`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(emailPayload),
-          });
-console.log('response', response);
-          if (response.ok) {
-            console.log('Email sent successfully');
-          } else {
-            console.error('Failed to send email');
-          }
-        } catch (error) {
-          console.error('Error sending email:', error);
-        }
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/send-email`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(emailPayload),
+        });
+          console.log('response', response);
+
+        setStructuredURL(`https://accept.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${client_secret}`);
+
         } else {
           toast.error(res.error);
           setError(true);
@@ -210,7 +202,7 @@ console.log('response', response);
             <LoadingDots />
           ) : (
             structuredURL ? (
-              <a href={structuredURL} rel="noopener noreferrer" className='my-2 text-center rounded-full text-black py-1 font-bold w-full bg-white'>
+              <a href={structuredURL} rel="noopener noreferrer" className='my-4 text-center rounded-full text-black py-1 font-bold w-full bg-white'>
                 <button className='w-full py-2 text-lg'>
                   Proceed to Payment
                 </button>

@@ -88,7 +88,7 @@ export default function Footer() {
           <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
           <p>Inspired by ▲Vercel</p>
           <p className="md:ml-auto">
-            <a href="https://vercel.com" className="text-black dark:text-white">
+            <a href="https://ebrahim-ramadan.vercel.app" className="text-black dark:text-white">
               Crafted by Ebrahim Ramadan
             </a>
           </p>
