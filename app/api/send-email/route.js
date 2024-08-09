@@ -18,13 +18,26 @@ const emailContentTemplate = `
     Dear [clientName]
   </div>
   <div>
-  You've got great taste! We're thrilled you chose RIVO.
+  You've got great taste! We're thrilled you chose 
+  <span>
+  <a href='https://e-commerce-myass.vercel.app'>RIVO</a>
+  </span>
+  .
   </div>
   <div>
-  Your order, [orderID], is now under our care and is being processed by our crew.
+  Your order,
+  <span>
+  <a href='https://e-commerce-myass.vercel.app/orders?id=[orderID]'>[orderID]</a>
+  </span>
+  , is now under our care and is being processed by our crew.
   </div>
   <div>We'll notify you by email when your items are dispatched and ready for delivery. For precise delivery dates or to track and manage your order, please check your 'Order Summary'.</div>
-  <a href='https://e-commerce-myass.vercel.app/orders?id=[orderID]'>View Order Summary</a>
+  <a href='https://e-commerce-myass.vercel.app/orders'>View Orders Summary</a>
+ 
+
+<div>
+<img src='https://lh3.googleusercontent.com/a-/ALV-UjW0d-5_0GPPnlvExjAFxhFyxAFm1CO2QXtbZ8hVVR4CqJkKnrI=s40-p' width='50px' height='50px' />
+</div>
 </div>
 `;
 
