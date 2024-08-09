@@ -78,6 +78,7 @@ export async function POST(req) {
     const dataAppended = await appendOrderDataToFirestore(extractedData.docID, extractedData);
     console.log('dataAppended', dataAppended);
     if(dataAppended){
+      //process sending email here
       return NextResponse.json({ message: 'HMAC validation succeeded, order details appended to firestore', data }, { status: 200 });
     }
   } else {

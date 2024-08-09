@@ -74,7 +74,34 @@ export function PaymentButton({ formData, selectedOption }) {
       console.log('selectedOption', selectedOption);
       if (selectedOption === 'pay-on-delivery') {
         // Handle pay on delivery
-        toast.success('Order placed successfully. You will pay on delivery.');
+        
+          // Prepare the payload
+        const emailPayload = {
+          email: formData.email,
+          clientName: formData.fullname,
+          orderID: orderID,
+          secret_token: process.env.NEXT_PUBLIC_SECRET_TOKEN
+        };
+
+        // Call the API endpoint
+        try {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/send-email`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(emailPayload),
+          });
+console.log('response', response);
+          if (response.ok) {
+            console.log('Email sent successfully');
+          } else {
+            console.error('Failed to send email');
+          }
+        } catch (error) {
+          console.error('Error sending email:', error);
+        }
+
         router.push(`/orders?id=${orderID}`);
       }
       else{
@@ -135,6 +162,33 @@ export function PaymentButton({ formData, selectedOption }) {
         if (!res.error) {
           const { client_secret } = res;
           setStructuredURL(`https://accept.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${client_secret}`);
+                  
+          // Prepare the payload
+        const emailPayload = {
+          email: formData.email,
+          clientName: formData.fullname,
+          orderID: orderID,
+          secret_token: process.env.NEXT_PUBLIC_SECRET_TOKEN
+        };
+
+        // Call the API endpoint
+        try {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/send-email`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(emailPayload),
+          });
+console.log('response', response);
+          if (response.ok) {
+            console.log('Email sent successfully');
+          } else {
+            console.error('Failed to send email');
+          }
+        } catch (error) {
+          console.error('Error sending email:', error);
+        }
         } else {
           toast.error(res.error);
           setError(true);
