@@ -11,7 +11,7 @@ export const DMBanner = () => {
   return (
     <>
     {isBannerVisible &&
-    <div id="sticky-banner" tabIndex="-1" className="sticky top-0 start-0 z-50 flex justify-between w-full py-4 px-2 md:px-4 bg-gray-50 dark:bg-black/80 dark:border-gray-600">
+    <div id="sticky-banner" tabIndex="-1" className="sticky top-0 start-0 z-50 flex justify-between w-full py-4 px-2 md:px-4 bg-black/80 border-b-2 border-neutral-800">
     
     <div className="flex items-center mx-auto">
         <p className="flex items-center text-xs md:text-sm font-medium text-white ">
@@ -22,7 +22,7 @@ export const DMBanner = () => {
 </a>
         </p>
     </div>
-    <div className="flex items-center">
+    <div className="flex items-center gap-2">
     <a className='hidden md:block bg-white/20 px-4 py-2 rounded-full hover:underline' target="_blank" href='https://www.instagram.com/rivoo_gallery?igsh=MThjOXNrY2pnemx3bw=='>
       contact us
     </a>
