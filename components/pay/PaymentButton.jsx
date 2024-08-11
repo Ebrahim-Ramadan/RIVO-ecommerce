@@ -4,7 +4,7 @@ import { useState, useEffect, memo } from 'react';
 import { toast } from 'react-hot-toast';
 import { getCart } from '../cart/actions';
 import LoadingDots from '../loading-dots';
-import { addOrder, Shipping_costs } from '@/lib/orders';
+import { addOrder, saveAddressToLocalStorage, Shipping_costs } from '@/lib/orders';
 import { ShippingCost } from './ShippingCost';
 import { useRouter } from 'next/navigation';
 
@@ -50,7 +50,7 @@ export function PaymentButton({ formData, selectedOption }) {
 
     setLoading(true);
     try {
-     
+      saveAddressToLocalStorage(formData, true, false);
       const shippingInfo = {
         first_name: formData.fullname,
         last_name: formData.governorate,
