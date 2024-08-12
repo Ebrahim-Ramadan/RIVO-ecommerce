@@ -28,6 +28,8 @@ export function HomeContent() {
       <Slider/>
       <ThreeItemGrid data={frames}/>
       <MarqueeBanner/>
+      <ThreeItemGrid data={frames}/>
+
       <LazyLoad>
         <Suspense fallback={
             <LoadingDots/>

@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import { GridTileImage } from "./grid/tile";
 
 
@@ -24,7 +25,7 @@ export  function Carousel({data}) {
             key={`${frame['id']}`}
             className="relative aspect-square h-[38vh] max-h-[275px] w-3/4 max-w-[475px] flex-none md:w-1/3 "
           >
-            <a href={`/frame/${frame['id']}?type=${frame.types[0]}&size=${frame.sizes[0]}`} className="relative h-full w-full">
+            <Link href={`/frame/${frame['id']}?type=${frame.types[0]}&size=${frame.sizes[0]}`} className="relative h-full w-full">
               <GridTileImage
                 alt={frame['name']}
                 label={{
@@ -36,7 +37,7 @@ export  function Carousel({data}) {
                 fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
               />
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

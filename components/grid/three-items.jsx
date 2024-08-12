@@ -1,4 +1,5 @@
 import { GridTileImage } from '@/components/grid/tile';
+import Link from 'next/link';
 
 
 function ThreeItemGridItem({
@@ -11,10 +12,9 @@ function ThreeItemGridItem({
     <div
       className={size === 'full' ? 'md:col-span-4 md:row-span-2' : 'md:col-span-2 md:row-span-1'}
     >
-      <a
+      <Link
         className="relative block aspect-square h-full w-full"
         href={`/frame/${item?.id}?type=${item?.types[0]}&size=${item?.sizes[0]}`}
-        prefetch='true'
       >
         <GridTileImage
           src={item && item['images'][0]}
@@ -31,7 +31,7 @@ function ThreeItemGridItem({
             currencyCode: 'EGP'
           }}
         />
-      </a>
+      </Link>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import Navbar from '@/components/layout/navbar';
 import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 import { Toaster } from "react-hot-toast";
+import TopLoadingIndicator from '@/components/layout/navbar/TopLoadingIndicator';
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : 'http://localhost:3000';
@@ -66,8 +67,11 @@ export default async function RootLayout({ children }) {
        <html lang="en" className={GeistSans.variable}>
       <body className="bg-black text-black selection:bg-teal-300  dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
       <Toaster position="top-center" />
+    
         <Navbar />
-        <main>{children}</main>
+        <main>
+        <TopLoadingIndicator/>
+        {children}</main>
       </body>
     </html>
    

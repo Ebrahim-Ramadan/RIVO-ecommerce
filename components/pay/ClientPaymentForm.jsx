@@ -62,7 +62,7 @@ export const ClientPaymentForm = () => {
             1
           </p>
           <label className='text-xl'>Fill In Your Details</label>
-          <label className='text-xs self-end'>{loadedFromStorage ? 'Loaded From Storage' : ''}</label>
+          <label className='text-xs self-end'>{loadedFromStorage ? 'Loaded From Last Time' : ''}</label>
         </div>
 
         {['email', 'fullname', 'phoneNumber', 'city', 'address'].map((field) => (

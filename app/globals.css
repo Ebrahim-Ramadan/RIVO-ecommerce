@@ -95,3 +95,34 @@ button {
 ::-webkit-scrollbar-thumb:hover {
   background: #9dcbffe8;
 }
+
+.loading-indicator-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.loading-indicator-container.visible {
+  opacity: 1;
+}
+
+.loading-indicator {
+  height: 3px;
+  background: #007bff;
+  width: 100%;
+  animation: loading 1s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% { width: 0; }
+  50% { width: 50%; }
+  100% { width: 100%; }
+}
+/* Hide default browser loading indicator */
+html {
+  scroll-behavior: smooth;
+}

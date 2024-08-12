@@ -9,6 +9,7 @@ import visa from '@/public/assets/visa.svg';
 import Image from "next/image";
 import { copyToClipboard, getProductDetails } from "@/lib/utils";
 import { CancelOrder } from "./CancelOrder";
+import Link from "next/link";
 export default function OrdersLayout({ newOrderID }) {
   const [ordersExist, setOrdersExist] = useState(false);
   const [loading, setloading] = useState(false);
@@ -120,7 +121,7 @@ export default function OrdersLayout({ newOrderID }) {
             <p className="text-green-600 mb-4">{orderWrapper.status} · Confirmed</p>
             
             {orderWrapper.items.map((item, index) => (
-              <a key={index} className="bg-white/10 hover:bg-white/20 flex items-center p-4 mb-2 rounded-lg flex justify-between" href={`/frame/${item.id}?type=${item.type}&size=${item.size}&color=${item.color}`}>
+              <Link key={index} className="bg-white/10 hover:bg-white/20 flex items-center p-4 mb-2 rounded-lg flex justify-between" href={`/frame/${item.id}?type=${item.type}&size=${item.size}&color=${item.color}`}>
               <div className="flex flex-row gap-2 items-center">
               <span className="leading-tight relative">{productDetails[item.id]?.images[0] ?
                             <Image
@@ -148,7 +149,7 @@ export default function OrdersLayout({ newOrderID }) {
               </div>
                 
 
-              </a>
+              </Link>
             ))}
             
           </div>
