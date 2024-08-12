@@ -3,6 +3,8 @@ import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 import { Toaster } from "react-hot-toast";
 import TopLoadingIndicator from '@/components/layout/navbar/TopLoadingIndicator';
+import { Suspense } from 'react';
+import LoadingDots from '@/components/loading-dots';
 const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : 'http://localhost:3000';
@@ -70,7 +72,9 @@ export default async function RootLayout({ children }) {
     
         <Navbar />
         <main>
-        <TopLoadingIndicator/>
+          <Suspense fallback={<LoadingDots/>}>
+          <TopLoadingIndicator/>
+          </Suspense>
         {children}</main>
       </body>
     </html>
