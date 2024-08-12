@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const subject = 'Order Confirmation | Rivo Gallery';
+const subject = 'DONOT REPLY - Order Confirmation | Rivo Gallery';
 const emailContentTemplate = `
 <div>
   <div>
