@@ -26,12 +26,16 @@ export default function Footer() {
       path: '/orders'
     },
     {
-      title: 'Contact',
-      path: '/contact'
+      title: 'Payment',
+      path: '/pay'
     },
     {
-      title: 'privacy-and-policy',
+      title: 'Privacy and Policy',
       path: '/privacy-and-policy'
+    },
+    {
+      title: 'Development',
+      path: '/Development'
     },
   ];
   return (
