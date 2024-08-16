@@ -20,7 +20,7 @@ export default async function Page() {
       <p className="mb-4">This template also allows us to highlight newer Next.js features including:</p>
       <ul className="list-disc list-inside mb-4 space-y-2">
         <li>Next.js App Router</li>
-        <li>Optimized for SEO using Next.js's Metadata</li>
+        <li>Optimized for SEO using Next.js&apos;s Metadata</li>
         <li>React Server Components (RSCs) and Suspense</li>
         <li>Server Actions for mutations</li>
         <li>Edge runtime</li>
