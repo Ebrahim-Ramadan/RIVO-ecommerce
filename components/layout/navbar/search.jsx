@@ -19,7 +19,7 @@ export default function Search() {
       
       // Update recent search keywords in localStorage
       const recentSearchKeywords = JSON.parse(localStorage.getItem('recent-search-keywords')) || [];
-      if (!recentSearchKeywords.includes(search.value) && recentSearchKeywords.length > 0) {
+      if (!recentSearchKeywords.includes(search.value) && recentSearchKeywords.length > 1) {
         recentSearchKeywords.push(search.value);
         localStorage.setItem('recent-search-keywords', JSON.stringify(recentSearchKeywords));
       }

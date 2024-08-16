@@ -17,7 +17,7 @@ export const OverlaySearch = () => {
     if (query.trim()) {
       // Add the search term to recent searches
       const currentSearches = JSON.parse(localStorage.getItem('recent-search-keywords')) || [];
-      if (!currentSearches.includes(query)) {
+      if (!currentSearches.includes(query) && query.length > 1) {
         currentSearches.push(query);
         localStorage.setItem('recent-search-keywords', JSON.stringify(currentSearches));
         setRecentSearches(currentSearches);
