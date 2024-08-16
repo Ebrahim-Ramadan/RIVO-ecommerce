@@ -19,16 +19,17 @@ export function ProductDescription({ product }) {
         </Suspense>
       }
 
-      {product.desc ? (
-        <Prose
-          className="mb-6 text-sm leading-tight dark:text-white/[60%]"
-          html={product.desc}
-        />
-      ) : null}
+      
 
       <Suspense fallback={<LoadingDots/>}>
         <AddToCart product={product} availableForSale={true} />
       </Suspense>
+      {product.desc ? (
+        <Prose
+          className="mt-6 "
+          html={product.desc}
+        />
+      ) : null}
     </>
   );
 }

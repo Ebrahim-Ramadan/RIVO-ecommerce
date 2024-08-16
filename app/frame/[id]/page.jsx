@@ -79,6 +79,7 @@ async function RelatedProducts({ keyword , relatedID}) {
               prefetch={true}
             >
               <GridTileImage
+              insideProfuct={true}
                 alt={product.name}
                 label={{
                   title: product.name,

@@ -15,6 +15,7 @@ export default function ProductGridItems({ frames }) {
             prefetch={true}
           >
             <GridTileImage
+             twoGRID={true}
               alt={frame.name}
               label={{
                 title: frame.name,

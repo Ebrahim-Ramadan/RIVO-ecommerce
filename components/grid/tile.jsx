@@ -6,6 +6,8 @@ export function GridTileImage({
   isInteractive = true,
   active,
   label,
+  twoGRID,
+  insideProfuct,
   ...props
 }) {
   return (
@@ -30,6 +32,8 @@ export function GridTileImage({
       ) : null}
       {label ? (
         <Label
+        insideProfuct={insideProfuct}
+        twoGRID={twoGRID}
           title={label.title}
           amount={label.amount}
           currencyCode={label.currencyCode}

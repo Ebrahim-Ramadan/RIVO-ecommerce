@@ -16,6 +16,7 @@ function ThreeItemGridItem({
         href={`/frame/${item?.id}?type=${item?.type[0]}&size=${item?.sizes[0]}&color=${item?.color[0]}`}
       >
         <GridTileImage
+       
           src={item && item['images'][0]}
           fill
           sizes={

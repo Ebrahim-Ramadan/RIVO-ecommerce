@@ -3,11 +3,12 @@ import clsx from 'clsx';
 const Price = ({
   amount,
   className,
+  insideProfuct,
   currencyCode = 'USD',
 }) => (
   <p suppressHydrationWarning={true} className={className}>
   
-    <span className={clsx('ml-1 inline text-xs', )}>{`${currencyCode} ${parseFloat(amount)}`}</span>
+    <span className={`ml-1 inline text-xs ${insideProfuct && 'text-sm'}`}>{`${currencyCode} ${parseFloat(amount)}`}</span>
   </p>
 );
 
