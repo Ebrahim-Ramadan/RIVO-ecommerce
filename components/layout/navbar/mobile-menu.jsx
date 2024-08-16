@@ -4,10 +4,9 @@ import { Dialog, Transition } from '@headlessui/react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, Suspense, useEffect, useState } from 'react';
 import alreadyInCart from '@/public/assets/already-in-cart.svg';
-import { DollarSign, X } from 'lucide-react';
+import { DollarSign, X, ArrowLeft } from 'lucide-react';
 import Search, { SearchSkeleton } from './search';
 import Image from 'next/image';
-
 import Eclipse from '@/public/assets/Eclipse.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -51,16 +50,22 @@ export default function MobileMenu() {
   }, [activeCategory]);
 
   const handleCategoryClick = (category) => {
-    if(category.slug == '/search/VinylsProducts'){
+    if (category.slug === '/search/VinylsProducts') {
       router.push('/search/VinylsProducts');
     }
     setActiveCategory(category.name);
   };
+
+  const handleBackToMain = () => {
+    setActiveCategory(null); // Close the child dialog
+    setIsOpen(true);         // Reopen the parent dialog
+  };
+
   useEffect(() => {
     setActiveCategory(false);
     setIsOpen(false); // Close the current mobile menu
-
   }, [pathname, searchParams]);
+
   return (
     <>
       <button
@@ -178,24 +183,29 @@ export default function MobileMenu() {
                     <X className="h-6" />
                   </button>
 
+                  <button
+                    onClick={handleBackToMain}
+                    className="mb-4 flex items-center justify-centertext-black transition-colors text-white"
+                  >
+                    <ArrowLeft className="h-6 mr-2" />
+                   Back to All
+                  </button>
+
                   {/* Render content specific to the active category */}
-                  {activeCategory !=='Vinyls' &&
-                (
-                  <div className="flex flex-col gap-2">
-                    {FramedCategories.map((category) => (
-                      <Link
-                      
-                        key={category.slug}
-                        href={`/categories/${category.slug}`}
-                        className="text-lg flex items-center justify-start flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
-                      >
-                        <Image src={category.icon} width={24} height={24} alt="category icon" />
-                        {category.name}
-                      </Link>
-                    ))}
-                  </div>
-                )
-                }
+                  {activeCategory !== 'Vinyls' && (
+                    <div className="flex flex-col gap-2">
+                      {FramedCategories.map((category) => (
+                        <Link
+                          key={category.slug}
+                          href={`/categories/${category.slug}`}
+                          className="text-lg flex items-center justify-start flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
+                        >
+                          <Image src={category.icon} width={24} height={24} alt="category icon" />
+                          {category.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </Dialog.Panel>
