@@ -50,7 +50,9 @@ export default  function Navbar() {
           </Suspense>
         </div>
         <div className="flex justify-end md:w-1/3">
-        <OverlaySearch/>
+       <Suspense fallback={<LoadingDots />}>
+       <OverlaySearch/>
+       </Suspense>
 
           <Suspense fallback={<OpenCart />}>
             <Cart />
