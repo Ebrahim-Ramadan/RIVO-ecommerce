@@ -49,7 +49,7 @@ export const CategoriesLayout = ({ category }) => {
 
   return (
     <div className="mx-auto max-w-7xl px-2">
-      <h1 className="text-4xl font-bold mb-4 capitalize">
+      <h1 className="text-4xl font-bold mb-4 px-2 capitalize">
         {category === 'musics' ? category.slice(0, -1) : category.replace(/-/g, ' ')}
       </h1>
       {categories.length > 0 ? (
