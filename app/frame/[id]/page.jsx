@@ -75,7 +75,7 @@ async function RelatedProducts({ keyword , relatedID}) {
           >
             <Link
               className="relative h-full w-full"
-              href={`/frame/${product.id}`}
+              href={`/frame/${product.id}?type=${product.type[0]}&color=${product.color[0]}&size=${product.sizes[0]}`}
               prefetch={true}
             >
               <GridTileImage
