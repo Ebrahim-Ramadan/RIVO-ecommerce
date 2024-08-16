@@ -9,13 +9,15 @@ import CloseCart from './close-cart';
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
 import OpenCart from './open-cart';
-import { getCart, removeFromCart, setCookie, updateCart } from './actions'; // Assuming you have these functions
+import { clearAllCookies, getCart, removeFromCart, setCookie, updateCart } from './actions'; // Assuming you have these functions
 import { getProductDetails } from '@/lib/utils';
 import Image from 'next/image';
 import { ShippingCost } from '../pay/ShippingCost';
 import eventEmitter from '@/lib/eventEmitter';
+import { useRouter } from 'next/navigation';
 
 export default function CartModal() {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false);
   const [cart, setCart] = useState([]);
 
@@ -37,11 +39,14 @@ export default function CartModal() {
     const fetchProductDetails = async () => {
       // Create an array of promises
       const promises = cart.map(item => getProductDetails(item.id));
-
       try {
         // Resolve all promises concurrently
         const results = await Promise.all(promises);
-        
+        console.log('results', results);
+        if(!results){
+          clearAllCookies()
+          router.refresh()
+        }
         // Map results to the corresponding product IDs
         const details = results.reduce((acc, productDetail, index) => {
           acc[cart[index].id] = productDetail;

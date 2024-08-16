@@ -14,7 +14,7 @@ function ThreeItemGridItem({
     >
       <Link
         className="relative block aspect-square h-full w-full"
-        href={`/frame/${item?.id}?type=${item?.types[0]}&size=${item?.sizes[0]}`}
+        href={`/frame/${item?.id}?type=${item?.type[0]}&size=${item?.sizes[0]}&color=${item?.color[0]}`}
       >
         <GridTileImage
           src={item && item['images'][0]}

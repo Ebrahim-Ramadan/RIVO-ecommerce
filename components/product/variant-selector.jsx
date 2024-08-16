@@ -7,6 +7,7 @@ import { createUrl } from '@/lib/utils';
 import { useState, useEffect, Suspense } from 'react';
 import LoadingDots from '../loading-dots';
 export function VariantSelector({ sizes, colors, types, prices }) {
+  console.log(sizes, colors, types, prices);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -45,7 +46,7 @@ export function VariantSelector({ sizes, colors, types, prices }) {
       );
 
       if (selectedCombination) {
-        setPrice(selectedCombination.price);
+        setPrice(selectedCombination.price || 915);
       } else {
         // If no specific combination is found, calculate the price directly
         const sizeIndex = sizes.indexOf(selectedSize);
@@ -101,7 +102,7 @@ export function VariantSelector({ sizes, colors, types, prices }) {
           </dd>
         </dl>
       ))}
-<div className="flex justify-end  font-medium text-sm text-white">
+<div className="flex justify-end  font-medium text-sm text-white mb-4">
   <Suspense fallback={<LoadingDots/>}>
     
           <Price
@@ -121,7 +122,7 @@ export function calculatePrice(prices, sizeIndex, type) {
   const ratios = [.761, .71, .826, .725, .671];
   let typeMultiplier = 1;
 
-  if (type === 'wood') {
+  if (type === 'Wooden Tableau') {
     typeMultiplier = ratios[sizeIndex];
     return basePrice / typeMultiplier;
   }

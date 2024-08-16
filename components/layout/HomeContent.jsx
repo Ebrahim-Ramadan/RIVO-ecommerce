@@ -12,7 +12,6 @@ import { Suspense } from 'react';
 
 export function HomeContent() {
   const { frames, loading } = useFrames()
-  
   if (loading) {
     return <div className="min-h-screen w-full flex-col flex justify-center items-center">
       <LoadingDots/>
@@ -28,7 +27,7 @@ export function HomeContent() {
       <Slider/>
       <ThreeItemGrid data={frames}/>
       <MarqueeBanner/>
-      <ThreeItemGrid data={frames}/>
+      {/* <ThreeItemGrid data={frames}/> */}
 
       <LazyLoad>
         <Suspense fallback={

@@ -11,8 +11,8 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 
 export default async function Page({params}) {
-
   const data = await getData(params.id)
+  console.log('data', data);
   if (!data) {
       return (
           <NoResults shopNow={true}/>
@@ -21,7 +21,7 @@ export default async function Page({params}) {
   return (
     <>
        <div className="mx-auto max-w-screen-2xl px-2 md:px-16 bg-black">
-        <div className="flex flex-col rounded-lg border border-neutral-200 bg-white px-4 md:p-12 lg:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
+        <div className="flex flex-col rounded-lg border border-neutral-200 px-4 md:p-12 lg:flex-row lg:gap-16 border-neutral-800 bg-black">
           <div className="h-full w-full basis-full lg:basis-4/6">
          <ProductNav FrameId={params.id}/>
 
@@ -31,7 +31,7 @@ export default async function Page({params}) {
               }
             >
               <Gallery
-                images={data['images'].map((image) => ({
+                images={data['images']?.map((image) => ({
                   src: image,
                   altText: 'frame alt'
                 }))}
@@ -65,13 +65,13 @@ async function RelatedProducts({ keyword , relatedID}) {
   if (!relatedProducts.length) return null;
 
   return (
-    <div className="py-8">
-      <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
+    <div className="p-4 w-full">
+      <h2 className="mb-2 text-2xl font-bold">Related Products</h2>
       <ul className="flex w-full gap-4 overflow-x-auto py-2">
         {relatedProducts.map((product) => (
           <li
             key={product.id}
-            className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
+            className="relative aspect-square h-[38vh] max-h-[275px] w-3/4 max-w-[475px] flex-none md:w-1/3 "
           >
             <Link
               className="relative h-full w-full"

@@ -4,13 +4,14 @@ import { GridTileImage } from '@/components/grid/tile';
 import Link from 'next/link';
 
 export default function ProductGridItems({ frames }) {
+  console.log('frames', frames);
   return (
     <>
       {frames.map((frame) => (
         <Grid.Item key={frame.id} className="animate-fadeIn">
           <Link
             className="relative inline-block h-full w-full"
-            href={`/frame/${frame.id}?type=${frame.types[0]}&size=${frame.sizes[0]}`}
+            href={`/frame/${frame.id}?type=${frame.type[0]}&size=${frame.sizes[0]}&color=${frame.color[0]}`}
             prefetch={true}
           >
             <GridTileImage

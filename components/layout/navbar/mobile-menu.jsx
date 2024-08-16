@@ -7,6 +7,40 @@ import alreadyInCart from '@/public/assets/already-in-cart.svg';
 import {  DollarSign, SearchIcon, X,  } from 'lucide-react';
 import Search, { SearchSkeleton } from './search';
 import Image from 'next/image';
+import Link from 'next/link';
+
+const categories = [
+  {
+    name: 'All',
+    slug: 'all',
+    icon: '/categories/all.svg' 
+  },
+  {
+    name: 'Movies',
+    slug: 'movies',
+    icon: '/categories/movies.svg' 
+  },
+  {
+    name: 'Series',
+    slug: 'series',
+    icon: '/categories/series.svg' 
+  },
+  {
+    name: 'Music',
+    slug: 'music',
+    icon: '/categories/music.svg' 
+  },
+  {
+    name: 'Superheroes',
+    slug: 'superheroes',
+    icon: '/categories/superheros.svg' 
+  },
+  {
+    name: 'Vinyl Frames',
+    slug: 'vinyl-frames',
+    icon: '/categories/Vinyl Frames.svg' 
+  }
+];
 
 export default function MobileMenu() {
   const pathname = usePathname();
@@ -78,11 +112,25 @@ export default function MobileMenu() {
                   </Suspense>
                 </div>
                 
+                <div className="flex flex-col gap-2">
+{categories.map((category) => (
+  <Link href={`/categories/${category.slug}`} key={category.slug} className="text-lg flex items-center justify-start flex-row gap-4 font-meidum bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
+   <Image
+   src={category.icon}
+   width={24}
+   height={24}
+   alt="location"
+   />
+   {category.name}
+
+  </Link>
+))}
+                </div>
                
               </div>
               <div className="flex items-center justify-center w-full flex-row gap-2">
               <div className="flex flex-row">
-                <a href='/orders' preload='true' className="flex items-center justify-center flex-row gap-2 text-sm font-meidum bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
+                <a href='/orders' preload='true' className="flex items-center justify-center flex-row gap-2 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
                  <Image
                  src={alreadyInCart}
                  width={16}
@@ -93,7 +141,7 @@ export default function MobileMenu() {
                 </a>
               </div>
               <div className="flex flex-row">
-                <a href='/pay' preload='true' className="flex items-center justify-center flex-row gap-2 text-sm font-meidum bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
+                <a href='/pay' preload='true' className="flex items-center justify-center flex-row gap-2 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
                  <DollarSign size='16'/>
                   Checkout
                 </a>
