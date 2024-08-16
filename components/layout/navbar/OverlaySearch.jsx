@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Search, X } from 'lucide-react';
+import { Search, X , ArrowRight} from 'lucide-react';
 
 export const OverlaySearch = () => {
   const searchParams = useSearchParams();
@@ -38,15 +38,15 @@ export const OverlaySearch = () => {
   return (
     <>
       <button onClick={() => setIsSearchOpen(true)}
-        className="flex items-center justify-center px-2 ">
+        className="flex items-center justify-center px-2 md:hidden">
         <Search />
       </button>
       
       {isSearchOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 p-6">
-          <div ref={searchRef} className="flex flex-col items-center bg-black">
-            <button onClick={() => setIsSearchOpen(false)} className="flex flex-row items-center justify-end w-full bg-black ">
-              <X size={24} className='rounded-lg border border-neutral-800 ' />
+        <div className="fixed inset-0 z-50 bg-black/80 p-2">
+          <div ref={searchRef} className="flex flex-col items-center bg-black p-4">
+            <button onClick={() => setIsSearchOpen(false)} className="flex flex-row items-center justify-end w-full bg-black py-4">
+              <X size={24}  />
             </button>
             <div className="flex items-center bg-black w-full">
               <div className="w-max-[550px] relative w-full">
@@ -74,7 +74,7 @@ export const OverlaySearch = () => {
                 className="flex items-center text-lg font-semibold justify-between w-full bg-black mt-4"
               >
                 <span>Search for &ldquo;{searchTerm}&rdquo;</span> 
-                <Search size={20} className="ml-2" />
+                <ArrowRight size={20} className="ml-2" />
               </button>
             }
           </div>

@@ -3,13 +3,13 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, Suspense, useEffect, useState } from 'react';
-import alreadyInCart from '@/public/assets/already-in-cart.svg';
-import { DollarSign, X, ArrowLeft } from 'lucide-react';
+import {  X, ArrowLeft } from 'lucide-react';
 import Search, { SearchSkeleton } from './search';
 import Image from 'next/image';
 import Eclipse from '@/public/assets/Eclipse.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { OrdersAndCheckout } from './OrdersAndCheckout';
 
 const FramedCategories = [
   { name: 'Movies', slug: '/movies', icon: '/categories/movies.svg' },
@@ -131,20 +131,7 @@ export default function MobileMenu() {
                   </div>
                  
                 </div>
-                <div className="flex items-center justify-center w-full flex-row gap-2">
-                  <div className="flex flex-row">
-                    <a href='/orders' preload='true' className="flex items-center justify-center flex-row gap-2 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
-                      <Image src={alreadyInCart} width={16} height={16} alt="cart icon" />
-                      Orders
-                    </a>
-                  </div>
-                  <div className="flex flex-row">
-                    <a href='/pay' preload='true' className="flex items-center justify-center flex-row gap-2 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
-                      <DollarSign size='16'/>
-                      Checkout
-                    </a>
-                  </div>
-                </div>
+                <OrdersAndCheckout/>
               </div>
             </Dialog.Panel>
           </Transition.Child>
