@@ -30,7 +30,7 @@ export const VinylsProducts = () => {
   }, []);
 
   if (loading) {
-    return <LoadingDots/>;
+    return <div className="flex w-full justify-center"><LoadingDots/></div>;
   }
 
   return (

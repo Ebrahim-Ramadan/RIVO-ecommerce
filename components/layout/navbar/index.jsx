@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import { DMBanner } from './DMBanner';
 import MobileMenu from './mobile-menu';
+import OverlaySearch from './OverlaySearch';
 import Search, { SearchSkeleton } from './search';
 
 export default  function Navbar() {
@@ -49,6 +50,8 @@ export default  function Navbar() {
           </Suspense>
         </div>
         <div className="flex justify-end md:w-1/3">
+        <OverlaySearch/>
+
           <Suspense fallback={<OpenCart />}>
             <Cart />
           </Suspense>
