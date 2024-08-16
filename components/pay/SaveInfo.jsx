@@ -26,7 +26,7 @@ export default function SaveInfo({formData}) {
         htmlFor="link-checkbox" 
         className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
       >
-        Save Info and Remember for next time
+        Save Info and Remember for next times
       </label>
     </div>
   );
