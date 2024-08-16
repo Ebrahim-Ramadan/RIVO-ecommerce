@@ -35,7 +35,7 @@ export const VinylsProducts = () => {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-4 capitalize">Vinyls</h1>
+      <h1 className="text-4xl font-bold mb-4 px-2 capitalize">Vinyls</h1>
       {frames?.length > 0 ? (
         <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <ProductGridItems frames={frames.slice(10, 40)} />

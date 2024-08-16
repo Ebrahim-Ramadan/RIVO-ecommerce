@@ -6,7 +6,7 @@ import ProductGridItems from "@/components/layout/product-grid-items";
 import LoadingDots from './loading-dots';
 
 export const CategoriesLayout = ({ category }) => {
-  console.log('category', category);
+
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +22,7 @@ export const CategoriesLayout = ({ category }) => {
           if (Array.isArray(dataArray)) {
             const filteredData = dataArray.filter(item => 
               item.categories && item.categories.some(cat => 
-                cat.toLowerCase() === category.toLowerCase()
+                cat.toLowerCase().replace(/-/g, ' ') === category.toLowerCase().replace(/-/g, ' ')
               )
             );
             console.log('filteredData', filteredData);
@@ -48,12 +48,12 @@ export const CategoriesLayout = ({ category }) => {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4">
+    <div className="mx-auto max-w-7xl px-2">
       <h1 className="text-4xl font-bold mb-4 capitalize">
-        {category === 'musics' ? category.slice(0, -1) : category}
+        {category === 'musics' ? category.slice(0, -1) : category.replace(/-/g, ' ')}
       </h1>
       {categories.length > 0 ? (
-        <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <Grid className="grid-cols-1">
           <ProductGridItems frames={categories} />
         </Grid>
       ) : (

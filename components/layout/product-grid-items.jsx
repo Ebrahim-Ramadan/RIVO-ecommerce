@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function ProductGridItems({ frames }) {
   console.log('frames', frames);
   return (
-    <>
+    <div className='grid grid-cols-2 gap-2 sm:gap-6'>
       {frames.map((frame) => (
         <Grid.Item key={frame.id} className="animate-fadeIn">
           <Link
@@ -19,7 +19,7 @@ export default function ProductGridItems({ frames }) {
               label={{
                 title: frame.name,
                 amount: frame.price,
-                currencyCode: 'EGP'
+                currencyCode: 'EG'
               }}
               src={frame.images[0]}
               fill
@@ -28,6 +28,6 @@ export default function ProductGridItems({ frames }) {
           </Link>
         </Grid.Item>
       ))}
-    </>
+    </div>
   );
 }

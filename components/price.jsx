@@ -7,7 +7,7 @@ const Price = ({
 }) => (
   <p suppressHydrationWarning={true} className={className}>
   
-    <span className={clsx('ml-1 inline', )}>{`${currencyCode} ${parseFloat(amount)}`}</span>
+    <span className={clsx('ml-1 inline text-xs', )}>{`${currencyCode} ${parseFloat(amount)}`}</span>
   </p>
 );
 
