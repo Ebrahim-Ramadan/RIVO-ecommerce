@@ -27,7 +27,7 @@ const categories = [
   },
   {
     name: 'Music',
-    slug: 'music',
+    slug: 'musics',
     icon: '/categories/music.svg' 
   },
   {
