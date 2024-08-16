@@ -13,7 +13,7 @@ const resultsText = frames.length > 1 ? 'results' : 'result';
       {query ? (
         <p className="mb-4">
           {frames.length === 0
-            ? 'No frames matching '
+            ? 'No Products matching '
             : `Showing ${frames.length} ${resultsText} for `}
           <span className="font-bold">&quot;{query}&quot;</span>
         </p>

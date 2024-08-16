@@ -4,48 +4,35 @@ import { Dialog, Transition } from '@headlessui/react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, Suspense, useEffect, useState } from 'react';
 import alreadyInCart from '@/public/assets/already-in-cart.svg';
-import {  DollarSign, SearchIcon, X,  } from 'lucide-react';
+import { DollarSign, X } from 'lucide-react';
 import Search, { SearchSkeleton } from './search';
 import Image from 'next/image';
-import Link from 'next/link';
 
-const categories = [
-  {
-    name: 'All',
-    slug: 'all',
-    icon: '/categories/all.svg' 
-  },
-  {
-    name: 'Movies',
-    slug: 'movies',
-    icon: '/categories/movies.svg' 
-  },
-  {
-    name: 'Series',
-    slug: 'series',
-    icon: '/categories/series.svg' 
-  },
-  {
-    name: 'Music',
-    slug: 'musics',
-    icon: '/categories/music.svg' 
-  },
-  {
-    name: 'Superheroes',
-    slug: 'superheroes',
-    icon: '/categories/superheros.svg' 
-  },
-  {
-    name: 'Vinyl Frames',
-    slug: 'vinyl-frames',
-    icon: '/categories/Vinyl Frames.svg' 
-  }
+import Eclipse from '@/public/assets/Eclipse.svg';
+import { VinylsProducts } from '../VinylsProducts';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+const FramedCategories = [
+  { name: 'All', slug: "all", icon: '/categories/all.svg' },
+  { name: 'Movies', slug: '/movies', icon: '/categories/movies.svg' },
+  { name: 'Series', slug: '/series', icon: '/categories/series.svg' },
+  { name: 'Music', slug: '/musics', icon: '/categories/music.svg' },
+  { name: 'Superheroes', slug: '/superheroes', icon: '/categories/superheros.svg' },
+  { name: 'Vinyl Frames', slug: '/vinyl-frames', icon: '/categories/Vinyl Frames.svg' }
+];
+const OutCategories = [
+  { name: 'Framed Posters',  icon: '/categories/Vinyl Frames.svg' },
+  { name: 'Vinyls',  icon: '/categories/all.svg' , slug:'/search/VinylsProducts'},
 ];
 
 export default function MobileMenu() {
+  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(null);
+
   const openMobileMenu = () => setIsOpen(true);
   const closeMobileMenu = () => setIsOpen(false);
 
@@ -60,9 +47,23 @@ export default function MobileMenu() {
   }, [isOpen]);
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname, searchParams]);
+    if (activeCategory) {
+      setIsOpen(false); // Close the current mobile menu
+    }
+  }, [activeCategory]);
 
+  const handleCategoryClick = (category) => {
+    if(category.slug == '/search/VinylsProducts'){
+      router.push('/search/VinylsProducts');
+    }
+    setActiveCategory(category.name);
+
+  };
+  useEffect(() => {
+    setActiveCategory(false);
+    setIsOpen(false); // Close the current mobile menu
+
+  }, [pathname, searchParams]);
   return (
     <>
       <button
@@ -70,9 +71,9 @@ export default function MobileMenu() {
         aria-label="Open mobile menu"
         className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white"
       >
-        {/* <Ellipsis className="h-4" /> */}
-        <SearchIcon/>
+        <Image src={Eclipse} width={24} height={24} alt="menu" />
       </button>
+
       <Transition show={isOpen}>
         <Dialog onClose={closeMobileMenu} className="relative z-50">
           <Transition.Child
@@ -97,56 +98,108 @@ export default function MobileMenu() {
           >
             <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-black">
               <div className="w-full flex flex-col items-center justify-between h-full">
-              <div className="p-4 w-full">
-                <button
-                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
-                  onClick={closeMobileMenu}
-                  aria-label="Close mobile menu"
-                >
-                  <X className="h-6" />
-                </button>
+                <div className="p-4 w-full">
+                  <button
+                    className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
+                    onClick={closeMobileMenu}
+                    aria-label="Close mobile menu"
+                  >
+                    <X className="h-6" />
+                  </button>
 
-                <div className="mb-4 w-full">
-                  <Suspense fallback={<SearchSkeleton />}>
-                    <Search />
-                  </Suspense>
+                  <div className="mb-4 w-full">
+                    <Suspense fallback={<SearchSkeleton />}>
+                      <Search />
+                    </Suspense>
+                  </div>
+                  
+                  <div className="flex flex-col gap-2">
+                    {OutCategories.map((category) => (
+                      <button
+                        key={category.slug}
+                        onClick={() => handleCategoryClick(category)}
+                        className="text-lg flex items-center justify-start flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
+                      >
+                        <Image src={category.icon} width={24} height={24} alt="category icon" />
+                        {category.name}
+                      </button>
+                    ))}
+                  </div>
+                 
                 </div>
-                
-                <div className="flex flex-col gap-2">
-{categories.map((category) => (
-  <Link href={`/categories/${category.slug}`} key={category.slug} className="text-lg flex items-center justify-start flex-row gap-4 font-meidum bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
-   <Image
-   src={category.icon}
-   width={24}
-   height={24}
-   alt="location"
-   />
-   {category.name}
+                <div className="flex items-center justify-center w-full flex-row gap-2">
+                  <div className="flex flex-row">
+                    <a href='/orders' preload='true' className="flex items-center justify-center flex-row gap-2 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
+                      <Image src={alreadyInCart} width={16} height={16} alt="cart icon" />
+                      Orders
+                    </a>
+                  </div>
+                  <div className="flex flex-row">
+                    <a href='/pay' preload='true' className="flex items-center justify-center flex-row gap-2 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
+                      <DollarSign size='16'/>
+                      Checkout
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Dialog.Panel>
+          </Transition.Child>
+        </Dialog>
+      </Transition>
 
-  </Link>
-))}
+      {/* New Category Dialog */}
+      <Transition show={!!activeCategory}>
+        <Dialog onClose={() => setActiveCategory(null)} className="relative z-50">
+          <Transition.Child
+            as={Fragment}
+            enter="transition-all ease-in-out duration-300"
+            enterFrom="opacity-0 backdrop-blur-none"
+            enterTo="opacity-100 backdrop-blur-[.5px]"
+            leave="transition-all ease-in-out duration-200"
+            leaveFrom="opacity-100 backdrop-blur-[.5px]"
+            leaveTo="opacity-0 backdrop-blur-none"
+          >
+            <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+          </Transition.Child>
+          <Transition.Child
+            as={Fragment}
+            enter="transition-all ease-in-out duration-300"
+            enterFrom="translate-x-[-100%]"
+            enterTo="translate-x-0"
+            leave="transition-all ease-in-out duration-200"
+            leaveFrom="translate-x-0"
+            leaveTo="translate-x-[-100%]"
+          >
+            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-black">
+              <div className="w-full flex flex-col items-center justify-between h-full">
+                <div className="p-4 w-full">
+                  <button
+                    className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
+                    onClick={() => setActiveCategory(null)}
+                    aria-label="Close category dialog"
+                  >
+                    <X className="h-6" />
+                  </button>
+
+                  {/* Render content specific to the active category */}
+                  {activeCategory !=='Vinyls' &&
+                (
+                  <div className="flex flex-col gap-2">
+                    {FramedCategories.map((category) => (
+                      <Link
+                      
+                        key={category.slug}
+                        href={`/categories/${category.slug}`}
+                        className="text-lg flex items-center justify-start flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
+                      >
+                        <Image src={category.icon} width={24} height={24} alt="category icon" />
+                        {category.name}
+                      </Link>
+                    ))}
+                  </div>
+                )
+                }
                 </div>
-               
-              </div>
-              <div className="flex items-center justify-center w-full flex-row gap-2">
-              <div className="flex flex-row">
-                <a href='/orders' preload='true' className="flex items-center justify-center flex-row gap-2 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
-                 <Image
-                 src={alreadyInCart}
-                 width={16}
-                 height={16}
-                 alt="location"
-                 />
-                  Orders
-                </a>
-              </div>
-              <div className="flex flex-row">
-                <a href='/pay' preload='true' className="flex items-center justify-center flex-row gap-2 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer">
-                 <DollarSign size='16'/>
-                  Checkout
-                </a>
-              </div>
-              </div>
               </div>
             </Dialog.Panel>
           </Transition.Child>
