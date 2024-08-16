@@ -16,11 +16,17 @@ export default function Search() {
   
     if (search.value) {
       newParams.set('q', search.value);
+      
+      // Update recent search keywords in localStorage
+      const recentSearchKeywords = JSON.parse(localStorage.getItem('recent-search-keywords')) || [];
+      if (!recentSearchKeywords.includes(search.value) && recentSearchKeywords.length > 0) {
+        recentSearchKeywords.push(search.value);
+        localStorage.setItem('recent-search-keywords', JSON.stringify(recentSearchKeywords));
+      }
     } else {
       newParams.delete('q');
     }
-  
-    // Add this line to redirect
+    
     router.push(`/search?${newParams.toString()}`);
   }
 
@@ -33,7 +39,7 @@ export default function Search() {
         placeholder="Search for products..."
         autoComplete="off"
         defaultValue={searchParams?.get('q') || ''}
-        className="w-full rounded-lg border  px-4 py-2 text-sm text-black placeholder:text-neutral-500 border-neutral-800 bg-transparent text-white placeholder:text-neutral-400"
+        className="w-full rounded-lg border px-4 py-2 text-sm text-black placeholder:text-neutral-500 border-neutral-800 bg-transparent text-white placeholder:text-neutral-400"
       />
       <div className="absolute right-0 top-0 mr-3 flex h-full items-center">
         <SearchIcon className="h-4" />
