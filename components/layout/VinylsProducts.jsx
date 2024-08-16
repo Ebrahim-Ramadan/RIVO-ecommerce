@@ -38,7 +38,7 @@ export const VinylsProducts = () => {
       <h1 className="text-4xl font-bold mb-4 capitalize">Vinyls</h1>
       {frames?.length > 0 ? (
         <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          <ProductGridItems frames={frames} />
+          <ProductGridItems frames={frames.slice(10, 40)} />
         </Grid>
       ) : (
         <NoResults text='No Results' shopNow={true} />

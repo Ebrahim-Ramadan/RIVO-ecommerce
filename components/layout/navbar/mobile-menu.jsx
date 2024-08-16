@@ -9,12 +9,10 @@ import Search, { SearchSkeleton } from './search';
 import Image from 'next/image';
 
 import Eclipse from '@/public/assets/Eclipse.svg';
-import { VinylsProducts } from '../VinylsProducts';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const FramedCategories = [
-  { name: 'All', slug: "all", icon: '/categories/all.svg' },
   { name: 'Movies', slug: '/movies', icon: '/categories/movies.svg' },
   { name: 'Series', slug: '/series', icon: '/categories/series.svg' },
   { name: 'Music', slug: '/musics', icon: '/categories/music.svg' },
@@ -57,7 +55,6 @@ export default function MobileMenu() {
       router.push('/search/VinylsProducts');
     }
     setActiveCategory(category.name);
-
   };
   useEffect(() => {
     setActiveCategory(false);
