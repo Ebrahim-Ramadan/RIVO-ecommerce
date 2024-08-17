@@ -52,9 +52,9 @@ export  function ThreeItemGrid({data}) {
     </div>
 
 <section className=" grid gap-4  pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]">
-  <ThreeItemGridItem size="full" item={data[Math.floor(Math.random() * 100) + 1]} priority={true} />
-  <ThreeItemGridItem size="half" item={data[Math.floor(Math.random() * 100) + 1]} priority={true} />
-  <ThreeItemGridItem size="half" item={data[Math.floor(Math.random() * 100) + 1]} />
+  <ThreeItemGridItem size="full" item={data[Math.floor(Math.random() * 18) + 1]} priority={true} />
+  <ThreeItemGridItem size="half" item={data[Math.floor(Math.random() * 18) + 1]} priority={true} />
+  <ThreeItemGridItem size="half" item={data[Math.floor(Math.random() * 18) + 1]} />
 </section>
  </div>
   );

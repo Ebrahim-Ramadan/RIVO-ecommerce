@@ -94,8 +94,7 @@ export const FilteredCategoriesLayout = ({ category }) => {
       <Menu.Button className="inline-flex w-full justify-end rounded-xl bg-black bg-opacity-20 px-4 text-sm font-medium text-white hover:bg-opacity-30">
         Filters
         <ListFilter
-          className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
-          aria-hidden="true"
+          className="ml-2 -mr-1 h-5 w-5 "
         />
       </Menu.Button>
       <Transition
