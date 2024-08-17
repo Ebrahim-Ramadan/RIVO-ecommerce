@@ -16,10 +16,11 @@ const FramedCategories = [
   { name: 'Series', slug: '/series', icon: '/categories/series.svg' },
   { name: 'Music', slug: '/musics', icon: '/categories/music.svg' },
   { name: 'Superheroes', slug: '/superheroes', icon: '/categories/superheros.svg' },
-  { name: 'Framed vinyls', slug: '/Framed-vinyls', icon: '/categories/Vinyl Frames.svg' }
 ];
 const OutCategories = [
+  { name: 'Best Sellers',  icon: '/categories/best-selling.png' , slug:'/'},
   { name: 'Framed Posters',  icon: '/categories/Vinyl Frames.svg' },
+  { name: 'Framed vinyls', slug: '/categories/Framed-vinyls', icon: '/categories/framed-vinyls.svg' },
   { name: 'Vinyls',  icon: '/categories/all.svg' , slug:'/categories/vinyls'},
 ];
 
@@ -53,8 +54,17 @@ export default function MobileMenu() {
     if (category.slug === '/categories/vinyls') {
       router.push('/categories/vinyls');
     }
-    setActiveCategory(category.name);
-  };
+    if (category.slug === '/categories/Framed-vinyls') {
+      router.push('/categories/Framed-vinyls');
+    }
+    if (category.slug === '/') {
+      router.push('/');
+    }
+    else{
+      setActiveCategory(category.name);
+      setIsOpen(false);      
+    }
+    };
 
   const handleBackToMain = () => {
     setActiveCategory(null); // Close the child dialog
