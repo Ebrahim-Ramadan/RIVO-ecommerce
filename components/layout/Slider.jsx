@@ -105,7 +105,7 @@ export const Slider = () => {
                 onError={() => handleImageLoad(slide.id)}
               />
               <div className="absolute text-white inset-0 flex flex-col h-full justify-start py-2 items-center">
-                <div className="font-bold text-xl md:text-2xl px-4 py-2 bg-black/40 transition duration-200 backdrop-blur-[8px] rounded-full">
+                <div className="font-bold  md:text-2xl px-4 py-2 bg-black/40 transition duration-200 backdrop-blur-[8px] rounded-full">
                   {slide.text}
                 </div>
                 {/* <button className="font-bold text-xl px-4 py-2 bg-black/50 hover:bg-black/80 transition duration-200 backdrop-blur-[2px] rounded-full">

@@ -1,56 +1,20 @@
-'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Grid from "@/components/grid";
 import { NoResults } from "@/components/layout/navbar/NoResults";
 import ProductGridItems from "@/components/layout/product-grid-items";
-import LoadingDots from './loading-dots';
 
-export const CategoriesLayout = ({ category }) => {
 
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
+export const CategoriesLayout = ({ category , categories}) => {
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      setLoading(true);
-      try {
-        const cachedFrames = localStorage.getItem('cachedFrames');
 
-        if (cachedFrames) {
-          const dataArray = JSON.parse(cachedFrames);
-          console.log('dataArray', dataArray);
-          if (Array.isArray(dataArray)) {
-            const filteredData = dataArray.filter(item => 
-              item.categories && item.categories.some(cat => 
-                cat.toLowerCase().replace(/-/g, ' ') === category.toLowerCase().replace(/-/g, ' ')
-              )
-            );
-            console.log('filteredData', filteredData);
-            setCategories(filteredData);
-          } else {
-            console.error('Cached data is not an array');
-          }
-        } else {
-          console.error('No data found in localStorage');
-        }
-      } catch (error) {
-        console.error('Failed to parse cached data', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, [category]); // Add `category` to the dependency array if you expect it to change
-
-  if (loading) {
-    return <div className="flex items-center justify-center w-full h-full"><LoadingDots/></div>;
-  }
 
   return (
-    <div className="w-full px-2">
-      <h1 className="text-4xl font-bold mb-4 px-2 capitalize">
-        {category === 'musics' ? category.slice(0, -1) : category.replace(/-/g, ' ')}
+    <div className="w-full p-2">
+              <div class="absolute w-[150px] h-[150px] bg-white/85 blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
+
+      <h1 className="flex flex-row items-center w=full justify-between  mb-4 px-2 capitalize">
+       <p className='text-2xl font-bold'> {category === 'musics' ? category.slice(0, -1) : category.replace(/-/g, ' ')}</p>
+        <span>{categories.length > 0 ? ` (${categories.length})` : ''}</span>
       </h1>
       {categories.length > 0 ? (
         <Grid className="grid-cols-1">

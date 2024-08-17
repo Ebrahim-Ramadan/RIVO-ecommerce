@@ -20,7 +20,7 @@ const FramedCategories = [
 ];
 const OutCategories = [
   { name: 'Framed Posters',  icon: '/categories/Vinyl Frames.svg' },
-  { name: 'Vinyls',  icon: '/categories/all.svg' , slug:'/search/VinylsProducts'},
+  { name: 'Vinyls',  icon: '/categories/all.svg' , slug:'/categories/vinyls'},
 ];
 
 export default function MobileMenu() {
@@ -50,8 +50,8 @@ export default function MobileMenu() {
   }, [activeCategory]);
 
   const handleCategoryClick = (category) => {
-    if (category.slug === '/search/VinylsProducts') {
-      router.push('/search/VinylsProducts');
+    if (category.slug === '/categories/vinyls') {
+      router.push('/categories/vinyls');
     }
     setActiveCategory(category.name);
   };

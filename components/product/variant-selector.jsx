@@ -78,7 +78,7 @@ export function VariantSelector({ sizes, colors, types, prices }) {
               return (
                 <button
                   key={value}
-                  aria-disabled={!isAvailableForSale}
+                  aria-disabled={!isAvailableForSale} 
                   disabled={!isAvailableForSale}
                   onClick={() => {
                     router.replace(optionUrl, { scroll: false });

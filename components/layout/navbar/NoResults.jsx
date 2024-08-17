@@ -2,7 +2,7 @@ import React from 'react'
 import { SearchX } from 'lucide-react'
 export const NoResults = ({ shopNow}) => {
   return (
-    <div className='flex items-center justify-center flex-col gap-4 py-16 text-center'>
+    <div className='min-h-screen flex items-center justify-center flex-col gap-4 text-center'>
         <SearchX/>
 
 {shopNow &&

@@ -37,7 +37,6 @@ function ThreeItemGridItem({
 }
 
 export  function ThreeItemGrid({data}) {
-  
   return (
  <div className='w-full gap-2 flex flex-col mt-2'>
   
@@ -53,9 +52,9 @@ export  function ThreeItemGrid({data}) {
     </div>
 
 <section className=" grid gap-4  pb-4 md:grid-cols-6 md:grid-rows-2 lg:max-h-[calc(100vh-200px)]">
-  <ThreeItemGridItem size="full" item={data[0]} priority={true} />
-  <ThreeItemGridItem size="half" item={data[1]} priority={true} />
-  <ThreeItemGridItem size="half" item={data[2]} />
+  <ThreeItemGridItem size="full" item={data[Math.floor(Math.random() * 100) + 1]} priority={true} />
+  <ThreeItemGridItem size="half" item={data[Math.floor(Math.random() * 100) + 1]} priority={true} />
+  <ThreeItemGridItem size="half" item={data[Math.floor(Math.random() * 100) + 1]} />
 </section>
  </div>
   );
