@@ -40,13 +40,11 @@ export  function ThreeItemGrid({data}) {
   
   return (
  <div className='w-full gap-2 flex flex-col mt-2'>
-  {/* < div className="py-4 flex flex-row justify-center w-full  text-center" >
-      <div className="bg-gradient-to-r from-transparent via-white/40 to-transparent w-full  h-[2px] opacity-80"></div>
-    </div > */}
-    <div class="flex items-center justify-between">
-  <div class="h-0.5 bg-blue-400 w-1/5"></div>
-  <h2 class="mx-2 text-xl font-bold">FEATURING</h2>
-  <div class="h-0.5 bg-blue-400 w-1/5"></div>
+  
+    <div className="flex items-center justify-between">
+  <div className="h-0.5 bg-blue-400 w-1/5"></div>
+  <h2 className="mx-2 text-xl font-bold">FEATURING</h2>
+  <div className="h-0.5 bg-blue-400 w-1/5"></div>
 </div>
     <div className='flex font-bold flex-row items-center justify-end w-full px-2'>
 <p className='rounded-full bg-blue-600 px-2 py-1 text-white text-xs md:text-sm'>

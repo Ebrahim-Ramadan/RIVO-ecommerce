@@ -1,10 +1,15 @@
 import clsx from 'clsx';
 
 const Prose = ({ html, className }) => {
-  // Split the html content by newline characters and create bullet points
+  // Function to replace special characters with a dot
+  const replaceSpecialChars = (text) => {
+    return text.replace(/[^\w\s]/g, ''); // Replace any character that is not a word character or whitespace with a dot
+  };
+
+  // Split the html content by newline characters, replace special characters, and create bullet points
   const processedHtml = html
     .split('\n')
-    .map((item) => `<li>${item.trim()}</li>`)
+    .map((item) => `<li>${replaceSpecialChars(item.trim())}</li>`)
     .join('');
 
   // Wrap the processed content in a <ul> element
@@ -12,7 +17,7 @@ const Prose = ({ html, className }) => {
 
   return (
     <div
-      className={clsx( 
+      className={clsx(
         'py-6 capitalize prose ',
         className
       )}

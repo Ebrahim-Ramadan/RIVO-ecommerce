@@ -6,10 +6,8 @@ import TopLoadingIndicator from '@/components/layout/navbar/TopLoadingIndicator'
 import { Suspense } from 'react';
 import LoadingDots from '@/components/loading-dots';
 import { FixedBottoms } from '@/components/layout/FixedBottoms';
-const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-  : 'http://localhost:3000';
 
+export const revalidate = 360000;
 
 
   export const metadata = {

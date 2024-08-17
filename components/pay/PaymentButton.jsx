@@ -210,7 +210,7 @@ console.log('response', response);
             ) : (
               <button
                 onClick={handlePayment}
-                className='my-2 text-center rounded-full text-black py-1 font-bold w-full bg-white'
+                className='py-2 mb-2 text-center rounded-full text-black py-1 font-bold w-full bg-white'
                 disabled={selectedOption === null}
               >
                 Place Order EGP {totalPrice}
@@ -221,7 +221,7 @@ console.log('response', response);
           <p className='text-center text-red-500 text-sm py-4'>Empty Cart or Payment Failed, refresh and try again</p>
         )
       )}
-      <div className="bg-gray-900 text-gray-300 py-8 p-4 rounded-lg max-w-md">
+      <div className="bg-gray-900 text-gray-300 mt-8 p-4 rounded-lg max-w-md">
         <p className="text-sm mb-4">
           By placing your order, you agree to RIVO&apos;s
           <a href="/privacyandpolicy" className="text-blue-500 hover:underline"> privacy note</a> and 

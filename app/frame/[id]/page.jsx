@@ -10,6 +10,7 @@ import {   getProductDetails, searchFrames } from '@/lib/utils';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
+export const revalidate = 360000;
 export default async function Page({params}) {
   const data = await getData(params.id)
   console.log('data', data);
@@ -43,6 +44,8 @@ export default async function Page({params}) {
             <ProductDescription product={data} />
           </div>
         </div>
+        <div class="flex flex-row justify-center w-full text-center py-24"
+        ><div class="bg-gradient-to-r from-black via-[#B7B7B7] to-transparent w-full  h-[2px] opacity-40"></div></div>
         <LazyLoad>
         <RelatedProducts keyword={data.keywords[0]} relatedID={data.id} />
         </LazyLoad>

@@ -48,16 +48,16 @@ export const ClientPaymentForm = () => {
   useEffect(() => {
     const isValid = Object.entries(formData).every(([key, value]) => {
       if (key === 'specialMessage') return true;
-      if (key === 'phoneNumber') return value.length === 11;
+      if (key === 'phoneNumber') return value.length === 10|| value.length === 11;
       return value.trim() !== '';
     });
     setIsFormValid(isValid);
   }, [formData]);
 
   return (
-    <>
+    <div className='flex flex-col items-center justify-center w-full py-4'>
       <form onSubmit={handleSubmit} className="space-y-4 p-4 py-8 rounded-lg shadow-md w-full md:w-[400px]">
-        <div className='flex font-bold items-center self-start gap-2 flex-row'>
+        <div className='flex font-bold items-center self-start gap-4 flex-row'>
           <p className='w-6 h-6 p-2 flex flex-row items-center justify-center rounded-full bg-blue-600 px-2 py-1 text-white text-xs md:text-sm'>
             1
           </p>
@@ -71,7 +71,7 @@ export const ClientPaymentForm = () => {
               {field.charAt(0).toUpperCase() + field.slice(1)}
             </label>
             <input
-              type={field === 'email' ? 'email' : field === 'phoneNumber' ? 'tel' : 'text'}
+              type={field === 'email' ? 'email' : field === 'phoneNumber' ? 'number' : 'text'}
               id={field}
               name={field}
               value={formData[field]}
@@ -81,7 +81,7 @@ export const ClientPaymentForm = () => {
               className="mt-2 w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-600 dark:bg-transparent dark:text-white dark:placeholder:text-neutral-400"
             />
             {field === 'phoneNumber' && (
-              <p className='text-xs text-end px-2 py-1 text-neutral-400'>Must be 11 digits (Ex: 01102191344)</p>
+              <p className='text-xs text-end px-2 py-1 text-neutral-400'>Must be 10 or 11 digits (Ex: 01102191344)</p>
             )}
           </div>
         ))}
@@ -141,7 +141,14 @@ export const ClientPaymentForm = () => {
         </button> */}
       </form>
       
-      {isFormValid && <PayOptionsComponent formData={formData} />}
-    </>
+      {isFormValid ?
+       <PayOptionsComponent formData={formData} />
+      :<div className='flex flex-col items-center justify-center w-full'>
+        <p className='text-center text-red-200 font-medium'>
+          Please fill in all the details first
+        </p>
+       
+      </div>}
+    </div>
   );
 };

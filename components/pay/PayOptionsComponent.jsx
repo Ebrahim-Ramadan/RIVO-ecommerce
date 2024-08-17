@@ -31,7 +31,7 @@ export const PayOptionsComponent = ({ formData }) => {
 
   return (
     <div className="w-full md:w-[400px] p-4 rounded-lg shadow flex flex-col items-center justify-center gap-2">
-      <div className='flex font-bold items-center self-start gap-2 flex-row'>
+      <div className='flex font-bold items-center self-start gap-4 flex-row'>
         <p className='w-6 h-6 p-2 flex flex-row items-center justify-center rounded-full bg-blue-600 px-2 py-1 text-white text-xs md:text-sm'>
           2
         </p>
@@ -39,7 +39,7 @@ export const PayOptionsComponent = ({ formData }) => {
       </div>
 
       <p className="text-xs self-start text-wrap text-slate-400 pb-1 capitalize px-8">secured and provided by <a target='_blank' className='text-blue-500' href='https://paymob.com/'>Paymob</a></p>
-      <form className="space-y-4 rounded-lg shadow-md w-full md:w-[400px]">
+      <form className="space-y-4 rounded-lg shadow-md w-full md:w-[400px] py-4">
         {paymentOptions.map(({ id, logo, name }) => (
           <label
             key={id}
