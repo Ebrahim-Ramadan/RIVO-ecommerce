@@ -1,6 +1,5 @@
 import Footer from "@/components/layout/footer";
 import { ClientPaymentForm } from "@/components/pay/ClientPaymentForm";
-import { ArrowLeft } from "lucide-react";
 
 
 export const metadata = {
