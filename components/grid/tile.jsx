@@ -27,6 +27,11 @@ export function GridTileImage({
           className={clsx('relative h-full w-full object-contain rounded-lg ', {
             'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
           })}
+          onError={(e) => {
+            // Handle the error here
+            console.error('Image failed to load:', e);
+            e.target.src = '/path/to/default-image.jpg'; // Optional: Set a fallback image
+          }}
           {...props}
         />
       ) : null}
