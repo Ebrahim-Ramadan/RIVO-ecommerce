@@ -18,7 +18,7 @@ const FramedCategories = [
   { name: 'Superheroes', slug: '/superheroes', icon: '/categories/superheros.svg' },
 ];
 const OutCategories = [
-  { name: 'Best Sellers',  icon: '/categories/best-selling.png' , slug:'/'},
+  { name: 'Best Sellers',  icon: '/categories/best-selling.png' , slug:'/#BEST-SELLERS'},
   { name: 'Framed Posters',  icon: '/categories/Vinyl Frames.svg' },
   { name: 'Framed vinyls', slug: '/categories/Framed-vinyls', icon: '/categories/framed-vinyls.svg' },
   { name: 'Vinyls',  icon: '/categories/all.svg' , slug:'/categories/vinyls'},
@@ -57,8 +57,8 @@ export default function MobileMenu() {
     if (category.slug === '/categories/Framed-vinyls') {
       router.push('/categories/Framed-vinyls');
     }
-    if (category.slug === '/') {
-      router.push('/');
+    if (category.slug === '/#BEST-SELLERS') {
+      router.push('/#BEST-SELLERS');
     }
     else{
       setActiveCategory(category.name);

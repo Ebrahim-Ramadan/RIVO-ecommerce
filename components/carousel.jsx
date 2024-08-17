@@ -6,11 +6,11 @@ import { GridTileImage } from "./grid/tile";
 export  function Carousel({data}) {
   console.log('data', data);
   return (
-  <div className="flex flex-col w-full gap-4">
+  <div className="flex flex-col w-full gap-4 scroll-smooth scroll-mt-4"  id="BEST-SELLERS">
    
    <div class="flex items-center justify-between">
   <div class="h-0.5 bg-blue-400 w-1/5"></div>
-  <h2 class="mx-2 text-xl font-bold">BEST SELLERS</h2>
+  <a class="mx-2 text-xl font-bold scroll-smooth" href="#BEST-SELLERS">BEST SELLERS</a>
   <div class="h-0.5 bg-blue-400 w-1/5"></div>
 </div>
     <div className='flex font-bold flex-row items-center justify-end w-full px-2'>

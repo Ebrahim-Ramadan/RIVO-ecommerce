@@ -38,11 +38,11 @@ function ThreeItemGridItem({
 
 export  function ThreeItemGrid({data}) {
   return (
- <div className='w-full gap-2 flex flex-col mt-2'>
+ <div className='w-full gap-2 flex flex-col mt-2 scroll-smooth scroll-mt-4' id="FEATURING">
   
     <div className="flex items-center justify-between">
   <div className="h-0.5 bg-blue-400 w-1/5"></div>
-  <h2 className="mx-2 text-xl font-bold">FEATURING</h2>
+  <a className="mx-2 text-xl font-bold scroll-smooth" href="#FEATURING">FEATURING</a>
   <div className="h-0.5 bg-blue-400 w-1/5"></div>
 </div>
     <div className='flex font-bold flex-row items-center justify-end w-full px-2'>
