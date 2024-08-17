@@ -90,8 +90,8 @@ export default function Footer() {
            . All rights reserved.
           </p>
           <p className="md:ml-auto">
-            <a href="https://ebrahim-ramadan.vercel.app" className="text-neutral-400">
-              Crafted by Ebrahim Ramadan
+            <a href="https://ebrahim-ramadan.vercel.app" className="text-neutral-300 font-medium text-xs">
+              Crafted by Ebrahim Ramadan ⪩⪨︎
             </a>
           </p>
         </div>
