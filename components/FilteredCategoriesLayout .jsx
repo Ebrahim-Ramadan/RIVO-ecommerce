@@ -106,13 +106,14 @@ export const FilteredCategoriesLayout = ({ category }) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-2 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-xl bg-black/40 backdrop-blur-3xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-2 mt-8 w-56 origin-top-right divide-y divide-gray-100 rounded-xl bg-black/40 backdrop-blur-3xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1">
           <div 
                 onClick={(e) => e.stopPropagation()} 
                   className={`justify-start group flex flex-col rounded-xl px-2 py-2 gap-2 text-sm`}
                 >
                   <label className='self-start font-medium'>Price Range:</label>
+                  <div className='flex flex-row items-center gap-2 w-full'>
                   <input 
                     type="number" 
                     placeholder="Min" 
@@ -135,6 +136,7 @@ export const FilteredCategoriesLayout = ({ category }) => {
                     }}
                     className="w-full rounded-lg border px-4 py-2 text-sm text-black border-neutral-800 bg-neutral-600 text-white placeholder:text-neutral-200 "
                   />
+                  </div>
                 </div>
           </div>
           <div className="px-1 py-1">

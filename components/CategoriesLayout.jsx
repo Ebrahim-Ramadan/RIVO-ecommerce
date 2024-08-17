@@ -14,7 +14,7 @@ export const CategoriesLayout = ({ category , categories}) => {
 
       <h1 className="flex flex-row items-center w=full justify-between  mb-4 px-2 capitalize">
        <p className='text-2xl font-bold'> {category === 'musics' ? category.slice(0, -1) : category.replace(/-/g, ' ')}</p>
-        <span>{categories.length > 0 ? ` (${categories.length*2})` : ''}</span>
+        <span>{categories.length > 0 ? ` (${categories.length*2} products)` : ''}</span>
       </h1>
       {categories.length > 0 ? (
         <Grid className="grid-cols-1">
