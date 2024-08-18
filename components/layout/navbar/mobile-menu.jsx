@@ -10,6 +10,7 @@ import Eclipse from '@/public/assets/Eclipse.svg';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { OrdersAndCheckout } from './OrdersAndCheckout';
+import eventEmitter from '@/lib/eventEmitter';
 
 const FramedCategories = [
   { name: 'Movies', slug: '/movies', icon: '/categories/movies.svg' },
@@ -53,19 +54,26 @@ export default function MobileMenu() {
   const handleCategoryClick = (category) => {
     if (category.slug === '/categories/vinyls') {
       router.push('/categories/vinyls');
-      return
+      return;
     }
     if (category.slug === '/categories/Framed-vinyls') {
       router.push('/categories/Framed-vinyls');
-      return
+      return;
     }
     if (category.slug === '/#BEST-SELLERS') {
       router.push('/#BEST-SELLERS');
-      return
+      // Use setTimeout to delay the scroll action
+      setTimeout(() => {
+        const element = document.getElementById('BEST-SELLERS');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 200); // Small delay to ensure the navigation has completed
+      return;
     }
     setActiveCategory(category.name);
     setIsOpen(false);   
-    };
+  };
 
   const handleBackToMain = () => {
     setActiveCategory(null); // Close the child dialog
@@ -77,6 +85,13 @@ export default function MobileMenu() {
     setIsOpen(false); // Close the current mobile menu
   }, [pathname, searchParams]);
 
+  useEffect(() => {
+    eventEmitter.on('openLeftModal', openMobileMenu);
+
+    return () => {
+      eventEmitter.off('openLeftModal', openMobileMenu);
+    };
+  }, []);
   return (
     <>
       <button

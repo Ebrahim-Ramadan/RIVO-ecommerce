@@ -1,6 +1,8 @@
 'use client';
+import eventEmitter from '@/lib/eventEmitter';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { useState, useRef, useDeferredValue } from 'react';
 import LoadingDots from '../loading-dots';
 
@@ -23,6 +25,7 @@ const slides = [
 ];
 
 export const Slider = () => {
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadingStates, setLoadingStates] = useState(
     slides.reduce((acc, slide) => {
@@ -105,7 +108,20 @@ export const Slider = () => {
                 onError={() => handleImageLoad(slide.id)}
               />
               <div className="absolute text-white inset-0 flex flex-col h-full justify-start py-2 items-center">
-                <div className="font-bold  md:text-2xl px-4 py-2 bg-black/40 transition duration-200 backdrop-blur-[8px] rounded-full">
+                <div 
+                onClick={()=>{
+                  if (slide.text === 'Customized Posters') {
+                    router.push('https://www.instagram.com/rivoo_gallery?igsh=MThjOXNrY2pnemx3bw==');
+                    return
+                  }
+                  else if (slide.text === 'Our New Collection is Here') {
+                    eventEmitter.emit('openLeftModal'); // Emit event to open left dialog
+                    return
+                  }
+       
+
+                }}
+                className="font-bold  md:text-2xl px-4 py-2 bg-black/40 transition duration-200 backdrop-blur-[8px] rounded-full">
                   {slide.text}
                 </div>
                 {/* <button className="font-bold text-xl px-4 py-2 bg-black/50 hover:bg-black/80 transition duration-200 backdrop-blur-[2px] rounded-full">
