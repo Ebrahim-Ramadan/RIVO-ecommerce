@@ -25,7 +25,7 @@ export  function Carousel({data}) {
             key={`${frame['id']}`}
             className="relative aspect-square h-[38vh] max-h-[275px] w-3/4 max-w-[475px] flex-none md:w-1/3 "
           >
-            <Link href={`/frame/${frame['id']}?type=${frame.type[0]}&size=${frame.sizes[0]}&color=${frame.color&&frame.color[0]}`} className="relative h-full w-full">
+            <Link href={`/frame/${frame['id']}?type=${frame.type[0]}&size=${frame.sizes[0]}&color=${frame.color[0]}`} className="relative h-full w-full">
               <GridTileImage
                 alt={frame['name']}
                 label={{

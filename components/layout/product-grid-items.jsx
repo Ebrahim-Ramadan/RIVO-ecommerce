@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function ProductGridItems({ frames }) {
   console.log('frames', frames);
   return (
-    <div className='grid grid-cols-2 gap-2 sm:gap-6'>
+    <div className='grid grid-cols-2 gap-2 sm:gap-6 md:grid-cols-4 lg:grid-cols-6'>
       {frames.map((frame) => (
         <Grid.Item key={frame.id} className="animate-fadeIn">
           <Link

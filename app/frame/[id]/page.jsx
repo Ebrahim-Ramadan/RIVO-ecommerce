@@ -75,19 +75,29 @@ async function getData(productId) {
 async function getRelatedProducts(keyword, relatedID) {
   const cacheKey = `related:${keyword}:${relatedID}`;
   let relatedProducts = getFromCache(cacheKey);
+  
+  console.log('Cache key:', cacheKey);
+  console.log('Retrieved from cache:', relatedProducts);
 
   if (!relatedProducts) {
     console.log(`Cache miss for related products ${keyword}:${relatedID}. Fetching from database.`);
     relatedProducts = await searchFrames(keyword, true, relatedID);
-    // if (relatedProducts && relatedProducts.length > 0) {
+
+    console.log('Fetched from database:', relatedProducts);
+
+    if (relatedProducts) {
       setInCache(cacheKey, relatedProducts);
-    // }
+      console.log('Stored in cache:', relatedProducts);
+    } else {
+      console.log('No related products found in database.');
+    }
   } else {
     console.log(`Cache hit for related products ${keyword}:${relatedID}.`);
   }
 
   return relatedProducts;
 }
+
 
 async function RelatedProducts({ keyword, relatedID }) {
   const relatedProducts = await getRelatedProducts(keyword, relatedID);

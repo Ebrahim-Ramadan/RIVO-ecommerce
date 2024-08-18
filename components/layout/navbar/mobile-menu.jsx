@@ -53,17 +53,18 @@ export default function MobileMenu() {
   const handleCategoryClick = (category) => {
     if (category.slug === '/categories/vinyls') {
       router.push('/categories/vinyls');
+      return
     }
     if (category.slug === '/categories/Framed-vinyls') {
       router.push('/categories/Framed-vinyls');
+      return
     }
     if (category.slug === '/#BEST-SELLERS') {
       router.push('/#BEST-SELLERS');
+      return
     }
-    else{
-      setActiveCategory(category.name);
-      setIsOpen(false);      
-    }
+    setActiveCategory(category.name);
+    setIsOpen(false);   
     };
 
   const handleBackToMain = () => {
