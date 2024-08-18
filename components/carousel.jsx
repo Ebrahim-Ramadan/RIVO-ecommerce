@@ -1,9 +1,13 @@
 
+import eventEmitter from "@/lib/eventEmitter";
 import Link from "next/link";
+import { useEffect } from "react";
 import { GridTileImage } from "./grid/tile";
 
 
 export  function Carousel({data}) {
+
+  
   console.log('data', data);
   return (
   <div className="flex flex-col w-full gap-4 scroll-smooth scroll-mt-4"  id="BEST-SELLERS">

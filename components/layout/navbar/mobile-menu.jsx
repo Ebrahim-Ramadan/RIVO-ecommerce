@@ -62,13 +62,9 @@ export default function MobileMenu() {
     }
     if (category.slug === '/#BEST-SELLERS') {
       router.push('/#BEST-SELLERS');
-      // Use setTimeout to delay the scroll action
-      setTimeout(() => {
-        const element = document.getElementById('BEST-SELLERS');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 200); // Small delay to ensure the navigation has completed
+      console.log('ass');
+      eventEmitter.emit('scrollToBestSellers');
+      setIsOpen(false);   
       return;
     }
     setActiveCategory(category.name);

@@ -10,6 +10,7 @@ import { MarqueeBanner } from './navbar/DMBanner';
 import LazyLoad from '@/lib/LazyLoad';
 import { Suspense } from 'react';
 
+
 export function HomeContent() {
   const { frames, loading } = useFrames()
   if (loading) {
@@ -22,6 +23,8 @@ export function HomeContent() {
     return <NoResults/>;
   }
 
+
+ 
   return (
     <>
       <Slider/>

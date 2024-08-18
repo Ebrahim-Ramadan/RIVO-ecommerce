@@ -3,7 +3,7 @@ import eventEmitter from '@/lib/eventEmitter';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React, { useState, useRef, useDeferredValue } from 'react';
+import React, { useState, useRef, useDeferredValue, useEffect } from 'react';
 import LoadingDots from '../loading-dots';
 
 const slides = [
@@ -25,6 +25,26 @@ const slides = [
 ];
 
 export const Slider = () => {
+  useEffect(() => {
+    const scrollToBestSellers = () => {
+      console.log('scrollToBestSellers event triggered');
+      setTimeout(() => {
+        window.scrollTo({
+          top: 2800, // Adjust this value as needed
+          behavior: 'smooth'
+        });
+      }, 100);
+    };
+    // scrollToBestSellers()
+    console.log('Registering scrollToBestSellers event listener');
+    eventEmitter.on('scrollToBestSellers', scrollToBestSellers);
+  
+    return () => {
+      console.log('Removing scrollToBestSellers event listener');
+      eventEmitter.off('scrollToBestSellers', scrollToBestSellers);
+    };
+  }, []);
+
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadingStates, setLoadingStates] = useState(
