@@ -6,10 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { FilterIcon } from "lucide-react"
 
-export const metadata = {
-  description: 'RIVO e-commerce website ',
- title: 'RIVO Collecitons ',
-};
+
 export default function Page() {
   const categories = [
     {
