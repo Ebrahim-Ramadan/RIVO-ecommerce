@@ -5,7 +5,6 @@ import { Toaster } from "react-hot-toast";
 import TopLoadingIndicator from '@/components/layout/navbar/TopLoadingIndicator';
 import { Suspense } from 'react';
 import LoadingDots from '@/components/loading-dots';
-import { FixedBottoms } from '@/components/layout/FixedBottoms';
 
 export const revalidate = 360000;
 
@@ -68,7 +67,6 @@ export default async function RootLayout({ children }) {
        <html lang="en" className={GeistSans.variable}>
       <body className="bg-black text-black selection:bg-teal-300  dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
       <Toaster position="top-center" />
-    <FixedBottoms/>
         <Navbar />
         <main>
           <Suspense fallback={<LoadingDots/>}>

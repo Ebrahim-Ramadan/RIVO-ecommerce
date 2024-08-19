@@ -20,7 +20,7 @@ export default  function Navbar() {
 <DMBanner/>
 
     <nav className="relative flex items-center justify-between p-4 md:px-16">
-      <div className="block flex-none md:hidden">
+      <div className="block flex-none mr-4">
         <Suspense fallback={<LoadingDots/>}>
           <MobileMenu />
         </Suspense>

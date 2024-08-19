@@ -90,7 +90,7 @@ export default function MobileMenu() {
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white"
+        className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
       >
         <Image src={Eclipse} width={24} height={24} alt="menu" />
       </button>
@@ -117,7 +117,7 @@ export default function MobileMenu() {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-black">
+            <Dialog.Panel className="fixed bottom-0 left-0 top-0 text-white flex h-full w-full flex-col  bg-black/80 p-4 text-black backdrop-blur-xl md:w-[390px]">
               <div className="w-full flex flex-col items-center justify-between h-full">
               <div class="absolute w-[150px] h-[150px] bg-white/85 z-[-1] blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
 
@@ -180,7 +180,7 @@ export default function MobileMenu() {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-black">
+            <Dialog.Panel className="fixed bottom-0 left-0 top-0 text-white flex h-full w-full flex-col bg-black/80 p-6 text-black backdrop-blur-xl md:w-[390px]">
               <div className="w-full flex flex-col items-center justify-between h-full">
                 <div className="p-4 w-full">
                   <button
