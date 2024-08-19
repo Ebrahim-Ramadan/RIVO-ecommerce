@@ -139,7 +139,7 @@ export default function MobileMenu() {
                   <div className="flex flex-col gap-2">
                     {OutCategories.map((category) => (
                       <button
-                        key={category.slug}
+                        key={category.name}
                         onClick={() => handleCategoryClick(category)}
                         className="text-lg flex items-center justify-start flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
                       >
