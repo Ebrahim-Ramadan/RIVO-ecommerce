@@ -25,25 +25,7 @@ const slides = [
 ];
 
 export const Slider = () => {
-  useEffect(() => {
-    const scrollToBestSellers = () => {
-      console.log('scrollToBestSellers event triggered');
-      setTimeout(() => {
-        window.scrollTo({
-          top: 2800, // Adjust this value as needed
-          behavior: 'smooth'
-        });
-      }, 100);
-    };
-    // scrollToBestSellers()
-    console.log('Registering scrollToBestSellers event listener');
-    eventEmitter.on('scrollToBestSellers', scrollToBestSellers);
-  
-    return () => {
-      console.log('Removing scrollToBestSellers event listener');
-      eventEmitter.off('scrollToBestSellers', scrollToBestSellers);
-    };
-  }, []);
+
 
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);

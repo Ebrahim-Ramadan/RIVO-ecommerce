@@ -61,10 +61,7 @@ export default function MobileMenu() {
       return;
     }
     if (category.slug === '/#BEST-SELLERS') {
-      router.push('/#BEST-SELLERS');
-      console.log('ass');
-      eventEmitter.emit('scrollToBestSellers');
-      setIsOpen(false);   
+      router.push('/categories/best-sellers');
       return;
     }
     setActiveCategory(category.name);

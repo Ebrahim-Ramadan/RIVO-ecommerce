@@ -1,5 +1,5 @@
 'use client';
-import { getFramesByCategory } from '@/lib/utils';
+import { getAllFrames, getFramesByCategory } from '@/lib/utils';
 import React, { useState, useEffect, Fragment } from 'react';
 import { CategoriesLayout } from './CategoriesLayout';
 import LoadingDots from './loading-dots';
@@ -52,12 +52,23 @@ export const FilteredCategoriesLayout = ({ category }) => {
         const cachedData = localStorage.getItem(categoryKey);
 
         let dataArray;
+       if(category =='best-sellers'){
+        const cachedData = localStorage.getItem('cachedFrames');
+        if (cachedData) {
+          dataArray = JSON.parse(cachedData);
+        } else {
+          dataArray = await getAllFrames();
+          localStorage.setItem('cachedFrames', JSON.stringify(dataArray));
+        }
+       }
+       else{
         if (cachedData) {
           dataArray = JSON.parse(cachedData);
         } else {
           dataArray = await getFramesByCategory(category.replace(/-/g, ' '));
           localStorage.setItem(categoryKey, JSON.stringify(dataArray));
         }
+       }
         setCategories(dataArray);
         applyFilters(dataArray);
       } catch (error) {
@@ -91,7 +102,7 @@ export const FilteredCategoriesLayout = ({ category }) => {
   return (
     <div className='w-full'>
     <Menu as="div" className="relative inline-block text-right flex w-full justify-start z-50">
-      <Menu.Button className="inline-flex w-full justify-end rounded-xl bg-black bg-opacity-20 px-4 text-sm font-medium text-white hover:bg-opacity-30">
+      <Menu.Button className="inline-flex w-full justify-end rounded-xl  px-4 text-sm font-medium text-white">
         Filters
         <ListFilter
           className="ml-2 -mr-1 h-5 w-5 "
@@ -106,7 +117,7 @@ export const FilteredCategoriesLayout = ({ category }) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-2 mt-8 w-56 origin-top-right divide-y divide-gray-100 rounded-xl bg-black/40 backdrop-blur-3xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-white/10">
+        <Menu.Items className="absolute right-4 mt-8 w-56 origin-top-right divide-y divide-gray-100 rounded-xl bg-black/40 backdrop-blur-3xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-white/10">
           <div className="px-1 py-1">
           <div 
                 onClick={(e) => e.stopPropagation()} 
