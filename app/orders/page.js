@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 export const metadata = {
   title: "My Orders",
-  description: "High-performance ecommerce store built with Next.js, Vercel, and Shopify.",
+  description: "High-performance ecommerce store built with Next.js, Vercel, and TailwindCSS.",
   openGraph: {
     type: "website",
   },

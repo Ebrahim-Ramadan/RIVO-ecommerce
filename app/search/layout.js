@@ -1,6 +1,9 @@
 import Footer from '@/components/layout/footer';
 
-
+export const metadata = {
+  description: 'RIVO e-commerce website ',
+ title: 'RIVO Search Products',
+};
 export default function SearchLayout({ children }) {
   return (
     <>

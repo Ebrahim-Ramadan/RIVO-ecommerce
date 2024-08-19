@@ -1,12 +1,7 @@
 import Footer from '@/components/layout/footer';
 import { HomeContent } from '@/components/layout/HomeContent';
 
-export const metadata = {
-  description: 'RIVO e-commerce website ',
-  openGraph: {
-    type: 'website'
-  }
-};
+
 
 export default async function HomePage() {
   
