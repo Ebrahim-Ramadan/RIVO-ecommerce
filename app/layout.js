@@ -11,11 +11,11 @@ export const revalidate = 360000;
 
 
   export const metadata = {
-    metadataBase: new URL('https://localhost:3000'),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_API_URL),
     title: "RIVO",
     description: "RIVO e-commerce for your favorite posters and frames",
     openGraph: {
-       images: ['https://lastfm.freetls.fastly.net/i/u/770x0/279c8c2263d174a662c6c29b89e93573.jpg#279c8c2263d174a662c6c29b89e93573'],
+       images: ['https://e-commerce-myass.vercel.app/opengraph-image'],
       title: 'RIVO',
       description: 'RIVO e-commerce for your favorite posters and frames',
     },
@@ -31,17 +31,17 @@ export const revalidate = 360000;
       "friends",
     ],
     description: 'RIVO',
-    creator: "Sharmo, Eldisha",
+    creator: "Ebrahim Ramadan",
     openGraph: {
       type: "website",
       locale: "en_US",
-      url: 'https://taylor-swift-quiz.vercel.app/',
+      url: 'https://e-commerce-myass.vercel.app',
       title: 'RIVO',
       description: ' RIVO',
       siteName: 'RIVO',
       images: [
         {
-          url: 'https://taylor-swift-quiz.vercel.app/og',
+          url: 'https://e-commerce-myass.vercel.app/opengraph-image',
           width: 1200,
           height: 630,
           alt: 'RIVO',
@@ -52,7 +52,7 @@ export const revalidate = 360000;
       card: "summary_large_image",
       title: 'RIVO',
       description: 'RIVO',
-      images: 'https://taylor-swift-quiz.vercel.app/og',
+      images: 'https://e-commerce-myass.vercel.app/opengraph-image',
       creator: "@scoopsahoykid",
     },
     icons: {
