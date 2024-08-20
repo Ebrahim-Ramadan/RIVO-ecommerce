@@ -50,8 +50,8 @@ export  function Footer() {
       <Image
       alt='footer-pay'
       className='w-full'
-      width={300}
-      height={300}
+      width={400}
+      height={400}
       src={footerPay}
       />
       <p>
@@ -100,3 +100,10 @@ export  function Footer() {
   );
 }
 export default Footer
+
+
+const footerAccepts = ()=>{
+  const accepts = [
+    ''
+  ]
+}
