@@ -3,28 +3,28 @@ import Grid from "@/components/grid";
 import { NoResults } from "@/components/layout/navbar/NoResults";
 import ProductGridItems from "@/components/layout/product-grid-items";
 
-
-export const CategoriesLayout = ({ category , categories}) => {
-
-
+export const CategoriesLayout = ({ category, categories }) => {
+  const midPoint = Math.ceil(categories.length / 2) - 1;
 
   return (
     <div className="w-full p-2">
-              <div class="absolute w-[150px] h-[150px] bg-white/85 blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
+      <div className="absolute w-[150px] h-[150px] bg-white/85 blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
 
-      <h1 className="flex flex-row items-center w=full justify-between  mb-4 px-2 capitalize">
-       <p className='text-2xl font-bold'> {category === 'musics' ? category.slice(0, -1) : category.replace(/-/g, ' ')}</p>
-       <span>
-        {categories.length > 0 
-          ? ` (${(category != "Framed-vinyls" && category != "vinyls") ? categories.length * 2 : categories.length} products)` 
-          : ''}
-      </span>
-
+      <h1 className="flex flex-row items-center w-full justify-between mb-4 px-2 capitalize">
+        <p className='text-2xl font-bold'>
+          {category === 'musics' ? category.slice(0, -1) : category.replace(/-/g, ' ')}
+        </p>
+        <span>
+          {categories.length > 0 
+            ? ` (${(category !== "Framed-vinyls" && category !== "vinyls") ? categories.length * 2 : categories.length} products)` 
+            : ''}
+        </span>
       </h1>
       {categories.length > 0 ? (
         <Grid className="grid-cols-1">
-          <ProductGridItems frames={categories.slice(0, Math.floor(categories.length / 2))} />
-              <ProductGridItems frames={categories.slice(Math.floor(categories.length / 2))} />
+         <ProductGridItems frames={categories.length % 2 !== 0 ? categories.slice(0, -1) : categories} />
+
+          <ProductGridItems frames={categories.slice(midPoint + 1)} />
         </Grid>
       ) : (
         <NoResults text='No Results' shopNow={true} />
