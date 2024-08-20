@@ -10,7 +10,7 @@ import { ShippingCost } from '../pay/ShippingCost';
 
 const { COMPANY_NAME, SITE_NAME } = process.env;
 
-export default function Footer() {
+export  function Footer() {
   const currentYear = new Date().getFullYear();
   const copyrightDate = 2024 + (currentYear > 2024 ? `-${currentYear}` : '');
   const skeleton = 'w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700';
@@ -99,3 +99,4 @@ export default function Footer() {
     </footer>
   );
 }
+export default Footer

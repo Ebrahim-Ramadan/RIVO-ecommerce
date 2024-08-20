@@ -1,6 +1,5 @@
 'use client'
 import { GridTileImage } from '@/components/grid/tile';
-import Footer from '@/components/layout/footer';
 import { NoResults } from '@/components/layout/navbar/NoResults';
 import { Gallery } from '@/components/product/gallery';
 import { ProductDescription } from '@/components/product/product-description';
@@ -28,7 +27,11 @@ export const ProductOverview = ({ frameID }) => {
     if (!data && !loading) {
       return <NoResults shopNow={true} />;
     }
-    if (loading) return <LoadingDots />;
+    if (loading) return(
+      <div className="min-h-screen w-full flex-col flex justify-center items-center">
+      <LoadingDots/>
+    </div>
+    )
 
   
     return (
@@ -66,7 +69,6 @@ export const ProductOverview = ({ frameID }) => {
     );
   };
 async function getData(productId) {
-    const cacheKey = `product:${productId}`;
     
     // Search through all arrays in localStorage
     let data = null;
@@ -90,8 +92,6 @@ async function getData(productId) {
       return data;
     }
   
-    // If not in localStorage, check the server-side cache
-  
     if (!data) {
       data = await getProductDetails(productId);
       
@@ -100,16 +100,11 @@ async function getData(productId) {
   }
   
 async function getRelatedProducts(keyword, relatedID) {
-    const cacheKey = `related:${keyword}:${relatedID}`;
     let relatedProducts 
     
-  
     if (!relatedProducts) {
       relatedProducts = await searchFrames(keyword, true, relatedID);
-  
-     
     } 
-  
     return relatedProducts;
   }
   

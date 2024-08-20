@@ -1,4 +1,3 @@
-import Footer from "@/components/layout/footer";
 import { ClientPaymentForm } from "@/components/pay/ClientPaymentForm";
 
 
@@ -22,7 +21,7 @@ export default async function HomePage() {
     </div>
 
 <ClientPaymentForm />
-<Footer/>
+
    </div>
   );
 }

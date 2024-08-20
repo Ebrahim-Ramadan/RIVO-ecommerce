@@ -1,4 +1,4 @@
-import Footer from '@/components/layout/footer';
+
 
 export const metadata = {
   description: 'RIVO e-commerce website ',
@@ -12,7 +12,7 @@ export default function SearchLayout({ children }) {
         <div className="order-last min-h-screen w-full md:order-none">{children}</div>
         
       </div>
-      <Footer />
+  
     </>
   );
 }

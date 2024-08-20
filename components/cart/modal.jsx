@@ -171,12 +171,14 @@ export default function CartModal() {
                             </div>
                           </div>
                         </div>
-                        <a href={`/frame/${item.id}?type=${item.type}&size=${item.size}&color=${item.color}`} className=" font-bold text-neutral-200 mt-4">
-                             {productDetails[item.id]?.name}
-                            </a>
-                        <p className="text-xs font-medium text-neutral-400">
-                              Size: {item.size || 'normal'}, Color: {item.color || 'normal'}, Type: {item.type || 'normal'}
-                            </p>
+                        <a href={`/frame/${item.id}?type=${item.type}&size=${item.size}${item.type !== 'Wooden Tableau' ? `&color=${item.color}` : ''}`} className="font-bold text-neutral-200 mt-4">
+                        {productDetails[item.id]?.name}
+                      </a>
+                      <p className="text-xs font-medium text-neutral-400">
+                        Size: {item.size || 'normal'}
+                        {item.type !== 'Wooden Tableau' && `, Color: ${item.color || 'normal'}`}
+                        , Type: {item.type || 'normal'}
+                      </p>
                       </li>
                     ))}
                   </ul>

@@ -1,35 +1,35 @@
 'use client';
 import Price from '@/components/price';
-
 import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { createUrl } from '@/lib/utils';
 import { useState, useEffect, Suspense } from 'react';
 import LoadingDots from '../loading-dots';
+
 export function VariantSelector({ sizes, colors, types, prices }) {
-  console.log(sizes, colors, types, prices);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const [price, setPrice] = useState(0);
+  const [selectedType, setSelectedType] = useState(searchParams.get('type') || types[0]);
 
   const options = [
     { id: 'type', name: 'Type', values: types },
     { id: 'size', name: 'Size', values: sizes },
-    { id: 'color', name: 'Color', values: colors },
+    ...(selectedType !== 'Wooden Tableau' ? [{ id: 'color', name: 'Color', values: colors }] : []),
   ];
 
   // Simplified logic for combinations
   const combinations = sizes.flatMap((size, sizeIndex) =>
-    colors.flatMap(color =>
+    (selectedType === 'Wooden Tableau' ? [''] : colors).flatMap(color =>
       types.map(type => ({
         id: `${size}-${color}-${type}`,
-        availableForSale: true, 
+        availableForSale: true,
         size,
         color,
         type,
-        price: calculatePrice(prices, sizeIndex, type) 
+        price: calculatePrice(prices, sizeIndex, type)
       }))
     )
   );
@@ -48,7 +48,6 @@ export function VariantSelector({ sizes, colors, types, prices }) {
       if (selectedCombination) {
         setPrice(selectedCombination.price || 915);
       } else {
-        // If no specific combination is found, calculate the price directly
         const sizeIndex = sizes.indexOf(selectedSize);
         if (sizeIndex !== -1) {
           setPrice(calculatePrice(prices, sizeIndex, selectedType));
@@ -85,6 +84,9 @@ export function VariantSelector({ sizes, colors, types, prices }) {
                   aria-disabled={!isAvailableForSale}
                   disabled={!isAvailableForSale}
                   onClick={() => {
+                    if (option.id === 'type') {
+                      setSelectedType(value);
+                    }
                     router.replace(optionUrl, { scroll: false });
                   }}
                   title={`${option.name} ${value}${!isAvailableForSale ? ' (Not Available)' : ''}`}
@@ -106,23 +108,21 @@ export function VariantSelector({ sizes, colors, types, prices }) {
           </dd>
         </dl>
       ))}
-<div className="flex justify-end  font-medium text-sm text-white mb-4">
-  <Suspense fallback={<LoadingDots/>}>
-    
+      <div className="flex justify-end font-medium text-sm text-white mb-4">
+        <Suspense fallback={<LoadingDots/>}>
           <Price
             amount={Math.ceil(price)}
             currencyCode='EGP'
-            className='bg-blue-600 rounded-full  p-2'
+            className='bg-blue-600 rounded-full p-2'
           />
-</Suspense>
-
-        </div>
+        </Suspense>
+      </div>
     </div>
   );
 }
 
 export function calculatePrice(prices, sizeIndex, type) {
-  const basePrice = prices[sizeIndex]; // baseprice
+  const basePrice = prices[sizeIndex];
   const ratios = [.761, .71, .826, .725, .671];
   let typeMultiplier = 1;
 

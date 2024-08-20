@@ -5,6 +5,8 @@ import { Toaster } from "react-hot-toast";
 import TopLoadingIndicator from '@/components/layout/navbar/TopLoadingIndicator';
 import { Suspense } from 'react';
 import LoadingDots from '@/components/loading-dots';
+import LazyLoad from '@/lib/LazyLoad';
+import { Footer } from '@/components/layout/footer';
 
 export const revalidate = 360000;
 
@@ -72,7 +74,11 @@ export default async function RootLayout({ children }) {
           <Suspense fallback={<LoadingDots/>}>
           <TopLoadingIndicator/>
           </Suspense>
-        {children}</main>
+        {children}
+        <LazyLoad>
+     <Footer/>
+     </LazyLoad>
+     </main>
       </body>
     </html>
    

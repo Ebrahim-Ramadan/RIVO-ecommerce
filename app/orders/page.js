@@ -1,4 +1,3 @@
-import Footer from "@/components/layout/footer";
 import LoadingDots from "@/components/loading-dots";
 import OrdersLayout from "@/components/orders/OrdersLayout";
 import { Suspense } from "react";
@@ -21,7 +20,7 @@ export default function HomePage({ searchParams }) {
       <Suspense fallback={<LoadingDots/>}>
       <OrdersLayout newOrderID={orderId&&orderId}/>
       </Suspense>
-      <Footer/>
+     
     </div>
   );
 }
