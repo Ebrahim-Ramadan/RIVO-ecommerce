@@ -23,8 +23,8 @@ export const CategoriesLayout = ({ category , categories}) => {
       </h1>
       {categories.length > 0 ? (
         <Grid className="grid-cols-1">
-          <ProductGridItems frames={categories} />
-          <ProductGridItems frames={categories} />
+          <ProductGridItems frames={categories.slice(0, Math.floor(categories.length / 2))} />
+              <ProductGridItems frames={categories.slice(Math.floor(categories.length / 2))} />
         </Grid>
       ) : (
         <NoResults text='No Results' shopNow={true} />
