@@ -13,23 +13,24 @@ export const revalidate = 360000;
 
   export const metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_API_URL),
-    title: "RIVO",
+    title: "RIVO Gallery",
     description: "RIVO e-commerce for your favorite posters and frames",
     openGraph: {
        images: ['https://e-commerce-myass.vercel.app/opengraph-image'],
-      title: 'RIVO',
+      title: 'RIVO Gallery',
       description: 'RIVO e-commerce for your favorite posters and frames',
     },
     title: {
-      default: 'RIVO',
+      default: 'RIVO Gallery',
       template: `%s - RIVO`,
     },
     keywords: [
       "RIVO",
-      "quiz online",
       "entertainment",
-      "play",
       "friends",
+      "Gallery",
+      "poster", "gallery", "frames", "art prints", "custom posters", "personalized wall art", "decorative frames", "poster printing", "home decor", "modern art", "poster sale", "art framing", "frame collection", "trendy posters",
+      "artwork", "limited edition prints", "vintage posters", "digital prints", "poster design", "custom framing", "wall decor", "poster bundles", "art collection", "fine art prints", "creative frames", "photo frames", "exclusive posters", "art exhibition", "framed posters", "interior design"
     ],
     description: 'RIVO',
     creator: "Ebrahim Ramadan",

@@ -62,9 +62,13 @@ export const OverlaySearch = () => {
       {isSearchOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 p-2">
           <div ref={searchRef} className="flex flex-col items-center bg-black p-4">
-            <button onClick={() => setIsSearchOpen(false)} className="flex flex-row items-center justify-end w-full bg-black py-4">
+            <div className="flex flex-row items-center justify-between w-full py-4">
+              <h1 className='text-2xl font-bold'>Search Products</h1>
+              <button onClick={() => setIsSearchOpen(false)} className=" rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white flex flex-row items-center justify-endbg-black ">
               <X size={28} />
             </button>
+            </div>
+            
             <div className="flex items-center bg-black w-full">
               <div className="w-max-[550px] relative w-full">
                 <input
@@ -76,9 +80,12 @@ export const OverlaySearch = () => {
                   name="search"
                   className="w-full rounded-lg border px-4 py-2 text-sm text-black placeholder:text-neutral-500 border-neutral-800 bg-transparent text-white placeholder:text-neutral-400"
                 />
-                <button className="absolute right-0 top-0 mr-3 flex h-full items-center" onClick={() => setSearchTerm('')}>
-                  <X size={20} color='#BBBBBB' />
-                </button>
+                {searchTerm.trim().length > 0&&
+                   <button className="absolute right-0 top-0 mr-3 flex h-full items-center" onClick={() => setSearchTerm('')}>
+                   <X size={20} color='#BBBBBB' />
+                 </button>
+                }
+             
               </div>
               <button onClick={() => handleSearch()} className="ml-2">
                 <Search size={24} />
