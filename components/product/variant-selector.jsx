@@ -69,21 +69,25 @@ export function VariantSelector({ sizes, colors, types, prices }) {
               optionSearchParams.set(optionNameLowerCase, value);
               const optionUrl = createUrl(pathname, optionSearchParams);
 
+              const selectedSize = searchParams.get('size');
+              const is60cmSize = selectedSize && selectedSize.startsWith('60');
+              const isFrameOption = option.id === 'type' && value === 'FRAME';
+
               const isAvailableForSale = combinations.some(combination =>
                 combination[optionNameLowerCase] === value && combination.availableForSale
-              );
+              ) && !(is60cmSize && isFrameOption);
 
               const isActive = searchParams.get(optionNameLowerCase) === value;
 
               return (
                 <button
                   key={value}
-                  aria-disabled={!isAvailableForSale} 
+                  aria-disabled={!isAvailableForSale}
                   disabled={!isAvailableForSale}
                   onClick={() => {
                     router.replace(optionUrl, { scroll: false });
                   }}
-                  title={`${option.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
+                  title={`${option.name} ${value}${!isAvailableForSale ? ' (Not Available)' : ''}`}
                   className={clsx(
                     'flex min-w-[48px] items-center justify-center rounded-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900',
                     {
