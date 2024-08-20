@@ -121,7 +121,7 @@ export default function OrdersLayout({ newOrderID }) {
             <p className="text-green-600 mb-4">{orderWrapper.status} · Confirmed</p>
             
             {orderWrapper.items.map((item, index) => (
-              <Link key={index} className="bg-white/10 hover:bg-white/20 flex items-center p-4 mb-2 rounded-lg flex justify-between" href={`/frame/${item.id}?type=${item.type}&size=${item.size}&color=${item.color}`}>
+              <Link key={index} className="bg-white/10 hover:bg-white/20 flex items-center p-4 mb-2 rounded-lg flex justify-between" href={`/frame/${item.id}?type=${item.type}&size=${item.size}${item.type !== 'Wooden Tableau' ? `&color=${item.color}` : ''}`}>
               <div className="flex flex-row gap-2 items-center">
               <span className="leading-tight relative">{productDetails[item.id]?.images[0] ?
                             <Image
@@ -143,7 +143,10 @@ export default function OrdersLayout({ newOrderID }) {
                   {productDetails[item.id]?.name}
                     </p>
                   <p className="">{item.type}</p>
-                  <p className="">{item.color} - {item.size}</p>
+                  <p className="">
+                {item.type !== 'Wooden Tableau' ? `${item.color} - ` : ''}
+                {item.size}
+              </p>
                 </div>
 
               </div>
