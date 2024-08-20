@@ -8,6 +8,8 @@ import { saveAddressToLocalStorage, Shipping_costs } from '@/lib/orders';
 import { ShippingCost } from './ShippingCost';
 import location from '@/public/assets/location.svg';
 
+import { UserPen , Store} from 'lucide-react';
+
 const initialFormState = {
   email: '',
   fullname: '',
@@ -62,8 +64,16 @@ export const ClientPaymentForm = () => {
             1
           </p>
           <label className='text-xl'>Fill In Your Details</label>
-          <label className='text-xs self-end'>{loadedFromStorage ? 'Loaded From Last Time' : ''}</label>
         </div>
+       
+        {loadedFromStorage && 
+         <div className='flex flex-row items-center gap-2 self-start text-xs text-neutral-200 justify-end'>
+        <Store size='16' color='#329200'/>
+        <p>
+          Loaded From Last Time
+        </p>
+        </div>
+        }
 
         {['email', 'fullname', 'phoneNumber', 'city', 'address'].map((field) => (
           <div key={field}>
@@ -144,7 +154,8 @@ export const ClientPaymentForm = () => {
       {isFormValid ?
        <PayOptionsComponent formData={formData} />
       :<div className='flex flex-col items-center justify-center w-full'>
-        <p className='text-center text-red-200 font-medium'>
+      <UserPen/>
+        <p className='text-center text-neutral-200 font-medium'>
           Please fill in all the details first
         </p>
        

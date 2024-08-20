@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      loader: 'custom',
-      loaderFile: './components/loader.js',
+      // loader: 'custom',
+      // loaderFile: './components/loader.js',
         remotePatterns: [
           {
             protocol: 'https',
@@ -11,5 +11,4 @@ const nextConfig = {
         ],
       },
 };
-
 export default nextConfig;

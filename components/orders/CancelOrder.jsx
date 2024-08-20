@@ -12,7 +12,7 @@ export function CancelOrder({trigger, className}) {
     <>
       <button 
         onClick={() => setIsOpen(true)}
-        className={`bg-blue-500  border-2 border-white/20 text-white rounded-lg px-2 py-1 mb-4 font-bold text-sm ${className}`}
+        className={`bg-blue-500  border-2 border-white/20 text-white rounded-lg px-2 py-1  font-bold text-sm ${className}`}
       >
         {trigger}
       </button>

@@ -10,6 +10,7 @@ import Image from "next/image";
 import { copyToClipboard, getProductDetails } from "@/lib/utils";
 import { CancelOrder } from "./CancelOrder";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 export default function OrdersLayout({ newOrderID }) {
   const [ordersExist, setOrdersExist] = useState(false);
   const [loading, setloading] = useState(false);
@@ -94,10 +95,16 @@ export default function OrdersLayout({ newOrderID }) {
 
   return (
     <div className="max-w-4xl mx-auto p-4 ">
-    <a href="/" className="text-blue-600 hover:underline mb-4 inline-block">← Back to Shopping</a>
+    <div className='flex gap-2 items-center'>
+    <Link href='/' className='rounded-full p-2 bg-blue-600 text-white  hover:bg-blue-700'>
+            <ArrowLeft size='16'/>
+
+            </Link>
+            <h1 className="text-3xl font-bold  mb-2">My Orders</h1>
+
+    </div>
     
-    <h1 className="text-3xl font-bold  mb-2">My Orders</h1>
-    <p className=" mb-6">Find order invoice, payment and shipping details here</p>
+    <p className="text-neutral-400 my-6">Find order invoice, payment and shipping details here</p>
     <div className="flex justify-end items-center ">
     <CancelOrder trigger={'Cancel Order'} />
     </div>
