@@ -18,9 +18,9 @@ export const OverlaySearch = () => {
       // Add the search term to recent searches
       const currentSearches = JSON.parse(localStorage.getItem('recent-search-keywords')) || [];
       if (!currentSearches.includes(query) && query.length > 1) {
-        currentSearches.push(query);
-        localStorage.setItem('recent-search-keywords', JSON.stringify(currentSearches));
-        setRecentSearches(currentSearches);
+        const updatedSearches = [query, ...currentSearches.slice(0, 4)];
+        localStorage.setItem('recent-search-keywords', JSON.stringify(updatedSearches));
+        setRecentSearches(updatedSearches);
       }
       router.push(`/search?q=${query}`);
       setIsSearchOpen(false); // Close the search overlay after searching
@@ -55,7 +55,7 @@ export const OverlaySearch = () => {
   return (
     <>
       <button onClick={() => setIsSearchOpen(true)}
-        className="flex items-center justify-center px-2 md:hidden">
+        className="flex items-center justify-center mr-4 md:hidden">
         <Search />
       </button>
       
@@ -64,7 +64,7 @@ export const OverlaySearch = () => {
           <div ref={searchRef} className="flex flex-col items-center bg-black p-4">
             <div className="flex flex-row items-center justify-between w-full py-4">
               <h1 className='text-2xl font-bold'>Search Products</h1>
-              <button onClick={() => setIsSearchOpen(false)} className=" rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white flex flex-row items-center justify-endbg-black ">
+              <button onClick={() => setIsSearchOpen(false)} className="p-2 rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white flex flex-row items-center justify-endbg-black ">
               <X size={28} />
             </button>
             </div>
@@ -72,6 +72,7 @@ export const OverlaySearch = () => {
             <div className="flex items-center bg-black w-full">
               <div className="w-max-[550px] relative w-full">
                 <input
+                autoFocus
                   key={searchParams?.get('q')}
                   type="text"
                   placeholder="Search For Products"

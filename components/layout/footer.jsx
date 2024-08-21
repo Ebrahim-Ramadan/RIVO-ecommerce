@@ -41,7 +41,7 @@ export  function Footer() {
   return (
     <footer className="text-sm text-neutral-500 dark:text-neutral-400">
       
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-6 py-6 text-sm md:flex-row-reverse md:gap-12 md:px-4 min-[1320px]:px-0 dark:border-neutral-700">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-4 py-6 text-sm md:flex-row-reverse md:gap-12 md:px-4 min-[1320px]:px-0 dark:border-neutral-700">
       <div className=" text-slate-400 py-4 text-center leading-tight w-full">
       <p >For any issues, please contact </p>
       <Link href="https://mail.google.com/mail/u/0/?fs=1&to=Rivogalllery@gmail.com&tf=cm" className="text-blue-500" >Rivogalllery@gmail.com</Link>
@@ -57,7 +57,7 @@ export  function Footer() {
       <p>
         Gauranteed Safe & Secure Checkout
       </p>
-    <ShippingCost trigger='How are shipping costs calculated?' className='self-center  py-2'/>
+    <ShippingCost trigger='Shipping Fees' className='my-2 self-center bg-blue-500 text-white py-2 px-4 rounded-full'/>
 
       </div>
       

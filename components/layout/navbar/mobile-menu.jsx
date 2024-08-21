@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { OrdersAndCheckout } from './OrdersAndCheckout';
 import eventEmitter from '@/lib/eventEmitter';
+import { ArrowRight } from 'lucide-react';
 
 const FramedCategories = [
   { name: 'Movies', slug: '/movies', icon: '/categories/movies.svg' },
@@ -122,14 +123,17 @@ export default function MobileMenu() {
               <div class="absolute w-[150px] h-[150px] bg-white/85 z-[-1] blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
 
                 <div className="p-4 w-full">
+                  <div className='mb-4 flex items-center gap-4'>
                   <button
-                    className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
+                    className=" flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
                     onClick={closeMobileMenu}
                     aria-label="Close mobile menu"
                   >
                     <X className="h-6" />
+                    
                   </button>
-
+                  <span className="text-xl font-bold">Rivo Collections</span>
+                  </div>
                   <div className="mb-4 w-full">
                     <Suspense fallback={<SearchSkeleton />}>
                       <Search />
@@ -141,10 +145,13 @@ export default function MobileMenu() {
                       <button
                         key={category.name}
                         onClick={() => handleCategoryClick(category)}
-                        className="text-lg flex items-center justify-start flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
+                        className="text-lg flex items-center justify-between flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
                       >
+                        <div className='flex items-center gap-2'>
                         <Image src={category.icon} width={24} height={24} alt="category icon" />
                         {category.name}
+                        </div>
+                        <ArrowRight color='#c7c7c7' size={16}/>
                       </button>
                     ))}
                   </div>

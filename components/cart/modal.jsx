@@ -114,8 +114,8 @@ export default function CartModal() {
             <Dialog.Panel className="fixed bottom-0 right-0 top-0 text-white flex h-full w-full flex-col  bg-black/80 p-6 text-black backdrop-blur-xl md:w-[390px]">
             <div class="absolute w-[150px] h-[150px] bg-white/85 z-[-1] blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
 
-              <div className="flex items-center justify-between">
-                <p className="text-lg font-semibold">My Cart</p>
+              <div className="flex items-center mb-4 justify-between">
+                <p className="text-xl font-bold">My Cart</p>
                 <button aria-label="Close cart" onClick={closeCart}>
                   <CloseCart />
                 </button>
@@ -145,7 +145,7 @@ export default function CartModal() {
                             width={100}
                             height={150}
                             />
-                            : <div className='h-20 flex flex-col items-center justify-center'><LoadingDots /></div>}</span>
+                            : <div className='h-16 flex flex-col items-center justify-center'><LoadingDots /></div>}</span>
                            
                           </div>
                           <div className="flex h-16 flex-col justify-between">
@@ -185,7 +185,7 @@ export default function CartModal() {
                   <div className="py-4 text-sm text-neutral-200">
                     
                    
-                    <div className="mb-3 flex font-bold items-center justify-between border-b border-neutral-400 pb-1 pt-1">
+                    <div className=" flex font-bold items-center justify-between border-b border-neutral-400 pb-1 pt-1">
                       <p>Total</p>
                       <Price
                         className="text-right text-base"

@@ -24,8 +24,6 @@ export default async function Home({ searchParams }) {
     console.log(`Cache hit for "${query}". Retrieved ${frames.length} frames from cache.`);
   }
 
-  const resultsText = frames.length > 1 ? 'results' : 'result';
-
   return (
     <div className="mx-auto max-w-7xl md:px-4">
       {query ? (
@@ -37,14 +35,15 @@ export default async function Home({ searchParams }) {
             </Link>
           <p className="font-medium text-lg">
           {frames.length === 0
-            ? `No Products matching  ${resultsText}`
+            ? `No Products for `
             : `Products Results  for `}
           <span className="font-bold">&quot;{query}&quot;</span>
         </p>
            </div>
+           {frames.length != 0 && 
         <p>
-          ({frames.length})
-        </p>
+        ({frames.length})
+      </p>}
           </div>
       ) : null}
       {frames.length > 0 ? (

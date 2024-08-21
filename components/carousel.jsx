@@ -26,7 +26,7 @@ export  function Carousel({data}) {
 </p>
     
       <div className=" w-full overflow-x-auto pb-6 pt-1">
-      <ul className="flex animate-carousel gap-2">
+      <ul className="flex gap-2">
         {data.slice(Math.floor(Math.random() * 5) + 1, Math.floor(Math.random() * 28) + 1).map((frame) => (
           <li
             key={`${frame['id']}`}

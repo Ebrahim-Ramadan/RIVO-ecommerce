@@ -101,12 +101,14 @@ export const FilteredCategoriesLayout = ({ category }) => {
 
   return (
     <div className='w-full'>
-    <Menu as="div" className="relative inline-block text-right flex w-full justify-start z-50">
-      <Menu.Button className="inline-flex w-full justify-end rounded-xl  px-4 text-sm font-medium text-white">
+    <Menu as="div" className="relative inline-block text-right flex w-full justify-start">
+      <Menu.Button className="inline-flex w-full justify-end items-center gap-2 rounded-xl  px-6 text-sm text-neutral-200">
         Filters
+        <div className='flex items-center gap-2 w-6 h-6 bg-blue-500 justify-center rounded-lg'>
         <ListFilter
-          className="ml-2 -mr-1 h-5 w-5 "
+          size='16'
         />
+        </div>
       </Menu.Button>
       <Transition
         as={Fragment}
@@ -117,7 +119,7 @@ export const FilteredCategoriesLayout = ({ category }) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-4 mt-8 w-56 origin-top-right divide-y divide-gray-100 rounded-xl bg-black/40 backdrop-blur-3xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-white/10">
+        <Menu.Items className="z-30 absolute right-4 mt-8 w-56 origin-top-right divide-y divide-gray-100 rounded-xl bg-black/40 backdrop-blur-3xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border border-white/10">
           <div className="px-1 py-1">
           <div 
                 onClick={(e) => e.stopPropagation()} 
