@@ -2,7 +2,7 @@
 
 export const metadata = {
   description: 'RIVO e-commerce website ',
- title: 'RIVO Search Products',
+ title: 'Search RIVO Products',
 };
 export default function SearchLayout({ children }) {
   return (

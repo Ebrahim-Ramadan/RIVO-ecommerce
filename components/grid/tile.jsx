@@ -28,11 +28,11 @@ export function GridTileImage({
           className={clsx('relative h-full w-full object-contain rounded-lg ', {
             'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
           })}
-          onError={(event) => {
-            console.log('Image failed to load:', event);
-            event.target.id = "/public/assets/image.fallback.svg";
-            event.target.srcset = "/public/assets/image.fallback.svg";
-        }}
+        //   onError={(event) => {
+        //     console.log('Image failed to load:', event);
+        //     event.target.id = "/assets/image.fallback.svg";
+        //     event.target.srcset = "/assets/image.fallback.svg";
+        // }}
         loader={({ src }) => src}
           {...props}
         />

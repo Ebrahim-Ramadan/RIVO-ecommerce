@@ -33,21 +33,21 @@ export default async function Home({ searchParams }) {
             <ArrowLeft size='16'/>
 
             </Link>
-          <p className="font-medium text-lg">
+          <p className=" text-lg whitespace-nowrap overflow-hidden text-ellipsis">
           {frames.length === 0
             ? `No Products for `
-            : `Products Results  for `}
-          <span className="font-bold">&quot;{query}&quot;</span>
+            : `Results for `}
+          <span className="font-medium">&quot;{query}&quot;</span>
         </p>
            </div>
            {frames.length != 0 && 
-        <p>
+        <p className="text-neutral-400 text-xs">
         ({frames.length})
       </p>}
           </div>
       ) : null}
       {frames.length > 0 ? (
-        <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <Grid className="grid-cols-1 ">
           <ProductGridItems frames={frames} />
         </Grid>
       ) : 
