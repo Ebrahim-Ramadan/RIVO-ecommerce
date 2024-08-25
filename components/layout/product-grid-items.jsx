@@ -22,7 +22,7 @@ export default function ProductGridItems({ frames }) {
                 amount: frame.price,
                 currencyCode: 'EG'
               }}
-              src={frame.images[0]}
+              src={`https://iili.io/${frame.images[0].match(/\/([a-zA-Z0-9]+)$/)[1]}.jpg`}
               fill
               sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
             />

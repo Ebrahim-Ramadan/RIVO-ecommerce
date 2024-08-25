@@ -89,6 +89,7 @@ async function getData(productId) {
     }
   
     if (data) {
+      console.log('found on cACHE');
       return data;
     }
   
@@ -113,7 +114,7 @@ async function getRelatedProducts(keyword, relatedID) {
     const relatedProducts = await getRelatedProducts(keyword, relatedID);
   
     if (!relatedProducts || relatedProducts.length === 0) return null;
-  
+  console.log('relatedProducts', relatedProducts);
     return (
       <div className="p-4 w-full">
         <h2 className="mb-2 text-2xl font-bold">Related Products</h2>
@@ -136,7 +137,7 @@ async function getRelatedProducts(keyword, relatedID) {
                     amount: product.price[0],
                     currencyCode: 'EGP'
                   }}
-                  src={product.images[0]}
+                  src={`https://iili.io/${product.images[0].match(/\/([a-zA-Z0-9]+)$/)[1]}.jpg` || '/logo.png'}
                   fill
                   sizes="(min-width: 1024px) 20vw, (min-width: 768px) 25vw, (min-width: 640px) 33vw, (min-width: 475px) 50vw, 100vw"
                 />

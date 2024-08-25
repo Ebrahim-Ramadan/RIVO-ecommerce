@@ -39,11 +39,12 @@ export function Gallery({ images }) {
       )}
       {images[imageIndex] && (
         <Image
+        quality={50}
           className="h-full w-full object-contain rounded-lg"
           fill
           sizes="(min-width: 1024px) 66vw, 100vw"
           alt={images[imageIndex]?.altText || 'Image'}
-          src={images[imageIndex]?.src || '/default-image.jpg'}
+          src={`https://iili.io/${images[imageIndex]?.src.match(/\/([a-zA-Z0-9]+)$/)[1]}.jpg` || '/logo.png'}
           priority={true}
           onLoadingComplete={() => setLoading(false)}
           onError={() => {

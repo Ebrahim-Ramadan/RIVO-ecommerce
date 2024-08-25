@@ -1,12 +1,17 @@
-import { cookies } from 'next/headers';
-import CartModal from './modal';
+import { lazy, Suspense } from 'react';
+import LoadingDots from '../loading-dots';
+
+const CartModal = lazy(() => import('./modal'));
 
 export default async function Cart() {
-  let cart;
 
   // if (cartId) {
   //   cart = await getCart(cartId);
   // }
 
-  return <CartModal cart={cart} />;
+  return (
+    <Suspense fallback={<LoadingDots/>}>
+      <CartModal />
+    </Suspense>
+  );
 }

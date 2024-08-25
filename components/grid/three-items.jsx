@@ -17,7 +17,7 @@ function ThreeItemGridItem({
       >
         <GridTileImage
        
-          src={item && item['images'][0]}
+          src={`https://iili.io/${item && item['images'][0].match(/\/([a-zA-Z0-9]+)$/)[1]}.jpg`}
           fill
           sizes={
             size === 'full' ? '(min-width: 768px) 66vw, 100vw' : '(min-width: 768px) 33vw, 100vw'

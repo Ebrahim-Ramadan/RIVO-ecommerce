@@ -40,7 +40,7 @@ export  function Carousel({data}) {
                   amount: frame.price[0],
                   currencyCode: 'EGP',
                 }}
-                src={frame['images'][0]}
+                src={`https://iili.io/${frame && frame['images'][0].match(/\/([a-zA-Z0-9]+)$/)[1]}.jpg`}
                 fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
               />

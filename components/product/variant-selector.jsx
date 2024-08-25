@@ -7,6 +7,7 @@ import { useState, useEffect, Suspense } from 'react';
 import LoadingDots from '../loading-dots';
 
 export function VariantSelector({ sizes, colors, types, prices }) {
+  console.log('ass', { sizes, colors, types, prices });
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
