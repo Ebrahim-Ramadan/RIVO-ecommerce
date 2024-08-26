@@ -4,7 +4,6 @@ import { NoResults } from "@/components/layout/navbar/NoResults";
 import ProductGridItems from "@/components/layout/product-grid-items";
 
 export const CategoriesLayout = ({ category, categories }) => {
-  const midPoint = Math.ceil(categories.length / 2) - 1;
 
   return (
     <div className="w-full p-2">
@@ -22,9 +21,7 @@ export const CategoriesLayout = ({ category, categories }) => {
       </h1>
       {categories.length > 0 ? (
         <Grid className="grid-cols-1">
-         <ProductGridItems frames={categories.length % 2 !== 0 ? categories.slice(0, -1) : categories} />
-
-          <ProductGridItems frames={categories.slice(midPoint + 1)} />
+          <ProductGridItems frames={categories} />
         </Grid>
       ) : (
         <NoResults text='No Results' shopNow={true} />
