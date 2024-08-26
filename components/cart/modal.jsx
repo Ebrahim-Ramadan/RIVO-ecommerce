@@ -1,7 +1,6 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
-import { ShoppingBag } from 'lucide-react';
 import LoadingDots from '@/components/loading-dots';
 import Price from '@/components/price';
 import { Fragment, useState, useEffect } from 'react';
@@ -9,12 +8,13 @@ import CloseCart from './close-cart';
 import { DeleteItemButton } from './delete-item-button';
 import { EditItemQuantityButton } from './edit-item-quantity-button';
 import OpenCart from './open-cart';
-import { clearAllCookies, getCart, removeFromCart, setCookie, updateCart } from './actions'; // Assuming you have these functions
+import { clearAllCookies, getCart, updateCart } from './actions';
 import { getProductDetails } from '@/lib/utils';
 import Image from 'next/image';
 import { ShippingCost } from '../pay/ShippingCost';
 import eventEmitter from '@/lib/eventEmitter';
 import { useRouter } from 'next/navigation';
+import { ShoppingCartIcon } from 'lucide-react';
 
 export default function CartModal() {
   const router = useRouter()
@@ -111,22 +111,26 @@ export default function CartModal() {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-full"
           >
-            <Dialog.Panel className="fixed bottom-0 right-0 top-0 text-white flex h-full w-full flex-col  bg-black/80 p-6 text-black backdrop-blur-xl md:w-[390px]">
-            <div class="absolute w-[150px] h-[150px] bg-white/85 z-[-1] blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
+            <Dialog.Panel className="fixed bottom-0 right-0 top-0 text-white flex h-full w-full flex-col  bg-black/90 p-6 text-black backdrop-blur-xl md:w-[390px]">
+            {/* <div class="absolute w-[150px] h-[150px] bg-white/85 z-[-1] blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div> */}
 
               <div className="flex items-center mb-4 justify-between">
-                <p className="text-xl font-bold">My Cart</p>
+                <p className="text-xl font-medium">My Cart</p>
                 <button aria-label="Close cart" onClick={closeCart}>
                   <CloseCart />
                 </button>
               </div>
 
               {cart.length === 0 ? (
-                <div className="mt-20  gap-4 flex w-full flex-col items-center justify-center overflow-hidden">
-                  <ShoppingBag className="h-16" />
-                  <p className="mt-6 text-center text-xl font-medium">Your cart is empty.</p>
-                  <button onClick={closeCart} className='text-center font-bold md:text-xl w-full px-4 py-2 bg-white/20 hover:bg-white/10 transition duration-200 backdrop-blur-[.5px] rounded-full '>Back to Shop</button>
-                </div>
+                // <div className="mt-20  gap-4 flex w-full flex-col items-center justify-center overflow-hidden">
+                //   <ShoppingBag className="h-16" />
+                //   <p className="mt-6 text-center text-xl font-medium">Your cart is empty.</p>
+                //   <button onClick={closeCart} className='text-center font-bold md:text-xl w-full px-4 py-2 bg-white/20 hover:bg-white/10 transition duration-200 backdrop-blur-[.5px] rounded-full '>Back to Shop</button>
+                // </div>
+                <div className="mt-20 flex w-full flex-col items-center justify-center overflow-hidden">
+                <ShoppingCartIcon size='44' />
+                <p className="mt-6 text-center text-2xl font-bold">Your cart is empty.</p>
+              </div>
               ) : (
                 <div className="flex h-full flex-col justify-between overflow-hidden px-2">
                   <ul className="flex-grow overflow-y-auto p-2">
