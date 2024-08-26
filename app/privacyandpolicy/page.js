@@ -10,7 +10,7 @@ export const metadata = {
 export default async function HomePage() {
 
   return (
-    <div className="container mx-auto p-6">
+    <div className=" mx-auto p-6">
       <h1 className="text-4xl font-bold mb-6">Privacy Policy for Rivo Gallery</h1>
       <p className="mb-4">
         We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy outlines how we collect, use, disclose, and protect your information when you use our website (هنحط هنا الدومين).
