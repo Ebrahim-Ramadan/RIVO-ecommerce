@@ -21,7 +21,7 @@ const FramedCategories = [
 ];
 const OutCategories = [
   { name: 'Best Sellers',  icon: '/categories/best-selling.png' , slug:'/#BEST-SELLERS'},
-  { name: 'Framed Posters',  icon: '/categories/Vinyl Frames.svg' },
+  { name: 'Frames',  icon: '/categories/Vinyl Frames.svg' },
   { name: 'Framed vinyls', slug: '/categories/Framed-vinyls', icon: '/categories/framed-vinyls.svg' },
   { name: 'Vinyls',  icon: '/categories/all.svg' , slug:'/categories/vinyls'},
 ];
