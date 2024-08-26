@@ -18,10 +18,14 @@ const FramedCategories = [
   { name: 'Series', slug: '/series', icon: '/categories/series.svg' },
   { name: 'Music', slug: '/musics', icon: '/categories/music.svg' },
   { name: 'Superheroes', slug: '/superheroes', icon: '/categories/superheros.svg' },
+  { name: 'Cars', slug: '/Cars', icon: '/categories/Cars.svg' },
+  { name: 'Art', slug: '/Art', icon: '/categories/art.svg' },
+  { name: 'Sports', slug: '/Sports', icon: '/categories/sports.svg' },
 ];
 const OutCategories = [
   { name: 'Best Sellers',  icon: '/categories/best-selling.png' , slug:'/#BEST-SELLERS'},
   { name: 'Frames',  icon: '/categories/Vinyl Frames.svg' },
+  { name: 'cairokee frames',  icon: '/categories/cairokee.png', slug: '/categories/cairokee-frames' },
   { name: 'Framed vinyls', slug: '/categories/Framed-vinyls', icon: '/categories/framed-vinyls.svg' },
   { name: 'Vinyls',  icon: '/categories/all.svg' , slug:'/categories/vinyls'},
 ];
@@ -63,6 +67,10 @@ export default function MobileMenu() {
     }
     if (category.slug === '/#BEST-SELLERS') {
       router.push('/categories/best-sellers');
+      return;
+    }
+    if (category.slug === '/categories/cairokee-frames') {
+      router.push('/categories/cairokee-frames');
       return;
     }
     setActiveCategory(category.name);
@@ -214,11 +222,16 @@ export default function MobileMenu() {
                         <Link
                           key={category.slug}
                           href={`/categories/${category.slug}`}
-                          className="text-lg flex items-center justify-start flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
+                          className="text-lg flex items-center justify-between flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
                         >
+                          <div className='flex flex-row items-center gap-2'>
                           <Image src={category.icon} width={24} height={24} alt="category icon" />
                           {category.name}
+                          </div>
+                        <ArrowRight color='#c7c7c7' size={16}/>
+
                         </Link>
+                        
                       ))}
                     </div>
                   )}

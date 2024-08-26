@@ -1,11 +1,11 @@
 'use client'
-import { updateDocumentsWithVinyls } from '@/lib/utils'
+import { updateOrCreateFrames } from '@/lib/utils'
 import React from 'react'
 
 export const Ass = () => {
   return (
     <div>
-      <button >
+      <button onClick={updateOrCreateFrames}>
         Ass
         </button>
         </div>
