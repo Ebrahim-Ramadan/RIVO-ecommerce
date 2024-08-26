@@ -128,3 +128,24 @@ button {
 html {
   scroll-behavior: smooth;
 }
+
+.NISIDEPRIVACY{
+  padding: 0 1rem;
+}
+.ABCPrivacy{
+  /* text-xl font-semibold mt-4 mb-2 */
+  font-size: larg;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0 0.5rem;
+
+}
+.OneTwoThreePrivacy{
+  /* text-2xl font-semibold mt-6 mb-2 */
+  font-size: larger;
+  font-weight: bolder;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0 0.2rem;
+}
