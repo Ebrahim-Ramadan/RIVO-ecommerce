@@ -31,7 +31,7 @@ export  function Footer() {
     },
     {
       title: 'Privacy and Policy',
-      path: '/privacy-and-policy'
+      path: '/privacyandpolicy'
     },
     {
       title: 'Development',
