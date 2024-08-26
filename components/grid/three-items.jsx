@@ -37,6 +37,7 @@ function ThreeItemGridItem({
 }
 
 export  function ThreeItemGrid({data}) {
+  console.log('data', data);
   return (
  <div className='w-full gap-2 flex flex-col mt-2 scroll-smooth scroll-mt-4' id="FEATURING">
   

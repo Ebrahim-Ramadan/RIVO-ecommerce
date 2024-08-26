@@ -11,18 +11,18 @@ export default async function Home({ searchParams }) {
   
   // Try to get frames from cache first
   const cacheKey = `search:${query}`;
-  let frames = getFromCache(cacheKey);
+  // let frames = getFromCache(cacheKey);
 
-  if (!frames) {
+  // if (!frames) {
     // If not in cache, fetch from searchFrames function
-    frames = await searchFrames(query);
+    const frames = await searchFrames(query);
     
     // Store the results in cache for future requests
-    setInCache(cacheKey, frames);
-    console.log(`Cache miss for "${query}". Fetched and cached ${frames.length} frames.`);
-  } else {
-    console.log(`Cache hit for "${query}". Retrieved ${frames.length} frames from cache.`);
-  }
+  //   setInCache(cacheKey, frames);
+  //   console.log(`Cache miss for "${query}". Fetched and cached ${frames.length} frames.`);
+  // } else {
+  //   console.log(`Cache hit for "${query}". Retrieved ${frames.length} frames from cache.`);
+  // }
 
   return (
     <div className="mx-auto max-w-7xl md:px-4">

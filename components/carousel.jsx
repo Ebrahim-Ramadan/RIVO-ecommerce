@@ -1,8 +1,6 @@
 
-import eventEmitter from "@/lib/eventEmitter";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
-import { useEffect } from "react";
 import { GridTileImage } from "./grid/tile";
 
 
