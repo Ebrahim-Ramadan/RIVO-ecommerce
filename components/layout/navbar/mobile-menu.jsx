@@ -18,7 +18,7 @@ const FramedCategories = [
   { name: 'Series', slug: '/series', icon: '/categories/series.svg' },
   { name: 'Music', slug: '/musics', icon: '/categories/music.svg' },
   { name: 'Superheroes', slug: '/superheroes', icon: '/categories/superheros.svg' },
-  { name: 'Cars', slug: '/Cars', icon: '/categories/Cars.svg' },
+  { name: 'Cars', slug: '/Cars', icon: '/categories/cars.svg' },
   { name: 'Art', slug: '/Art', icon: '/categories/art.svg' },
   { name: 'Sports', slug: '/Sports', icon: '/categories/sports.svg' },
 ];
