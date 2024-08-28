@@ -2,6 +2,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search, X, ArrowRight } from 'lucide-react';
+import { Rotate3D } from 'lucide-react';
+import { ArrowDownCircle } from 'lucide-react';
+import { ClockArrowDown } from 'lucide-react';
+import { LucideClockArrowUp } from 'lucide-react';
+import { LucideCalendarArrowDown } from 'lucide-react';
+import { LucideCircleArrowDown } from 'lucide-react';
+import { CircleChevronRight } from 'lucide-react';
 
 export const OverlaySearch = () => {
   const searchParams = useSearchParams();
@@ -103,11 +110,12 @@ export const OverlaySearch = () => {
             }
             {recentSearches.length > 0 && (
               <div className="w-full mt-4">
-                <h3 className="text-white mb-2">Recent Searches</h3>
+                <h3 className="text-white/80 mb-2">Recent</h3>
                 <ul className="space-y-2">
                   {recentSearches.slice(0, 5).map((term, index) => (
-                    <li key={index} className="text-blue-400 hover:underline cursor-pointer" onClick={() => handleSearch(term)}>
+                    <li key={index} className="w-full justify-between text-blue-500 group hover:underline cursor-pointer flex flex-row items-center" onClick={() => handleSearch(term)}>
                       {term}
+                      <CircleChevronRight size={20}  className='text-white/80 group-hover:text-white'/>
                     </li>
                   ))}
                 </ul>
