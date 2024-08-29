@@ -3,12 +3,10 @@
 import properSizeGuide from '@/public/assets/posters-set-size-guide.jpg'
 import remaingingsizeguide from '@/public/assets/remainging-size-guide.jpg'
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import Image from 'next/image';
 export const SizeGuide = ({type}) => {
-    console.log('type', type);
     const [isOpen, setIsOpen] = useState(false);
-  
   
     return (
       <>

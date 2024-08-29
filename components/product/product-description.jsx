@@ -8,7 +8,6 @@ const SizeGuide = lazy(() => import('./SizeGuide'));
 import { VariantSelector } from './variant-selector';
 
 export function ProductDescription({ product }) {
-  console.log('product', product);
   return (
     <>
       <div className="mb-2 flex flex-col border-b gap-2 pb-2 md:pb-6 dark:border-neutral-700">

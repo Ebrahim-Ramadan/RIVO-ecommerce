@@ -87,7 +87,6 @@ export function Gallery({ images }) {
       const imageSearchParams = new URLSearchParams(searchParams.toString());
 
       imageSearchParams.set('image', index.toString());
-console.log('image.src', image.src);
       return (
         <li key={image.src} className="h-10 md:h-16 w-10 md:w-16 flex-shrink-0">
           <Link
