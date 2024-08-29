@@ -25,7 +25,7 @@ const FramedCategories = [
 ];
 const OutCategories = [
   { name: 'Best Sellers',  icon: '/categories/best-selling.png' , slug:'/#BEST-SELLERS'},
-  { name: 'posters set',  icon: '/categories/posters-sets.png' , slug:'/categories/posters-set'},
+  { name: 'posters set',  icon: '/categories/posters-sets.svg' , slug:'/categories/posters-set'},
   { name: 'Frames',  icon: '/categories/Vinyl Frames.svg' },
   { name: 'cairokee frames',  icon: '/categories/cairokee.png', slug: '/categories/cairokee-frames' },
   { name: 'Frame Sets',  icon: '/categories/collections.svg', slug: '/categories/frame-sets' },

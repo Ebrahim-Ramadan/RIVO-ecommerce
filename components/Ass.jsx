@@ -5,7 +5,7 @@ import React from 'react'
 export const Ass = () => {
   return (
     <div>
-      <button>
+      <button onClick={updateDocumentsWithVinyls}>
         Ass
         </button>
         </div>
