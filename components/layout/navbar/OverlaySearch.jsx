@@ -2,12 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search, X, ArrowRight } from 'lucide-react';
-import { Rotate3D } from 'lucide-react';
-import { ArrowDownCircle } from 'lucide-react';
-import { ClockArrowDown } from 'lucide-react';
-import { LucideClockArrowUp } from 'lucide-react';
-import { LucideCalendarArrowDown } from 'lucide-react';
-import { LucideCircleArrowDown } from 'lucide-react';
+
 import { CircleChevronRight } from 'lucide-react';
 
 export const OverlaySearch = () => {

@@ -62,7 +62,7 @@ export  function Footer() {
       </div>
       
         <div>
-          <Link className="flex items-center gap-2 text-black md:pt-1 dark:text-white" href="/">
+          <a className="flex items-center gap-2 text-black md:pt-1 dark:text-white" href="/">
             {/* <LogoSquare size="sm" />
             <span className="uppercase">{SITE_NAME}</span> */}
              <Image
@@ -72,7 +72,7 @@ export  function Footer() {
             width={500}
             height={500}
             />
-          </Link>
+          </a>
         </div>
         <Suspense
           fallback={
@@ -101,9 +101,3 @@ export  function Footer() {
 }
 export default Footer
 
-
-const footerAccepts = ()=>{
-  const accepts = [
-    ''
-  ]
-}

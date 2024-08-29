@@ -2,8 +2,9 @@ import { AddToCart } from '@/components/cart/add-to-cart';
 import Price from '@/components/price';
 import Prose from '@/components/prose';
 
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import LoadingDots from '../loading-dots';
+const SizeGuide = lazy(() => import('./SizeGuide'));
 import { VariantSelector } from './variant-selector';
 
 export function ProductDescription({ product }) {
@@ -19,7 +20,7 @@ export function ProductDescription({ product }) {
         </Suspense>
       }
 
-      
+      <SizeGuide type={product.categories[0]}/>
 
       <Suspense fallback={<LoadingDots/>}>
         <AddToCart product={product} availableForSale={true} />

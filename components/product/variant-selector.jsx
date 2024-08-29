@@ -59,6 +59,15 @@ export function VariantSelector({ sizes, colors, types, prices }) {
 
   return (
     <div>
+      <div className="flex justify-end font-medium text-sm text-white mb-4">
+        <Suspense fallback={<LoadingDots/>}>
+          <Price
+            amount={Math.ceil(price)}
+            currencyCode='EGP'
+            className='bg-blue-600 rounded-full p-2'
+          />
+        </Suspense>
+      </div>
       {options.map((option) => (
         <dl className="mb-4" key={option.id}>
           <dt className="mb-2 font-medium text-sm uppercase tracking-wide">{option.name}</dt>
@@ -109,15 +118,7 @@ export function VariantSelector({ sizes, colors, types, prices }) {
           </dd>
         </dl>
       ))}
-      <div className="flex justify-end font-medium text-sm text-white mb-4">
-        <Suspense fallback={<LoadingDots/>}>
-          <Price
-            amount={Math.ceil(price)}
-            currencyCode='EGP'
-            className='bg-blue-600 rounded-full p-2'
-          />
-        </Suspense>
-      </div>
+      
     </div>
   );
 }

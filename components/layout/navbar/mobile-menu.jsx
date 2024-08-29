@@ -17,6 +17,7 @@ const FramedCategories = [
   { name: 'Movies', slug: '/movies', icon: '/categories/movies.svg' },
   { name: 'Series', slug: '/series', icon: '/categories/series.svg' },
   { name: 'Music', slug: '/musics', icon: '/categories/music.svg' },
+  { name: 'Ar Musics', slug: '/Ar-Musics', icon: '/categories/ar-music.svg' },
   { name: 'Superheroes', slug: '/superheroes', icon: '/categories/superheros.svg' },
   { name: 'Cars', slug: '/Cars', icon: '/categories/cars.svg' },
   { name: 'Art', slug: '/Art', icon: '/categories/art.svg' },
@@ -24,8 +25,10 @@ const FramedCategories = [
 ];
 const OutCategories = [
   { name: 'Best Sellers',  icon: '/categories/best-selling.png' , slug:'/#BEST-SELLERS'},
+  { name: 'posters set',  icon: '/categories/best-selling.png' , slug:'/categories/posters-set'},
   { name: 'Frames',  icon: '/categories/Vinyl Frames.svg' },
   { name: 'cairokee frames',  icon: '/categories/cairokee.png', slug: '/categories/cairokee-frames' },
+  { name: 'Frame Sets',  icon: '/categories/collections.svg', slug: '/categories/frame-sets' },
   { name: 'Framed vinyls', slug: '/categories/Framed-vinyls', icon: '/categories/framed-vinyls.svg' },
   { name: 'Vinyls',  icon: '/categories/all.svg' , slug:'/categories/vinyls'},
 ];
@@ -71,6 +74,14 @@ export default function MobileMenu() {
     }
     if (category.slug === '/categories/cairokee-frames') {
       router.push('/categories/cairokee-frames');
+      return;
+    }
+    if (category.slug === '/categories/frame-sets') {
+      router.push('/categories/frame-sets');
+      return;
+    }
+    if (category.slug === '/categories/posters-set') {
+      router.push('/categories/posters-set');
       return;
     }
     setActiveCategory(category.name);

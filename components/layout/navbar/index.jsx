@@ -1,13 +1,11 @@
-// import Cart from '@/components/cart';
 import OpenCart from '@/components/cart/open-cart';
-import LoadingDots from '@/components/loading-dots';
+
 import logo from '@/public/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import {  Suspense } from 'react';
 import { DMBanner } from './DMBanner';
-// import MobileMenu from './mobile-menu';
-// import OverlaySearch from './OverlaySearch';
+
 import Search, { SearchSkeleton } from './search';
 import Eclipse from '@/public/assets/Eclipse.svg';
 import dynamic from 'next/dynamic';

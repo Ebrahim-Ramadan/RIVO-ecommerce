@@ -62,7 +62,7 @@ export const ProductOverview = ({ frameID }) => {
         
         <Suspense fallback={<LoadingDots/>}>
         <LazyLoad>
-          <RelatedProducts keyword={data.keywords[0]} relatedID={data.id} />
+          <RelatedProducts keyword={data.categories[0]} relatedID={data.id} />
         </LazyLoad>
 </Suspense>
       </div>
@@ -100,14 +100,39 @@ async function getData(productId) {
     return data;
   }
   
-async function getRelatedProducts(keyword, relatedID) {
-    let relatedProducts 
+  async function getRelatedProducts(keyword, relatedID, category) {
+    let relatedProducts = null;
+
+    // Check if related products are cached by category
+    const cachedKey = `cached-${category}`;
+    const cachedData = localStorage.getItem(cachedKey);
     
-    if (!relatedProducts) {
+    if (cachedData) {
+      try {
+        console.log('related cache');
+        const parsedData = JSON.parse(cachedData);
+        relatedProducts = parsedData.filter(item => item.id !== relatedID);
+        if (relatedProducts.length > 0) {
+          console.log('Found related products in cache');
+          return relatedProducts;
+        }
+      } catch (error) {
+        console.error('Error parsing cached data:', error);
+      }
+    }
+
+    // If no cached data, fetch related products from Firestore
+    if (!relatedProducts || relatedProducts.length === 0) {
       relatedProducts = await searchFrames(keyword, true, relatedID);
-    } 
+      if (relatedProducts && relatedProducts.length > 0) {
+        // Cache the new related products
+        localStorage.setItem(cachedKey, JSON.stringify(relatedProducts));
+      }
+    }
+
     return relatedProducts;
-  }
+}
+
   
   
   async function RelatedProducts({ keyword, relatedID }) {

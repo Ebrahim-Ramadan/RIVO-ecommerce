@@ -15,7 +15,7 @@ const FooterMenuItem = ({ item }) => {
 
   return (
     <li>
-      <Link
+      <a
         href={item.path}
         className={clsx(
           'block p-2 text-lg underline-offset-4 hover:text-black hover:underline md:inline-block md:text-sm dark:hover:text-neutral-300',
@@ -25,7 +25,7 @@ const FooterMenuItem = ({ item }) => {
         )}
       >
         {item.title}
-      </Link>
+      </a>
     </li>
   );
 };

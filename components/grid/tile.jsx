@@ -14,7 +14,7 @@ export function GridTileImage({
   return (
     <div
       className={clsx(
-        'group flex h-full w-full items-center justify-center',
+        'group flex h-full w-full items-center justify-center rounded-lg',
         {
           relative: label,
           'border-2 border-blue-600': active,
@@ -25,6 +25,7 @@ export function GridTileImage({
       {props.src ? (
         // eslint-disable-next-line jsx-a11y/alt-text -- `alt` is inherited from `props`, which is being enforced with TypeScript
         <Image
+        priority={true}
         quality={10}
           className={clsx('relative h-full w-full object-contain rounded-lg ', {
             'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
