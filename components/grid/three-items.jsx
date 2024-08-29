@@ -16,7 +16,7 @@ function ThreeItemGridItem({
         href={`/frame/${item?.id}?type=${item?.type[0]}&size=${item?.sizes[0]}&color=${item?.color[0]}`}
       >
         <GridTileImage
-       
+       categories={item.categories}
           src={`https://iili.io/${item && item['images'][0].match(/\/([a-zA-Z0-9]+)$/)[1]}.jpg`}
           fill
           sizes={

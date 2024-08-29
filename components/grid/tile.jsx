@@ -13,6 +13,7 @@ export function GridTileImage({
   insideProfuct,
   ...props
 }) {
+  console.log('categories', categories);
   return (
     <div
       className={clsx(
@@ -43,9 +44,9 @@ export function GridTileImage({
           {...props}
         />
       ) : null}
-      {categories[0] == 'Frame sets' &&
+      {/* {categories[0] == 'Frame sets' &&
       <OuterDiscount/>
-      }
+      } */}
       {label ? (
         <Label
         insideProfuct={insideProfuct}

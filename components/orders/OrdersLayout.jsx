@@ -133,7 +133,8 @@ export default function OrdersLayout({ newOrderID }) {
               <span className="leading-tight relative">{productDetails[item.id]?.images[0] ?
                             <Image
                             className='rounded-lg'
-                            src={productDetails[item.id]?.images[0]}
+                            // src={productDetails[item.id]?.images[0]}
+                            src={`https://iili.io/${productDetails[item.id]?.images[0].match(/\/([a-zA-Z0-9]+)$/)[1]}.jpg`}
                             alt={productDetails[item.id]?.id}
                             width={100}
                             height={150}
