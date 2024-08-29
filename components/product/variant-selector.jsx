@@ -5,14 +5,15 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { createUrl } from '@/lib/utils';
 import { useState, useEffect, Suspense } from 'react';
 import LoadingDots from '../loading-dots';
+import { Check } from 'lucide-react';
 
-export function VariantSelector({ sizes, colors, types, prices }) {
-  console.log('ass', { sizes, colors, types, prices });
+export function VariantSelector({ sizes, colors, types, prices, categories }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const [price, setPrice] = useState(0);
+  const [discountApplied, setDiscountApplied] = useState(false);
   const [selectedType, setSelectedType] = useState(searchParams.get('type') || types[0]);
 
   const options = [
@@ -21,17 +22,20 @@ export function VariantSelector({ sizes, colors, types, prices }) {
     ...(selectedType !== 'Wooden Tableau' ? [{ id: 'color', name: 'Color', values: colors }] : []),
   ];
 
-  // Simplified logic for combinations
   const combinations = sizes.flatMap((size, sizeIndex) =>
     (selectedType === 'Wooden Tableau' ? [''] : colors).flatMap(color =>
-      types.map(type => ({
-        id: `${size}-${color}-${type}`,
-        availableForSale: true,
-        size,
-        color,
-        type,
-        price: calculatePrice(prices, sizeIndex, type)
-      }))
+      types.map(type => {
+        const { price, discountApplied } = calculatePrice(prices, sizeIndex, type, categories);
+        return {
+          id: `${size}-${color}-${type}`,
+          availableForSale: true,
+          size,
+          color,
+          type,
+          price,
+          discountApplied
+        };
+      })
     )
   );
 
@@ -48,24 +52,40 @@ export function VariantSelector({ sizes, colors, types, prices }) {
 
       if (selectedCombination) {
         setPrice(selectedCombination.price || 915);
+        setDiscountApplied(selectedCombination.discountApplied);
       } else {
         const sizeIndex = sizes.indexOf(selectedSize);
         if (sizeIndex !== -1) {
-          setPrice(calculatePrice(prices, sizeIndex, selectedType));
+          const { price, discountApplied } = calculatePrice(prices, sizeIndex, selectedType, categories);
+          setPrice(price);
+          setDiscountApplied(discountApplied);
         }
       }
     }
-  }, [searchParams, combinations, sizes, prices]);
+  }, [searchParams, combinations, sizes, prices, categories]);
 
   return (
     <div>
       <div className="flex justify-end font-medium text-sm text-white mb-4">
         <Suspense fallback={<LoadingDots/>}>
-          <Price
-            amount={Math.ceil(price)}
-            currencyCode='EGP'
-            className='bg-blue-600 rounded-full p-2'
-          />
+          <div className="flex gap-2 items-center">
+          {discountApplied && (
+            <span className="flex flex-row items-center text-green-400 text-sm">
+              <Check size='18'/>
+              15% off
+            </span>
+          )}
+            <Price
+              amount={Math.ceil(price)}
+              currencyCode='EGP'
+              className='bg-blue-600 rounded-full p-2'
+            />
+            {/* {discountApplied && (
+              <span className="ml-2 text-red-500 text-sm">
+                15% off
+              </span>
+            )} */}
+          </div>
         </Suspense>
       </div>
       {options.map((option) => (
@@ -118,19 +138,25 @@ export function VariantSelector({ sizes, colors, types, prices }) {
           </dd>
         </dl>
       ))}
-      
     </div>
   );
 }
 
-export function calculatePrice(prices, sizeIndex, type) {
+export function calculatePrice(prices, sizeIndex, type, categories) {
   const basePrice = prices[sizeIndex];
   const ratios = [.761, .71, .826, .725, .671];
   let typeMultiplier = 1;
+  let discountApplied = false;
 
   if (type === 'Wooden Tableau') {
     typeMultiplier = ratios[sizeIndex];
-    return basePrice / typeMultiplier;
+    return { price: basePrice / typeMultiplier, discountApplied };
   }
-  return basePrice;
+
+  if (categories && categories.includes('Frame sets')) {
+    discountApplied = true;
+    return { price: basePrice * 0.85, discountApplied };
+  }
+
+  return { price: basePrice, discountApplied };
 }

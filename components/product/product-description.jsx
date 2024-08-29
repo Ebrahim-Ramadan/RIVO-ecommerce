@@ -15,7 +15,7 @@ export function ProductDescription({ product }) {
       </div>
       {product['sizes'] && product['color'] && product['type'] &&  product['price'] &&
         <Suspense fallback={<LoadingDots/>}>
-          <VariantSelector sizes={product['sizes']} colors={product['color']} types={product['type']} prices={product['price']}/>
+          <VariantSelector sizes={product['sizes']} colors={product['color']} types={product['type']} prices={product['price']} categories={product.categories} />
         </Suspense>
       }
 

@@ -75,7 +75,7 @@ export function AddToCart({ product, availableForSale }) {
   const selectedType = searchParams.get('type');
 
   // Calculate price based on selected size and type
-  const calculatePrice = (sizes, types, selectedSize, selectedType) => {
+  const calculatePrice = (sizes, types, selectedSize, selectedType, categories) => {
     const basePrices = product.price; // Base prices array corresponding to sizes
     const sizeIndex = sizes.indexOf(selectedSize);
     const ratios = [.761, .71, .826, .725, .671];
@@ -90,12 +90,17 @@ export function AddToCart({ product, availableForSale }) {
       }
     }
 
+    // Apply 15% discount if categories include 'posters set'
+    if (categories && categories.includes('Frame sets')) {
+      price *= 0.85; // Apply 15% discount
+    }
+
     return price;
   };
 
   const handleAddToCart = () => {
     return new Promise((resolve) => {
-      const price = calculatePrice(product.sizes, product.types, selectedSize, selectedType);
+      const price = calculatePrice(product.sizes, product.types, selectedSize, selectedType, product.categories);
       addToCart(product, selectedSize, selectedColor, selectedType, Math.ceil(price));
       setTimeout(() => {
         toast.success("Product Added to Your Cart");

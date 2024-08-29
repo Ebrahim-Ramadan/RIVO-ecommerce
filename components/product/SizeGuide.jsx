@@ -32,7 +32,7 @@ export const SizeGuide = ({type}) => {
              alt="size guide"
               width={1000}
               height={1000}
-className='rounded-lg'
+className='rounded-lg bg-neutral-600'
              />
             </DialogPanel>
           </div>

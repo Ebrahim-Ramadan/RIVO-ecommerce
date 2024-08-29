@@ -38,7 +38,7 @@ export const ProductOverview = ({ frameID }) => {
       <div className="mx-auto max-w-screen-2xl px-2 md:px-16 bg-black">
         <div className="flex flex-col rounded-lg border border-neutral-200 px-4 md:p-12 lg:flex-row lg:gap-16 border-neutral-800 bg-black">
           <div className="h-full w-full basis-full lg:basis-4/6">
-            <ProductNav FrameId={frameID} />
+            <ProductNav FrameId={frameID} category={data['categories'][0]}/>
             <Suspense
               fallback={
                 <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden" />
