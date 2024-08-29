@@ -2,8 +2,10 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Label from '../label';
+import OuterDiscount from '../product/OuterDiscount';
 
 export function GridTileImage({
+  categories,
   isInteractive = true,
   active,
   label,
@@ -41,6 +43,9 @@ export function GridTileImage({
           {...props}
         />
       ) : null}
+      {categories[0] == 'Frame sets' &&
+      <OuterDiscount/>
+      }
       {label ? (
         <Label
         insideProfuct={insideProfuct}

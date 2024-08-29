@@ -15,6 +15,7 @@ export default function ProductGridItems({ frames }) {
             prefetch={true}
           >
             <GridTileImage
+            categories ={frame.categories}
              twoGRID={true}
               alt={frame.name}
               label={{
