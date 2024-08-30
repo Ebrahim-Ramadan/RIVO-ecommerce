@@ -230,7 +230,7 @@ export default function MobileMenu() {
                   {activeCategory !== 'Vinyls' && (
                     <div className="flex flex-col gap-2">
                       {FramedCategories.map((category) => (
-                        <Link
+                        <a
                           key={category.slug}
                           href={`/categories/${category.slug}`}
                           className="text-lg flex items-center justify-between flex-row gap-4 font-medium bg-white/10 hover:bg-white/20 py-2 rounded-full px-4 cursor-pointer"
@@ -240,8 +240,7 @@ export default function MobileMenu() {
                           {category.name}
                           </div>
                         <ArrowRight color='#c7c7c7' size={16}/>
-
-                        </Link>
+                        </a>
                         
                       ))}
                     </div>
