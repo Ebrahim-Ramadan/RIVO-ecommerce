@@ -1,10 +1,13 @@
 import { AddToCart } from '@/components/cart/add-to-cart';
 import Prose from '@/components/prose';
 import {LazyLoad} from '@/lib/LazyLoad'
+import dynamic from 'next/dynamic';
 import { lazy, Suspense } from 'react';
 import LoadingDots from '../loading-dots';
 // import { Additionals } from './Additionals';
-const Additionals = lazy(() => import('./Additionals'));
+const Additionals = dynamic(() => import('./Additionals'), {
+  loading: () => <LoadingDots/>,
+})
 const SizeGuide = lazy(() => import('./SizeGuide'));
 import { VariantSelector } from './variant-selector';
 
