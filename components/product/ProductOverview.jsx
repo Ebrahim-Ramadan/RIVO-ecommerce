@@ -17,6 +17,7 @@ export const ProductOverview = ({ frameID }) => {
       const fetchData = async () => {
         setloading(true)
         const result = await getData(frameID);
+        console.log('product', result);
         setData(result);
         setloading(false)
       };
@@ -52,9 +53,11 @@ export const ProductOverview = ({ frameID }) => {
               />
             </Suspense>
           </div>
+         
           <div className="py-2">
             <ProductDescription product={data} />
           </div>
+          
         </div>
         <div className="flex flex-row justify-center w-full text-center py-24">
           <div className="bg-gradient-to-r from-black via-[#B7B7B7] to-transparent w-full h-[2px] opacity-40"></div>
@@ -137,12 +140,12 @@ async function getData(productId) {
   
   async function RelatedProducts({ keyword, relatedID }) {
     const relatedProducts = await getRelatedProducts(keyword, relatedID);
+    console.log('relatedProducts', relatedProducts);
   
     if (!relatedProducts || relatedProducts.length === 0) return null;
-  console.log('relatedProducts', relatedProducts);
     return (
       <div className="p-4 w-full">
-        <h2 className="mb-2 text-2xl font-bold">Related Products</h2>
+        <h2 className="mb-2 text-2xl font-bold">Customers Also Viewed</h2>
         <ul className="flex w-full gap-4 overflow-x-auto py-2">
           {relatedProducts.map((product) => (
             <li
@@ -155,6 +158,7 @@ async function getData(productId) {
                 prefetch={true}
               >
                 <GridTileImage
+                categories={product?.categories}
                   insideProfuct={true}
                   alt={product.name}
                   label={{

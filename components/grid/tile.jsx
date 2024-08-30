@@ -44,9 +44,9 @@ export function GridTileImage({
           {...props}
         />
       ) : null}
-      {/* {categories[0] == 'Frame sets' &&
+      {categories&&categories[0] == 'Frame sets' &&
       <OuterDiscount/>
-      } */}
+      }
       {label ? (
         <Label
         insideProfuct={insideProfuct}

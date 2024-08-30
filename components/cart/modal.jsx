@@ -151,7 +151,7 @@ export default function CartModal() {
                             width={100}
                             height={150}
                             />
-                            : <div className='h-16 flex flex-col items-center justify-center'><LoadingDots /></div>}</span>
+                            : <div className='h-8 flex flex-col items-center justify-center'><LoadingDots /></div>}</span>
                            
                           </div>
                           <div className="flex h-16 flex-col justify-between">

@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast';
 
 
 export const ProductNav = ({category}) => {
+  console.log('category', category);
   const [CurrentURL, setCurrentURL] = useState('')
   useEffect(() => {
     const currentUrl = window.location.href;

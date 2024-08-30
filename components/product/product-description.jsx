@@ -1,9 +1,10 @@
 import { AddToCart } from '@/components/cart/add-to-cart';
-import Price from '@/components/price';
 import Prose from '@/components/prose';
-
+import {LazyLoad} from '@/lib/LazyLoad'
 import { lazy, Suspense } from 'react';
 import LoadingDots from '../loading-dots';
+// import { Additionals } from './Additionals';
+const Additionals = lazy(() => import('./Additionals'));
 const SizeGuide = lazy(() => import('./SizeGuide'));
 import { VariantSelector } from './variant-selector';
 
@@ -30,6 +31,8 @@ export function ProductDescription({ product }) {
           html={product.desc}
         />
       ) : null}
+      <Additionals/>
+
     </>
   );
 }
