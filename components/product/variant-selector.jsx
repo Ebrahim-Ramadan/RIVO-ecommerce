@@ -80,11 +80,6 @@ export function VariantSelector({ sizes, colors, types, prices, categories }) {
               currencyCode='EGP'
               className='bg-blue-600 rounded-full p-2'
             />
-            {/* {discountApplied && (
-              <span className="ml-2 text-red-500 text-sm">
-                15% off
-              </span>
-            )} */}
           </div>
         </Suspense>
       </div>
@@ -92,19 +87,20 @@ export function VariantSelector({ sizes, colors, types, prices, categories }) {
         <dl className="mb-4" key={option.id}>
           <dt className="mb-2 font-medium text-sm uppercase tracking-wide">{option.name}</dt>
           <dd className="flex flex-wrap gap-3">
-            {option.values.map((value) => {
+            {option.values.map((value, index) => {
               const optionNameLowerCase = option.name.toLowerCase();
               const optionSearchParams = new URLSearchParams(searchParams.toString());
               optionSearchParams.set(optionNameLowerCase, value);
               const optionUrl = createUrl(pathname, optionSearchParams);
 
               const selectedSize = searchParams.get('size');
-              const is60cmSize = selectedSize && selectedSize.startsWith('60');
-              const isFrameOption = option.id === 'type' && value === 'FRAME';
+              const selectedType = searchParams.get('type');
+              const isLastSize = option.id === 'size' && index === sizes.length - 1;
+              const isFrameSelected = selectedType === 'FRAME';
 
               const isAvailableForSale = combinations.some(combination =>
                 combination[optionNameLowerCase] === value && combination.availableForSale
-              ) && !(is60cmSize && isFrameOption);
+              ) && !(isLastSize && isFrameSelected);
 
               const isActive = searchParams.get(optionNameLowerCase) === value;
 
@@ -116,8 +112,11 @@ export function VariantSelector({ sizes, colors, types, prices, categories }) {
                   onClick={() => {
                     if (option.id === 'type') {
                       setSelectedType(value);
+                      if (value === 'FRAME' && selectedSize === sizes[sizes.length - 1]) {
+                        optionSearchParams.set('size', sizes[sizes.length - 2]);
+                      }
                     }
-                    router.replace(optionUrl, { scroll: false });
+                    router.replace(createUrl(pathname, optionSearchParams), { scroll: false });
                   }}
                   title={`${option.name} ${value}${!isAvailableForSale ? ' (Not Available)' : ''}`}
                   className={clsx(

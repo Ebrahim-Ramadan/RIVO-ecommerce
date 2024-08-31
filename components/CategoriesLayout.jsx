@@ -13,10 +13,8 @@ export const CategoriesLayout = ({ category, categories }) => {
         <p className='text-2xl font-bold'>
           {category === 'musics' ||category === 'Ar-Musics'? category.slice(0, -1).replace(/-/g, ' ') : category.replace(/-/g, ' ')}
         </p>
-        <span>
-          {categories.length > 0 
-            ? ` (${(category !== "Framed-vinyls" && category !== "vinyls") ? categories.length * 2 : categories.length} products)` 
-            : ''}
+        <span className='text-sm text-neutral-300'>
+          ({categories.length+5})
         </span>
       </h1>
       {categories.length > 0 ? (
