@@ -32,7 +32,7 @@ export function HomeContent() {
       <MarqueeBanner/>
       {/* <ThreeItemGrid data={frames}/> */}
 
-      <LazyLoad>
+      {/* <LazyLoad> */}
         <Suspense fallback={
             <LoadingDots/>
           }>
@@ -40,7 +40,7 @@ export function HomeContent() {
 
         </Suspense>
 
-      </LazyLoad>
+      {/* </LazyLoad> */}
     </>
   );
 }
