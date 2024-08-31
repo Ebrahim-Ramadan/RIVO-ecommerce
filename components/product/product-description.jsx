@@ -6,7 +6,7 @@ import { lazy, Suspense } from 'react';
 import LoadingDots from '../loading-dots';
 // import { Additionals } from './Additionals';
 const Additionals = dynamic(() => import('./Additionals'),  {
-  loading: () => <SearchSkeleton />,
+  loading: () => <LoadingDots />,
   ssr: false
 })
 const SizeGuide = lazy(() => import('./SizeGuide'));

@@ -45,7 +45,7 @@ export  function Footer() {
       <div className=" text-slate-400 py-4 text-center leading-tight w-full">
       <p >For any issues, please contact </p>
       <Link href="https://mail.google.com/mail/u/0/?fs=1&to=Rivogalllery@gmail.com&tf=cm" className="text-blue-500" >Rivogalllery@gmail.com</Link>
-      <p>We're Always Here To Help</p>
+      <p>We are Always Here To Help</p>
       </div>
       <div className="flex flex-col items-center justify-center">
       <Image
