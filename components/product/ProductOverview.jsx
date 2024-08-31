@@ -59,11 +59,12 @@ export const ProductOverview = ({ frameID }) => {
           </div>
           
         </div>
-        <div className="flex flex-row justify-center w-full text-center py-24">
+        <div className="flex flex-row justify-center w-full text-center py-16">
           <div className="bg-gradient-to-r from-black via-[#B7B7B7] to-transparent w-full h-[2px] opacity-40"></div>
         </div>
         
-        <Suspense fallback={<LoadingDots/>}>
+        <Suspense fallback={<div className='flex flex-row w-full items-center justify-center'>
+          <LoadingDots/>  </div>}>
         <LazyLoad>
           <RelatedProducts keyword={data.keywords.slice(-1)[0]} relatedID={data.id} category={data.categories[0]} />
         </LazyLoad>
@@ -144,7 +145,7 @@ async function getData(productId) {
   
     if (!relatedProducts || relatedProducts.length === 0) return null;
     return (
-      <div className="p-4 w-full">
+      <div className="px-4 w-full">
         <h2 className="mb-2 text-2xl font-bold">Customers Also Viewed</h2>
         <ul className="flex w-full gap-4 overflow-x-auto py-2">
           {relatedProducts.map((product) => (

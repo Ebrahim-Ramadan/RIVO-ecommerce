@@ -32,7 +32,7 @@ export  function Carousel({data}) {
           >
             <Link href={`/frame/${frame['id']}?type=${frame.type[0]}&size=${frame.sizes[0]}&color=${frame.color[0]}`} className="relative h-full w-full">
               <GridTileImage
-       categories={frame.categories}
+       categories={frame['categories']}
 
                 alt={frame['name']}
                 label={{

@@ -26,9 +26,9 @@ export function ShippingCost({ trigger, className }) {
         {trigger}
       </button>
       <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-        <div className="fixed inset-0 bg-black/50" aria-hidden="true" />
+        <div className="fixed inset-0 bg-black/80" aria-hidden="true" />
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-          <DialogPanel className="w-full max-w-lg space-y-4 border border-white/20 rounded-lg bg-black p-4 text-white">
+          <DialogPanel className="w-full max-w-lg space-y-4 border border-white/20 rounded-lg bg-black/20 p-4 text-white backdrop-blur-3xl">
             <DialogTitle className="text-xl font-bold flex flex-row items-center gap-2 justify-between">
               <span>Shipping Fees</span>
               <Image
@@ -39,7 +39,7 @@ export function ShippingCost({ trigger, className }) {
                 alt="shipping"
               />
             </DialogTitle>
-            <Description className="text-white/70 text-sm">Shipping costs vary for different governorates</Description>
+            <Description className="text-white/70 text-sm">Shipping costs vary for different regions.</Description>
             <input
               type="text"
               placeholder="Search governorate..."
@@ -69,7 +69,7 @@ export function ShippingCost({ trigger, className }) {
                 onClick={() => setIsOpen(false)}
                 className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-4 py-2 rounded-full"
               >
-                Close
+                Understood
               </button>
             </div>
           </DialogPanel>

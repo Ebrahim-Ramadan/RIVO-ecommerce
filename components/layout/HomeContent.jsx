@@ -39,6 +39,15 @@ export function HomeContent() {
         <Carousel data={frames}/>
 
         </Suspense>
+        {frames.filter(item => item.categories.includes('Frame sets')).length >= 2 &&
+ <Suspense fallback={
+  <LoadingDots/>
+}>
+<Carousel data={frames.filter(item => item.categories.includes('Frame sets'))}/>
+
+</Suspense>
+}
+       
 
       {/* </LazyLoad> */}
     </>

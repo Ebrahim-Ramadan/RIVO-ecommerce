@@ -70,7 +70,7 @@ export default async function RootLayout({ children }) {
   return (
        <html lang="en" className={GeistSans.variable}>
       <body className="bg-black text-black selection:bg-teal-300  dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
-      <Toaster position="top-center" />
+      <Toaster position="bottom-center" />
         <Navbar />
         <main>
           <Suspense fallback={<LoadingDots/>}>
