@@ -5,7 +5,7 @@ import { Gallery } from '@/components/product/gallery';
 import { ProductDescription } from '@/components/product/product-description';
 import { ProductNav } from '@/components/product/ProductNav';
 import LazyLoad from '@/lib/LazyLoad';
-import { getProductDetails, searchFrames } from '@/lib/utils';
+import { getFramesByCategory, getProductDetails, searchFrames } from '@/lib/utils';
 import Link from 'next/link';
 import { Suspense, useState, useEffect } from 'react';
 import LoadingDots from '../loading-dots';
@@ -65,7 +65,7 @@ export const ProductOverview = ({ frameID }) => {
         
         <Suspense fallback={<LoadingDots/>}>
         <LazyLoad>
-          <RelatedProducts keyword={data.categories[0]} relatedID={data.id} />
+          <RelatedProducts keyword={data.keywords.slice(-1)[0]} relatedID={data.id} category={data.categories[0]} />
         </LazyLoad>
 </Suspense>
       </div>
@@ -126,7 +126,7 @@ async function getData(productId) {
 
     // If no cached data, fetch related products from Firestore
     if (!relatedProducts || relatedProducts.length === 0) {
-      relatedProducts = await searchFrames(keyword, true, relatedID);
+      relatedProducts = await getFramesByCategory(category);
       if (relatedProducts && relatedProducts.length > 0) {
         // Cache the new related products
         localStorage.setItem(cachedKey, JSON.stringify(relatedProducts));
@@ -138,8 +138,8 @@ async function getData(productId) {
 
   
   
-  async function RelatedProducts({ keyword, relatedID }) {
-    const relatedProducts = await getRelatedProducts(keyword, relatedID);
+  async function RelatedProducts({ keyword, relatedID , category}) {
+    const relatedProducts = await getRelatedProducts(keyword, relatedID, category);
     console.log('relatedProducts', relatedProducts);
   
     if (!relatedProducts || relatedProducts.length === 0) return null;
