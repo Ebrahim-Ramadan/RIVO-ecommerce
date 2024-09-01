@@ -9,6 +9,7 @@ import { NoResults } from './navbar/NoResults';
 import { MarqueeBanner } from './navbar/DMBanner';
 import LazyLoad from '@/lib/LazyLoad';
 import { Suspense } from 'react';
+import ProductGridItems from './product-grid-items';
 
 
 export function HomeContent() {
@@ -19,16 +20,17 @@ export function HomeContent() {
     </div>;
   }
 
-  if (!frames) {
+  if (!frames && !loading) {
     return <NoResults/>;
   }
-
 
  
   return (
     <>
       <Slider/>
-      <ThreeItemGrid data={frames}/>
+      {/* <ThreeItemGrid data={frames}/> */}
+      <ProductGridItems frames={frames.slice(Math.floor(Math.random() * 5), Math.floor(Math.random() * 30 + 16))}/>
+
       <MarqueeBanner/>
       {/* <ThreeItemGrid data={frames}/> */}
 

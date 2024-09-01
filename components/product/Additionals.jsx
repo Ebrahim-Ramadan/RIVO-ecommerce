@@ -87,7 +87,8 @@ const framesData = [
   }
 ];
 
-export const Additionals = () => {
+export const Additionals = ({currentCategory}) => {
+  console.log('currentCategory', currentCategory);
   const buttonClasses = 'relative flex w-3/4 items-center justify-center rounded-full bg-blue-600 p-2 text-white';
   const [loadingStates, setLoadingStates] = React.useState({}); // Store loading states for each item
 
@@ -108,13 +109,13 @@ export const Additionals = () => {
       }, 1000); // Simulate a delay
     });
   };
-
+// const currentSequence = getCustomOrder(currentCategory)
   return (
     <div className="py-12">
       <h2 className="text-lg text-neutral-300 font-bold mb-4">Better Together</h2>
       <div className="w-full overflow-x-auto">
         <div className='flex gap-4'>
-          {framesData.map((item, index) => (
+          {getCustomOrder(currentCategory).map(index => framesData[index]).map((item, index) => (
             
             <div 
             
@@ -129,7 +130,7 @@ export const Additionals = () => {
                 height={1000}
                 src={`https://iili.io/${item.images[0].match(/\/([a-zA-Z0-9]+)$/)[1]}.jpg`}
                 alt={item.name} 
-                className="w-full h-48 object-cover mb-2 rounded"
+                className="w-full h-48 object-contain mb-2 rounded"
               />
               <div className='w-full flex flex-row items-center gap-2 justify-between'>
                 <h3 className="text-xl font-semibold truncate max-w-[70%]">{item.name}</h3>
@@ -166,3 +167,15 @@ export const Additionals = () => {
 };
 
 export default Additionals;
+
+
+function getCustomOrder(passedCategoryParam) {
+  if (passedCategoryParam === 'Vinyls') {
+    return [0, 3, 1, 2];
+  } else if (passedCategoryParam === 'posters set') {
+    return [3, 1, 0, 2];
+  }
+  else {
+    return [2, 3, 1, 0];
+  }
+}

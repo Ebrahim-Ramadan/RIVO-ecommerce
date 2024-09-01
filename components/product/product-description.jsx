@@ -35,7 +35,7 @@ export function ProductDescription({ product }) {
           html={product.desc}
         />
       ) : null}
-      <Additionals/>
+      <Additionals currentCategory={product.categories[0]}/>
 
     </>
   );

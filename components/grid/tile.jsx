@@ -45,7 +45,7 @@ export function GridTileImage({
         />
       ) : null}
       {categories&&categories[0] == 'Frame sets' &&
-      <OuterDiscount/>
+      <OuterDiscount />
       }
       {label ? (
         <Label
