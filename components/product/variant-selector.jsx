@@ -15,8 +15,6 @@ export function VariantSelector({ sizes, colors, types, prices, categories }) {
   const [price, setPrice] = useState(0);
   const [discountApplied, setDiscountApplied] = useState(false);
   const [selectedType, setSelectedType] = useState(searchParams.get('type') || types[0]);
-  const [selectedSize, setSelectedSize] = useState(searchParams.get('size') || sizes[0]);
-  const [selectedColor, setSelectedColor] = useState(searchParams.get('color') || colors[0]);
 
   const options = [
     { id: 'type', name: 'Type', values: types },
@@ -42,36 +40,29 @@ export function VariantSelector({ sizes, colors, types, prices, categories }) {
   );
 
   useEffect(() => {
-    const selectedCombination = combinations.find(
-      combination =>
-        combination.size === selectedSize &&
-        combination.type === selectedType &&
-        (selectedType === 'Wooden Tableau' || combination.color === selectedColor)
-    );
+    const selectedSize = searchParams.get('size');
+    const selectedType = searchParams.get('type');
 
-    if (selectedCombination) {
-      setPrice(selectedCombination.price || 915);
-      setDiscountApplied(selectedCombination.discountApplied);
-    } else {
-      const sizeIndex = sizes.indexOf(selectedSize);
-      if (sizeIndex !== -1) {
-        const { price, discountApplied } = calculatePrice(prices, sizeIndex, selectedType, categories);
-        setPrice(price);
-        setDiscountApplied(discountApplied);
+    if (selectedSize && selectedType) {
+      const selectedCombination = combinations.find(
+        combination =>
+          combination.size === selectedSize &&
+          combination.type === selectedType
+      );
+
+      if (selectedCombination) {
+        setPrice(selectedCombination.price || 915);
+        setDiscountApplied(selectedCombination.discountApplied);
+      } else {
+        const sizeIndex = sizes.indexOf(selectedSize);
+        if (sizeIndex !== -1) {
+          const { price, discountApplied } = calculatePrice(prices, sizeIndex, selectedType, categories);
+          setPrice(price);
+          setDiscountApplied(discountApplied);
+        }
       }
     }
-
-    // Update URL after state changes
-    const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set('type', selectedType);
-    newSearchParams.set('size', selectedSize);
-    if (selectedType !== 'Wooden Tableau') {
-      newSearchParams.set('color', selectedColor);
-    } else {
-      newSearchParams.delete('color');
-    }
-    router.replace(createUrl(pathname, newSearchParams), { scroll: false });
-  }, [selectedType, selectedSize, selectedColor, combinations, sizes, prices, categories, router, pathname, searchParams]);
+  }, [searchParams, combinations, sizes, prices, categories]);
 
   return (
     <div>
@@ -98,6 +89,12 @@ export function VariantSelector({ sizes, colors, types, prices, categories }) {
           <dd className="flex flex-wrap gap-3">
             {option.values.map((value, index) => {
               const optionNameLowerCase = option.name.toLowerCase();
+              const optionSearchParams = new URLSearchParams(searchParams.toString());
+              optionSearchParams.set(optionNameLowerCase, value);
+              const optionUrl = createUrl(pathname, optionSearchParams);
+
+              const selectedSize = searchParams.get('size');
+              const selectedType = searchParams.get('type');
               const isLastSize = option.id === 'size' && index === sizes.length - 1;
               const isFrameSelected = selectedType === 'FRAME';
 
@@ -105,10 +102,7 @@ export function VariantSelector({ sizes, colors, types, prices, categories }) {
                 combination[optionNameLowerCase] === value && combination.availableForSale
               ) && !(isLastSize && isFrameSelected);
 
-              const isActive = 
-                (option.id === 'type' && selectedType === value) ||
-                (option.id === 'size' && selectedSize === value) ||
-                (option.id === 'color' && selectedColor === value);
+              const isActive = searchParams.get(optionNameLowerCase) === value;
 
               return (
                 <button
@@ -119,13 +113,10 @@ export function VariantSelector({ sizes, colors, types, prices, categories }) {
                     if (option.id === 'type') {
                       setSelectedType(value);
                       if (value === 'FRAME' && selectedSize === sizes[sizes.length - 1]) {
-                        setSelectedSize(sizes[sizes.length - 2]);
+                        optionSearchParams.set('size', sizes[sizes.length - 2]);
                       }
-                    } else if (option.id === 'size') {
-                      setSelectedSize(value);
-                    } else if (option.id === 'color') {
-                      setSelectedColor(value);
                     }
+                    router.replace(createUrl(pathname, optionSearchParams), { scroll: false });
                   }}
                   title={`${option.name} ${value}${!isAvailableForSale ? ' (Not Available)' : ''}`}
                   className={clsx(
