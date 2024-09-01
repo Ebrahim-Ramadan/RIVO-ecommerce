@@ -132,7 +132,7 @@ export default function CartModal() {
                 <p className="mt-6 text-center text-2xl font-bold">Your cart is empty.</p>
               </div>
               ) : (
-                <div className="flex h-full flex-col justify-between overflow-hidden px-2">
+                <div className="flex h-full flex-col justify-between overflow-hidden">
                   <ul className="flex-grow overflow-y-auto p-2">
                     {cart.map((item, i) => (
                       <li key={i} className="flex w-full flex-col border-b border-neutral-400 px-1 py-4">
