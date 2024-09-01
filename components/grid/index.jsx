@@ -10,7 +10,7 @@ function Grid(props) {
 
 function GridItem(props) {
   return (
-    <li {...props} className={clsx('aspect-square transition-opacity', props.className)}>
+    <li {...props} className={clsx('list-none aspect-square transition-opacity', props.className)}>
       {props.children}
     </li>
   );
