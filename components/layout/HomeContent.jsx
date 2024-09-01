@@ -29,7 +29,7 @@ export function HomeContent() {
     <>
       <Slider/>
       {/* <ThreeItemGrid data={frames}/> */}
-      <ProductGridItems frames={frames.slice(Math.floor(Math.random() * 5), Math.floor(Math.random() * 30 + 16))}/>
+      <ProductGridItems frames={frames.sort(() => 0.5 - Math.random()).slice(0, 8)}/>
 
       <MarqueeBanner/>
       {/* <ThreeItemGrid data={frames}/> */}
