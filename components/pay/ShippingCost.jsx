@@ -69,7 +69,7 @@ export function ShippingCost({ trigger, className }) {
                 onClick={() => setIsOpen(false)}
                 className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-4 py-2 rounded-full"
               >
-                Understood
+                Got it
               </button>
             </div>
           </DialogPanel>

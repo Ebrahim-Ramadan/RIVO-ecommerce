@@ -5,6 +5,7 @@ import remaingingsizeguide from '@/public/assets/remainging-size-guide.jpg'
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useState } from 'react'
 import Image from 'next/image';
+import { XIcon } from 'lucide-react'
 export const SizeGuide = ({type}) => {
     const [isOpen, setIsOpen] = useState(false);
   
@@ -24,7 +25,12 @@ export const SizeGuide = ({type}) => {
             <DialogPanel className="w-full max-w-lg space-y-4 border border-white/20 rounded-lg bg-black/80 backdrop-blur-2xl p-2 text-white">
               <DialogTitle className="px-2 text-xl font-bold flex flex-row items-center gap-2 justify-between">
                 <span>Size Guide</span>
-               
+                <button
+                onClick={() => setIsOpen(false)}
+                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold p-2 rounded-lg"
+              >
+                <XIcon/>
+              </button>
               </DialogTitle>
               {/* <Description className="text-white/70 text-sm">Shipping costs vary for different governorates</Description> */}
              <Image

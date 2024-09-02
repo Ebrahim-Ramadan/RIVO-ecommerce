@@ -70,9 +70,9 @@ export function VariantSelector({ sizes, colors, types, prices, categories }) {
         <Suspense fallback={<LoadingDots/>}>
           <div className="flex gap-2 items-center">
           {discountApplied && (
-            <span className="flex flex-row items-center text-green-400 text-sm">
+            <span className="flex flex-row items-center text-[#DB2777] text-sm">
               <Check size='18'/>
-              15% off
+              -15%
             </span>
           )}
             <Price
@@ -147,15 +147,19 @@ export function calculatePrice(prices, sizeIndex, type, categories) {
   let typeMultiplier = 1;
   let discountApplied = false;
 
+  // Apply discount and ratios for "Wooden Tableau"
   if (type === 'Wooden Tableau') {
     typeMultiplier = ratios[sizeIndex];
+    discountApplied = true;  // Apply discount for "Wooden Tableau"
     return { price: basePrice / typeMultiplier, discountApplied };
   }
 
+  // Apply discount for categories like "Frame sets"
   if (categories && categories.includes('Frame sets')) {
     discountApplied = true;
     return { price: basePrice * 0.85, discountApplied };
   }
 
+  // No discount case
   return { price: basePrice, discountApplied };
 }

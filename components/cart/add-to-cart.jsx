@@ -13,7 +13,7 @@ function SubmitButton({
   availableForSale,
   selectedSize,
   selectedColor,
-  onClick, 
+  onClick,
   product
 }) {
   const [pending, setPending] = useState(false);
@@ -114,10 +114,10 @@ export function AddToCart({ product, availableForSale }) {
     <form onSubmit={(e) => e.preventDefault()}>
       <SubmitButton 
         product={product}
-        availableForSale={availableForSale} 
-        selectedSize={selectedSize} 
-        selectedColor={selectedColor} 
-        selectedType={selectedType} 
+        availableForSale={availableForSale}
+        selectedSize={selectedSize}
+        selectedColor={selectedColor}
+        selectedType={selectedType}
         onClick={handleAddToCart}
       />
     </form>

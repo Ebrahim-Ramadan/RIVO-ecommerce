@@ -39,13 +39,13 @@ export  function Footer() {
     },
   ];
   return (
-    <footer className="text-sm text-neutral-500 dark:text-neutral-400">
+    <footer className="text-sm text-neutral-500 dark:text-neutral-400 w-full">
       
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-neutral-200 px-4 py-6 text-sm md:flex-row-reverse md:gap-12 md:px-4 min-[1320px]:px-0 dark:border-neutral-700">
       <div className=" text-slate-400 py-4 text-center leading-tight w-full">
       <p >For any issues, please contact </p>
       <Link href="https://mail.google.com/mail/u/0/?fs=1&to=Rivogalllery@gmail.com&tf=cm" className="text-blue-500" >Rivogalllery@gmail.com</Link>
-      <p>We are Always Here To Help</p>
+      <p>We Are Always Here To Help</p>
       </div>
       <div className="flex flex-col items-center justify-center">
       <Image
