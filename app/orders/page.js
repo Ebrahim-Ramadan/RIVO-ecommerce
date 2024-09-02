@@ -1,6 +1,7 @@
 import LoadingDots from "@/components/loading-dots";
 import OrdersLayout from "@/components/orders/OrdersLayout";
 import { Suspense } from "react";
+export const runtime = "edge";
 
 export const metadata = {
   title: "My Orders",
@@ -13,7 +14,6 @@ export const metadata = {
 export default function HomePage({ searchParams }) {
   const orderId = searchParams?.id?.trim();
 
-  console.log("id", orderId);
 
   return (
     <div className="h-full flex flex-col items-center justify-center w-full">

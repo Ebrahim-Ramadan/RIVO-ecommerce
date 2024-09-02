@@ -12,3 +12,4 @@ export default async function Page({params}) {
   );
 }
 
+export const runtime = "edge";

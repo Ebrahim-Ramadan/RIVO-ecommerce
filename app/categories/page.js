@@ -5,6 +5,7 @@ import { Menu } from "@headlessui/react"
 import Link from "next/link"
 import Image from "next/image"
 import { FilterIcon } from "lucide-react"
+export const runtime = "edge";
 
 
 export default function Page() {
