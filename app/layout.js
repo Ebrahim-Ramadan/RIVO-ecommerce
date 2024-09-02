@@ -7,7 +7,6 @@ import { Suspense } from 'react';
 import LoadingDots from '@/components/loading-dots';
 import LazyLoad from '@/lib/LazyLoad';
 import { Footer } from '@/components/layout/footer';
-import { Analytics } from "@vercel/analytics/react"
 
 export const revalidate = 360000;
 
@@ -83,7 +82,6 @@ export default async function RootLayout({ children }) {
 
      </main>
       </body>
-      <Analytics/>
     </html>
    
   );
