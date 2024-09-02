@@ -133,7 +133,7 @@ export const Additionals = ({currentCategory}) => {
                 className="w-full h-48 object-contain mb-2 rounded"
               />
               <div className='w-full flex flex-row items-center gap-2 justify-between'>
-                <h3 className="text-xl font-semibold truncate max-w-[70%]">{item.name}</h3>
+                <h3 className="text-white text-xl font-semibold truncate max-w-[70%]">{item.name}</h3>
                 <p className="text-neutral-200 text-xs">{item.color}</p>
               </div>
 

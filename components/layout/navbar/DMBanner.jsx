@@ -23,7 +23,7 @@ export const DMBanner = () => {
         </p>
     </div>
     <div className="flex items-center gap-2">
-    <a className='hidden md:block bg-white/20 px-4 py-2 rounded-full hover:underline' target="_blank" href='https://www.instagram.com/rivoo_gallery?igsh=MThjOXNrY2pnemx3bw=='>
+    <a className='hidden md:block bg-white/40 px-4 py-2 rounded-full hover:underline' target="_blank" href='https://www.instagram.com/rivoo_gallery?igsh=MThjOXNrY2pnemx3bw=='>
       contact us
     </a>
         <button onClick={handleDismiss} data-dismiss-target="#sticky-banner" type="button" className="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 rounded-lg text-sm p-1.5 dark:hover:bg-white/20">
@@ -42,7 +42,7 @@ export const DMBanner = () => {
 export const MarqueeBanner = () => {
 return( <>
 <div className="overflow-x-hidden bg-gradient-to-b from-transparent to-blue-500/20 py-4">
-    <div className="marquee-rtl whitespace-nowrap [&>*]:text-lg [&>*]:mx-4 font-bold">
+    <div className="text-white marquee-rtl whitespace-nowrap [&>*]:text-lg [&>*]:mx-4 font-bold">
 	    <span >
         
       🚚 1-2 Delivery Days</span> 

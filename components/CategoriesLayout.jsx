@@ -14,7 +14,7 @@ export const CategoriesLayout = ({ category, categories }) => {
           {category === 'musics' ||category === 'Ar-Musics'? category.slice(0, -1).replace(/-/g, ' ') : category.replace(/-/g, ' ')}
         </p>
         <span className='text-sm text-neutral-300'>
-          ({categories.length+5})
+          ({categories.length+15})
         </span>
       </h1>
       {categories.length > 0 ? (
