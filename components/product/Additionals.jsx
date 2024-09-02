@@ -109,7 +109,7 @@ export const Additionals = ({currentCategory}) => {
       }, 1000); // Simulate a delay
     });
   };
-// const currentSequence = getCustomOrder(currentCategory)
+  
   return (
     <div className="py-12">
       <h2 className="text-lg text-neutral-300 font-bold mb-4">Better Together</h2>
