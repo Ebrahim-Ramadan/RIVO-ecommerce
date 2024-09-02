@@ -3,6 +3,8 @@ import { createHmac } from 'crypto';
 import { writeFile } from 'fs';
 
 import { NextResponse } from "next/server";
+export const runtime = "edge";
+
 const SECRET_KEY = process.env.ACCEPT_HMAC_SECRET;
 
 const expectedKeys = [

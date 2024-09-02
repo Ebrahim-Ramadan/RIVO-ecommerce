@@ -1,7 +1,4 @@
-import Footer from '@/components/layout/footer';
 import { HomeContent } from '@/components/layout/HomeContent';
-
-
 
 export default async function HomePage() {
   
@@ -11,3 +8,4 @@ export default async function HomePage() {
   </div>
   );
 }
+export const runtime = "edge";

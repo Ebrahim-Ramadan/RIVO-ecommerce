@@ -1,6 +1,7 @@
 
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+export const runtime = "edge";
 
 // Create a transporter using Gmail SMTP
 const transporter = nodemailer.createTransport({
