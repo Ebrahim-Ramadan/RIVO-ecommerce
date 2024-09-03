@@ -43,14 +43,21 @@ export default  function Navbar() {
             prefetch={true}
             className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
           >
-            {/* <LogoSquare /> */}
+            
+            <div class="p-2 rounded-xl animate-logo-bg" 
+            style={{
+              backgroundImage: 'url(/logo-back.png)',
+            }}
+            >
             <Image
-            className='w-20'
+            className='w-16 md:w-20'
             src={logo}
             alt="logo"
             width={500}
             height={500}
             />
+            </div>
+            
            
           </Link>
          

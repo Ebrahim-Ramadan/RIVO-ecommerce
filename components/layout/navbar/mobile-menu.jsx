@@ -14,14 +14,14 @@ import eventEmitter from '@/lib/eventEmitter';
 import { ArrowRight } from 'lucide-react';
 
 const FramedCategories = [
-  { name: 'Movies', slug: '/movies', icon: '/categories/movies.svg' },
-  { name: 'Series', slug: '/series', icon: '/categories/series.svg' },
-  { name: 'Music', slug: '/musics', icon: '/categories/music.svg' },
-  { name: 'Ar Musics', slug: '/Ar-Musics', icon: '/categories/ar-music.svg' },
-  { name: 'Superheroes', slug: '/superheroes', icon: '/categories/superheros.svg' },
-  { name: 'Cars', slug: '/Cars', icon: '/categories/cars.svg' },
-  { name: 'Art', slug: '/Art', icon: '/categories/art.svg' },
-  { name: 'Sports', slug: '/Sports', icon: '/categories/sports.svg' },
+  { name: 'Movies', slug: 'movies', icon: '/categories/movies.svg' },
+  { name: 'Series', slug: 'series', icon: '/categories/series.svg' },
+  { name: 'Music', slug: 'musics', icon: '/categories/music.svg' },
+  { name: 'Ar Musics', slug: 'Ar-Musics', icon: '/categories/ar-music.svg' },
+  { name: 'Superheroes', slug: 'superheroes', icon: '/categories/superheros.svg' },
+  { name: 'Cars', slug: 'Cars', icon: '/categories/cars.svg' },
+  { name: 'Art', slug: 'Art', icon: '/categories/art.svg' },
+  { name: 'Sports', slug: 'Sports', icon: '/categories/sports.svg' },
 ];
 const OutCategories = [
   { name: 'Best Sellers',  icon: '/categories/best-selling.png' , slug:'/#BEST-SELLERS'},

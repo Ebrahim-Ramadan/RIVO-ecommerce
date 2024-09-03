@@ -149,3 +149,20 @@ html {
   margin-bottom: 0.5rem;
   padding: 0 0.2rem;
 }
+.animate-logo-bg{
+  background-size: 250%;
+    animation: animateLogoBg 25s ease-in-out infinite;
+}
+@keyframes animateLogoBg {
+  
+
+0% {
+  background-position: 0 0;
+}
+50% {
+  background-position: 100% 100%;
+}
+100% {
+  background-position: 0 0;
+}
+}
