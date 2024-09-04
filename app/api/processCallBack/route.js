@@ -1,6 +1,5 @@
 import { appendOrderDataToFirestore } from '@/lib/appendDataToOrder';
 import { createHmac } from 'crypto';
-import { writeFile } from 'fs';
 
 import { NextResponse } from "next/server";
 const SECRET_KEY = process.env.ACCEPT_HMAC_SECRET;
