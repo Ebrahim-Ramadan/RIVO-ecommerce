@@ -3,7 +3,7 @@ import Grid from "@/components/grid";
 import { NoResults } from "@/components/layout/navbar/NoResults";
 import ProductGridItems from "@/components/layout/product-grid-items";
 
-export const CategoriesLayout = ({ category, categories }) => {
+export const CategoriesLayout = ({ category, categories, fadingClass }) => {
 
   return (
     <div className="w-full p-2">
@@ -18,7 +18,7 @@ export const CategoriesLayout = ({ category, categories }) => {
         </span>
       </h1>
       {categories.length > 0 ? (
-        <Grid className="grid-cols-1">
+        <Grid className={`grid-cols-1 ${fadingClass}`}>
           <ProductGridItems frames={categories} />
         </Grid>
       ) : (

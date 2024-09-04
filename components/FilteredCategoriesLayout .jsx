@@ -13,7 +13,7 @@ export const FilteredCategoriesLayout = ({ category }) => {
   const [priceRange, setPriceRange] = useState({ min: 0, max: Infinity });
   const [sortOption, setSortOption] = useState('alphabeticalAZ');
   const [loading, setLoading] = useState(true);
-  
+  const [transitioning, setTransitioning] = useState(false);
   // State for the input fields
   const [minPriceInput, setMinPriceInput] = useState('');
   const [maxPriceInput, setMaxPriceInput] = useState('');
@@ -84,7 +84,11 @@ export const FilteredCategoriesLayout = ({ category }) => {
 
   useEffect(() => {
     if (categories.length > 0) {
-      applyFilters(categories);
+      setTransitioning(true); // Trigger fade-out
+      setTimeout(() => {
+        applyFilters(categories);
+        setTransitioning(false); // Trigger fade-in
+      }, 500); // Match this duration with your CSS fade-out animation time
     }
   }, [categories, priceRange, sortOption]);
 
@@ -174,7 +178,7 @@ export const FilteredCategoriesLayout = ({ category }) => {
         </Menu.Items>
       </Transition>
     </Menu>
-    <CategoriesLayout category={category} categories={filteredCategories} />
+    <CategoriesLayout category={category} categories={filteredCategories} fadingClass={transitioning ? 'fade-out' : 'fade-in'}/>
   </div>
   );
 };
