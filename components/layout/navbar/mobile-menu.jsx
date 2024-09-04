@@ -1,14 +1,12 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { Fragment, Suspense, useEffect, useState } from 'react';
 import {  X, ArrowLeft } from 'lucide-react';
 import Search, { SearchSkeleton } from './search';
 import Image from 'next/image';
 import Eclipse from '@/public/assets/Eclipse.svg';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { OrdersAndCheckout } from './OrdersAndCheckout';
 import eventEmitter from '@/lib/eventEmitter';
 import { ArrowRight } from 'lucide-react';
@@ -139,7 +137,7 @@ export default function MobileMenu() {
           >
             <Dialog.Panel className="fixed bottom-0 left-0 top-0 text-white flex h-full w-full flex-col  bg-black/80 p-4 text-black backdrop-blur-xl md:w-[390px]">
               <div className="w-full flex flex-col items-center justify-between h-full">
-              <div class="absolute w-[150px] h-[150px] bg-white/85 z-[-1] blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
+              <div className="absolute w-[150px] h-[150px] bg-white/85 z-[-1] blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
 
                 <div className="p-4 w-full">
                   <div className='mb-4 flex items-center gap-4'>
@@ -208,7 +206,7 @@ export default function MobileMenu() {
           >
             <Dialog.Panel className="fixed bottom-0 left-0 top-0 text-white flex h-full w-full flex-col bg-black/80 p-6 text-black backdrop-blur-xl md:w-[390px]">
               <div className="w-full flex flex-col items-center justify-between h-full">
-              <div class="absolute w-[150px] h-[150px] bg-blue-500/85 z-[-1] blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
+              <div className="absolute w-[150px] h-[150px] bg-blue-500/85 z-[-1] blur-[150px] top-0 bottom-0 left-0 right-0 m-auto rounded-full"></div>
                 <div className="p-4 w-full">
                   <button
                     className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"

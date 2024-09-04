@@ -1,4 +1,3 @@
-import { CategoriesLayout } from "@/components/CategoriesLayout";
 import FilteredCategoriesLayout from "@/components/FilteredCategoriesLayout ";
 
 

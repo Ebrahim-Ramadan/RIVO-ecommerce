@@ -30,7 +30,7 @@ export default  function Navbar() {
 
 <DMBanner/>
 
-    <nav className="relative flex items-center justify-between p-4 md:px-16">
+    <nav className="relative flex items-center justify-between p-4">
       <div className="block flex-none mr-4">
         <Suspense fallback={ <Image src={Eclipse} width={24} height={24} alt="menu" />}>
           <MobileMenu />
@@ -50,7 +50,7 @@ export default  function Navbar() {
             }}
             >
             <Image
-            className='w-16 md:w-20'
+            className='w-16'
             src={logo}
             alt="logo"
             width={500}

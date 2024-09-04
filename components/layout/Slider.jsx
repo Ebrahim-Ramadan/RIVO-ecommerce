@@ -64,7 +64,7 @@ export  function Slider() {
   const handleSlideAction = (text) => {
     if (text === 'Customized Posters') {
       router.push('https://www.instagram.com/rivoo_gallery?igsh=MThjOXNrY2pnemx3bw==');
-    } else if (text === 'Our New Collection is Here') {
+    } else {
       eventEmitter.emit('openLeftModal');
     }
   };
@@ -72,7 +72,7 @@ export  function Slider() {
   return (
     <div className="w-full max-w-[2000px] mx-auto mb-8">
       <div
-        className="relative h-[70vh] md:h-[90vh] lg:h-[100vh] xl:h-[110vh] w-full overflow-hidden rounded-lg shadow-xl"
+        className="relative h-[70vh] md:h-[150vh] w-full overflow-hidden rounded-lg shadow-xl"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}

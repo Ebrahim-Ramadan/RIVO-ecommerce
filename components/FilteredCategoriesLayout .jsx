@@ -4,7 +4,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { CategoriesLayout } from './CategoriesLayout';
 import LoadingDots from './loading-dots';
 import { Menu, Transition } from '@headlessui/react';
-import { ListFilter } from 'lucide-react';
+import { Filter, ListFilter } from 'lucide-react';
 
 export const FilteredCategoriesLayout = ({ category }) => {
   console.log('category', category.replace(/-/g, ' '));
@@ -104,10 +104,10 @@ export const FilteredCategoriesLayout = ({ category }) => {
     <div className='w-full'>
     <Menu as="div" className="relative inline-block text-right flex w-full justify-start">
       <Menu.Button className="inline-flex w-full justify-end items-center gap-2 rounded-xl  px-6 text-sm text-neutral-200">
-        Filters
-        <div className='flex items-center gap-2 w-6 h-6 bg-blue-500 justify-center rounded-lg'>
-        <ListFilter
-          size='16'
+        <div className='flex items-center gap-2 w-6 h-6 justify-center rounded-full'>
+        <Filter
+        color='#3B82F6'
+          size='24'
         />
         </div>
       </Menu.Button>
@@ -130,7 +130,7 @@ export const FilteredCategoriesLayout = ({ category }) => {
                   <div className='flex flex-row items-center gap-2 w-full'>
                   <input 
                     type="number" 
-                    placeholder="Min" 
+                    placeholder="Min." 
                     value={minPriceInput}
                     onChange={(e) => {
                       const value = parseInt(e.target.value) || 0;
@@ -141,7 +141,7 @@ export const FilteredCategoriesLayout = ({ category }) => {
                   />
                   <input 
                     type="number" 
-                    placeholder="Max" 
+                    placeholder="Max." 
                     value={maxPriceInput}
                     onChange={(e) => {
                       const value = parseInt(e.target.value) || Infinity;
