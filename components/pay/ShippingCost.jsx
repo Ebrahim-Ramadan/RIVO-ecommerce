@@ -47,7 +47,7 @@ export function ShippingCost({ trigger, className }) {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full rounded-lg border px-4 py-2 text-sm text-black placeholder:text-neutral-500 border-neutral-800 bg-transparent text-white placeholder:text-neutral-400"
             />
-            <div className="h-60 overflow-y-auto pr-2">
+            <div className="h-60 overflow-y-auto px-4">
               {filteredCosts.length > 0 ? (
                 filteredCosts.map((cost, index) => {
                   const [governorate, fee] = Object.entries(cost)[0];

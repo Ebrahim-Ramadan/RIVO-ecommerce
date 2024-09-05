@@ -72,7 +72,7 @@ export  function Slider() {
   return (
     <div className="w-full max-w-[2000px] mx-auto mb-8">
       <div
-        className="relative h-[70vh] md:h-[150vh] w-full overflow-hidden rounded-lg shadow-xl"
+        className="relative h-[70vh] md:h-[130vh] w-full overflow-hidden rounded-lg shadow-xl"
        
       >
         <div
@@ -90,7 +90,8 @@ export  function Slider() {
                 alt={slide.text}
                 src={slide.bg}
                 layout="fill"
-                objectFit="cover"
+                // objectFit="cover"
+                className='object-contain md:object-cover rounded-lg'
                 quality={100}
                 priority
               />
