@@ -1,8 +1,10 @@
 
 export default async function Page() {
     return (
-        <div className="bg-black text-white p-4">
-      <h1 className="text-4xl font-bold mb-4">Dev.</h1>
+        <div className=" text-white px-4 py-2">
+         <div class="-z-10 inset-0 absolute -top-[300px] min-h-[650px] bg-[radial-gradient(56.1514%_56.1514%_at_49.972%_38.959%,#273649_0%,#000_100%)] w-full"></div>
+
+      <h1 className="text-4xl font-bold mb-4">Founder Mode</h1>
       <p className="mb-4 font-medium text-lg">
         This platform is built with Next.js, by <a className="text-blue-500" href='https://ebrahim-ramadan.vercel.app/' target='_blank'>Ebrahim Ramadan</a>
       </p>
