@@ -14,7 +14,7 @@ export const revalidate = 360000;
 
   export const metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_API_URL),
-    title: "RIVO Gallery",
+    title: "RIVO Gallery | Shopping Egypt",
     description: "RIVO e-commerce for your favorite posters and frames",
     openGraph: {
        images: ['https://e-commerce-myass.vercel.app/opengraph-image'],
@@ -75,7 +75,7 @@ export default async function RootLayout({ children }) {
 <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet"/>
 
         </head>
-      <body className="bg-black text-black selection:bg-teal-300  dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+      <body className="bg-black text-black selection:bg-[#56C5C9]  dark:text-white dark:selection:[#56C5C9]">
       <Toaster position="bottom-center" />
         <Navbar />
         <main>

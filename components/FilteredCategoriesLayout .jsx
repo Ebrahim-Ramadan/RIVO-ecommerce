@@ -7,7 +7,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { Filter, ListFilter } from 'lucide-react';
 
 export const FilteredCategoriesLayout = ({ category }) => {
-  console.log('category', category.replace(/-/g, ' '));
+  // console.log('category', category.replace(/-/g, ' '));
   const [categories, setCategories] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: 0, max: Infinity });

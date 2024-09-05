@@ -62,8 +62,9 @@ export const OverlaySearch = () => {
       </button>
       
       {isSearchOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 p-2">
-          <div ref={searchRef} className="flex flex-col items-center bg-black p-4">
+        <div className={`fixed inset-0 z-50 bg-black/80 p-2 transition-opacity duration-300 ${isSearchOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+          <div ref={searchRef} className="flex flex-col items-center bg-black p-4 transition-opacity duration-300">
+
             <div className="flex flex-row items-center justify-between w-full py-4">
               <h1 className='text-2xl font-bold'>Search Products</h1>
               <button onClick={() => setIsSearchOpen(false)} className="p-2 rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white flex flex-row items-center justify-endbg-black ">
@@ -110,7 +111,8 @@ export const OverlaySearch = () => {
                   {recentSearches.slice(0, 5).map((term, index) => (
                     <li key={index} className="w-full justify-between text-blue-500 group hover:underline cursor-pointer flex flex-row items-center" onClick={() => handleSearch(term)}>
                       {term}
-                      <CircleChevronRight size={20}  className='text-white/80 group-hover:text-white'/>
+                      {/* <CircleChevronRight size={20}  className='text-white/80 group-hover:text-white'/> */}
+                      <ArrowRight size={20} className="ml-2 text-white/80 group-hover:text-white" />
                     </li>
                   ))}
                 </ul>

@@ -41,7 +41,7 @@ export const DMBanner = () => {
 
 export const MarqueeBanner = () => {
 return( <>
-<div className="overflow-x-hidden bg-gradient-to-b from-transparent to-blue-500/20 py-4">
+<div className="overflow-x-hidden bg-gradient-to-b from-transparent to-[#56C5C9]/20 py-4">
     <div className="text-white marquee-rtl whitespace-nowrap [&>*]:text-lg [&>*]:mx-4 font-bold">
 	    <span >
         
