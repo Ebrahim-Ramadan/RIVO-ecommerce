@@ -69,6 +69,12 @@ export default async function RootLayout({ children }) {
 
   return (
        <html lang="en" className={GeistSans.variable}>
+        <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet"/>
+
+        </head>
       <body className="bg-black text-black selection:bg-teal-300  dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
       <Toaster position="bottom-center" />
         <Navbar />
