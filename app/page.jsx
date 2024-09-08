@@ -1,4 +1,3 @@
-import Footer from '@/components/layout/footer';
 import { HomeContent } from '@/components/layout/HomeContent';
 
 
